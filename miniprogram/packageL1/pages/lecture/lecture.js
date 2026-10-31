@@ -1,3 +1,3 @@
-const { createLecturePage } = require('../../../utils/lecture-page');
+const { createLecturePage } = require('../../utils/lecture-page');
 
 Page(createLecturePage());

@@ -9,7 +9,7 @@ const { execFileSync, spawnSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const MP = path.join(ROOT, 'miniprogram');
-const PACKAGE_LIMIT = 1.8 * 1024 * 1024;
+const PACKAGE_LIMIT = 1.5 * 1024 * 1024;
 const IMAGE_LIMIT = 120 * 1024;
 const THUMB_LIMIT = 20 * 1024;
 const COVER_LIMIT = 30 * 1024;
@@ -72,7 +72,7 @@ function checkStaticFiles() {
     fail('project.config.json 的 miniprogramRoot 应为 miniprogram/');
   }
   if (project && project.appid !== 'touristappid') {
-    warn(`当前 appid 为 ${project.appid}（测试号或正式号），确认没有提交上传私钥。`);
+    warn(`当前 appid 为 ${project.appid}；确认没有把上传私钥或私密配置提交进仓库。`);
   }
 
   if (!app) return null;
@@ -306,6 +306,34 @@ function checkLectureData(app) {
   }
 }
 
+function checkPublishedLectureCoverage() {
+  const lectures = require(path.join(MP, 'data', 'lectures.js')).lectures
+    .filter((lecture) => lecture.status === 'published');
+  const glossary = require(path.join(MP, 'data', 'glossary.js')).glossary;
+  const entities = require(path.join(MP, 'data', 'entities.js')).entities;
+  const topics = require(path.join(MP, 'data', 'topics.js')).topics;
+  const timeline = require(path.join(MP, 'data', 'timeline.js')).tracks;
+
+  for (const lecture of lectures) {
+    if (!glossary.some((term) => term.lectureIds.includes(lecture.id))) {
+      fail(`已上线讲次 ${lecture.id} 没有概念词条覆盖`);
+    }
+    if (!entities.some((entity) => entity.lectureIds.includes(lecture.id))) {
+      fail(`已上线讲次 ${lecture.id} 没有人物/装置条目覆盖`);
+    }
+    if (!topics.some((topic) => topic.lectureIds.includes(lecture.id))) {
+      fail(`已上线讲次 ${lecture.id} 没有被任何思想专题覆盖`);
+    }
+    const timelineCount = timeline.reduce(
+      (sum, track) => sum + track.events.filter((event) => (event.lectureIds || []).includes(lecture.id)).length,
+      0
+    );
+    if (!timelineCount) warn(`已上线讲次 ${lecture.id} 尚未进入双时间线`);
+  }
+
+  notes.push(`已校验 ${lectures.length} 个已上线讲次的索引/专题覆盖`);
+}
+
 function checkGlossary() {
   const file = path.join(MP, 'data', 'glossary.js');
   if (!fs.existsSync(file)) {
@@ -412,9 +440,10 @@ function checkEntities() {
     if (!entity.id || ids.has(entity.id)) fail(`人物/装置 id 缺失或重复：${label}`);
     ids.add(entity.id);
     if (!['person', 'device'].includes(entity.type)) fail(`${label} 的 type 非法`);
-    for (const field of ['name', 'en', 'category', 'role', 'contribution']) {
+    for (const field of ['name', 'en', 'category', 'role', 'contribution', 'bio']) {
       if (!entity[field]) fail(`${label} 缺少字段 ${field}`);
     }
+    if (!['course', 'supplement'].includes(entity.bioSource)) fail(`${label} bioSource 非法`);
     if (!Array.isArray(entity.lectureIds) || !entity.lectureIds.length) fail(`${label} 缺少 lectureIds`);
     if (!Array.isArray(entity.pages) || !entity.pages.length || entity.pages.some((page) => !Number.isInteger(page) || page < 1)) {
       fail(`${label} 的 pages 必须是正整数数组`);
@@ -784,8 +813,8 @@ function checkPackageSizes(app) {
 
   const mainFiles = allFiles.filter((file) => !inSubpackage(file));
   const mainSize = sizeOf(mainFiles);
-  notes.push(`主包：${formatSize(mainSize)} / 1.8 MB`);
-  if (mainSize > PACKAGE_LIMIT) fail(`主包超过 1.8MB：${formatSize(mainSize)}`);
+  notes.push(`主包：${formatSize(mainSize)} / 1.5 MB`);
+  if (mainSize > PACKAGE_LIMIT) fail(`主包超过 1.5MB：${formatSize(mainSize)}`);
 
   for (const root of subRoots) {
     const files = allFiles.filter((file) => {
@@ -793,8 +822,8 @@ function checkPackageSizes(app) {
       return rel === root || rel.startsWith(`${root}/`);
     });
     const size = sizeOf(files);
-    notes.push(`${root}：${formatSize(size)} / 1.8 MB`);
-    if (size > PACKAGE_LIMIT) fail(`${root} 超过 1.8MB：${formatSize(size)}`);
+    notes.push(`${root}：${formatSize(size)} / 1.5 MB`);
+    if (size > PACKAGE_LIMIT) fail(`${root} 超过 1.5MB：${formatSize(size)}`);
   }
 
   const total = sizeOf(allFiles);
@@ -808,6 +837,7 @@ function main() {
   checkJsonAndComponents();
   checkTrackedForbidden();
   checkLectureData(app);
+  checkPublishedLectureCoverage();
   checkGlossary();
   checkEntities();
   checkScale();

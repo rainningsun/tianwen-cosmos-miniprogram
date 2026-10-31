@@ -1,5 +1,5 @@
-const { getLectureById, getPublishedLectures } = require('../data/lectures');
-const { lectureLabel } = require('./format');
+const { getLectureById, getPublishedLectures } = require('../../data/lectures');
+const { lectureLabel } = require('../../utils/format');
 
 const LECTURE_EXPLORE = {
   'lecture-1': [
