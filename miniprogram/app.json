@@ -9,7 +9,8 @@
     "pages/glossary-detail/glossary-detail",
     "pages/entities/entities",
     "pages/entity-detail/entity-detail",
-    "pages/scale/scale"
+    "pages/scale/scale",
+    "pages/timeline/timeline"
   ],
   "window": {
     "navigationBarBackgroundColor": "#05070d",

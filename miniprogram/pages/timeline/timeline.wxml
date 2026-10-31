@@ -1,0 +1,81 @@
+<view class="page-shell">
+  <view class="ref-hero">
+    <text class="eyebrow">DUAL TIMELINE</text>
+    <text class="shell-title">双时间线</text>
+    <text class="shell-desc">宇宙的 138 亿年与人类的观测史，是两条尺度完全不同的线。</text>
+
+    <view class="segmented" style="margin-top:30rpx">
+      <view
+        wx:for="{{modes}}"
+        wx:key="id"
+        class="segmented__item {{mode === item.id ? 'segmented__item--active' : ''}}"
+        data-mode="{{item.id}}"
+        bindtap="selectMode"
+        aria-role="tab"
+        aria-selected="{{mode === item.id}}"
+      >{{item.label}}</view>
+    </view>
+
+    <view wx:if="{{compare}}" class="compare-panel">
+      <text class="compare-panel__title">为什么不能放在同一把尺上？</text>
+      <text class="compare-panel__text">宇宙线跨越约 138 亿年，观测史只覆盖几千年；如果共用一条线性轴，人类事件会全部挤在右下角。这里用两条独立轨道，分别阅读，再做对照。</text>
+      <view class="compare-panel__counts">
+        <view><text class="compare-number">{{cosmicCount}}</text><text class="compare-label">宇宙时间节点</text></view>
+        <view><text class="compare-number">{{humanCount}}</text><text class="compare-label">观测史节点</text></view>
+      </view>
+      <text class="compare-panel__note">时间与尺度不按比例；137/138 亿年的差异按课件原文保留。</text>
+    </view>
+
+    <view wx:elif="{{currentTrack}}" class="timeline-track">
+      <view class="timeline-track__head">
+        <text class="timeline-track__title">{{currentTrack.title}}</text>
+        <text class="timeline-track__sub">{{currentTrack.subtitle}} · {{currentTrack.events.length}} 个节点</text>
+      </view>
+      <view class="timeline-events">
+        <view wx:for="{{currentTrack.events}}" wx:key="id" class="timeline-event">
+          <view class="timeline-event__rail"><text class="timeline-event__dot"></text></view>
+          <view class="timeline-event__body">
+            <text class="timeline-event__time">{{item.timeLabel}}</text>
+            <text class="timeline-event__title">{{item.title}}</text>
+            <text class="timeline-event__desc">{{item.description}}</text>
+            <view class="timeline-event__links">
+              <text
+                wx:for="{{item.lectureLinks}}"
+                wx:for-item="lecture"
+                wx:key="id"
+                class="related-link"
+                data-id="{{lecture.id}}"
+                bindtap="openLecture"
+                aria-role="button"
+              >{{lecture.label}}</text>
+              <text
+                wx:for="{{item.entityLinks}}"
+                wx:for-item="entity"
+                wx:key="id"
+                class="related-link"
+                data-id="{{entity.id}}"
+                bindtap="openEntity"
+                aria-role="button"
+              >{{entity.name}}</text>
+              <text
+                wx:for="{{item.termLinks}}"
+                wx:for-item="term"
+                wx:key="id"
+                class="related-link"
+                data-id="{{term.id}}"
+                bindtap="openTerm"
+                aria-role="button"
+              >{{term.term}}</text>
+            </view>
+            <view class="timeline-event__meta">
+              <text class="source">{{item.pageText}}</text>
+              <text class="source-badge {{item.sourceClass}}">{{item.sourceLabel}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <text class="copyright">时间、人物与事件据课件整理；不同轨道的尺度差异已在“对照说明”中标明。</text>
+  </view>
+</view>

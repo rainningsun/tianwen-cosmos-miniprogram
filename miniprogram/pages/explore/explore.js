@@ -1,4 +1,8 @@
 const { stages } = require('../../data/scale');
+const { tracks } = require('../../data/timeline');
+
+const cosmic = tracks.find((track) => track.id === 'cosmic');
+const human = tracks.find((track) => track.id === 'human');
 
 Page({
   data: {
@@ -17,7 +21,8 @@ Page({
         index: '02',
         title: '双时间线',
         question: '宇宙的 138 亿年与人类的观测史，如何放在一起看？',
-        meta: '即将上线'
+        meta: `${cosmic ? cosmic.events.length : 0} + ${human ? human.events.length : 0} 个节点`,
+        href: '/pages/timeline/timeline'
       },
       {
         id: 'questions',

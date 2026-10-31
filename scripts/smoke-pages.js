@@ -128,6 +128,7 @@ function testExploreAndScale() {
   const explore = instantiate(loadPage('miniprogram/pages/explore/explore.js'));
   assert.strictEqual(explore.data.cards.length, 3, '探索页应有 3 个入口');
   assert.strictEqual(explore.data.scaleCount, 8, '宇宙尺度应有 8 层');
+  assert.ok(explore.data.cards.some((card) => card.id === 'timeline' && card.href), '探索页应链接双时间线');
 
   const scale = instantiate(loadPage('miniprogram/pages/scale/scale.js'));
   scale.onLoad({});
@@ -139,6 +140,17 @@ function testExploreAndScale() {
   assert.strictEqual(scale.data.current.id, 'cosmic-scale', '边界 next 不应报错');
   scale.previous();
   assert.strictEqual(scale.data.current.id, 'andromeda', '上一级应正常');
+}
+
+function testTimeline() {
+  const page = instantiate(loadPage('miniprogram/pages/timeline/timeline.js'));
+  page.onLoad({});
+  assert.strictEqual(page.data.mode, 'cosmic', '时间线默认宇宙时间');
+  assert.strictEqual(page.data.currentTrack.events.length, 6, '宇宙时间线应有 6 个节点');
+  page.selectMode({ currentTarget: { dataset: { mode: 'human' } } });
+  assert.strictEqual(page.data.currentTrack.events.length, 13, '观测史应有 13 个节点');
+  page.selectMode({ currentTarget: { dataset: { mode: 'compare' } } });
+  assert.strictEqual(page.data.compare, true, '应显示对照说明');
 }
 
 function testDetails() {
@@ -171,6 +183,7 @@ testArchive();
 testReferenceAndGlossary();
 testEntities();
 testExploreAndScale();
+testTimeline();
 testDetails();
 
-console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念 / 人物装置 / 探索 / 尺度 / 5 讲详情 / 第六讲占位');
+console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念 / 人物装置 / 探索 / 尺度 / 时间线 / 5 讲详情 / 第六讲占位');

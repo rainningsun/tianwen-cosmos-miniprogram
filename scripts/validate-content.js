@@ -516,6 +516,62 @@ function checkScale() {
   notes.push(`已校验 ${stages.length} 个宇宙尺度层级`);
 }
 
+function checkTimeline() {
+  const file = path.join(MP, 'data', 'timeline.js');
+  if (!fs.existsSync(file)) {
+    fail('缺少 data/timeline.js');
+    return;
+  }
+  let data;
+  try {
+    delete require.cache[require.resolve(file)];
+    data = require(file);
+  } catch (error) {
+    fail(`data/timeline.js 无法加载：${error.message}`);
+    return;
+  }
+
+  const tracks = Array.isArray(data.tracks) ? data.tracks : [];
+  const cosmic = tracks.find((track) => track.id === 'cosmic');
+  const human = tracks.find((track) => track.id === 'human');
+  if (!cosmic || !human || tracks.length !== 2) fail('双时间线必须正好包含 cosmic 与 human 两条轨道');
+  if (cosmic && cosmic.events.length < 6) fail(`宇宙时间线至少 6 个节点，当前 ${cosmic.events.length}`);
+  if (human && human.events.length < 10) fail(`人类观测史至少 10 个节点，当前 ${human.events.length}`);
+
+  const lectures = require(path.join(MP, 'data', 'lectures.js')).lectures;
+  const lectureIds = new Set(lectures.map((lecture) => lecture.id));
+  const entityIds = new Set(require(path.join(MP, 'data', 'entities.js')).entities.map((entity) => entity.id));
+  const termIds = new Set(require(path.join(MP, 'data', 'glossary.js')).glossary.map((term) => term.id));
+  const eventIds = new Set();
+
+  for (const track of tracks) {
+    if (!track.title || !track.subtitle) fail(`时间线 ${track.id} 缺少标题或副标题`);
+    for (const event of track.events || []) {
+      const label = event.id || event.title || '(未命名事件)';
+      if (!event.id || eventIds.has(event.id)) fail(`时间线事件 id 缺失或重复：${label}`);
+      eventIds.add(event.id);
+      for (const field of ['timeLabel', 'title', 'description']) {
+        if (!event[field]) fail(`时间线事件 ${label} 缺少字段 ${field}`);
+      }
+      if (!['course', 'supplement'].includes(event.sourceType)) fail(`时间线事件 ${label} sourceType 非法`);
+      if (!Array.isArray(event.pages) || !event.pages.length || event.pages.some((page) => !Number.isInteger(page) || page < 1)) {
+        fail(`时间线事件 ${label} pages 非法`);
+      }
+      for (const lectureId of event.lectureIds || []) {
+        if (!lectureIds.has(lectureId)) fail(`时间线事件 ${label} 引用了不存在的讲次：${lectureId}`);
+      }
+      for (const entityId of event.relatedEntityIds || []) {
+        if (!entityIds.has(entityId)) fail(`时间线事件 ${label} 引用了不存在的条目：${entityId}`);
+      }
+      for (const termId of event.relatedTermIds || []) {
+        if (!termIds.has(termId)) fail(`时间线事件 ${label} 引用了不存在的词条：${termId}`);
+      }
+    }
+  }
+
+  notes.push(`已校验双时间线：${cosmic ? cosmic.events.length : 0} 个宇宙节点、${human ? human.events.length : 0} 个观测史节点`);
+}
+
 function checkTopics() {
   const file = path.join(MP, 'data', 'topics.js');
   if (!fs.existsSync(file)) {
@@ -645,6 +701,7 @@ function main() {
   checkGlossary();
   checkEntities();
   checkScale();
+  checkTimeline();
   checkTopics();
   checkNoAssignment();
   checkNoHardcodedFive();
