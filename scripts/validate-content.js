@@ -588,8 +588,8 @@ function checkQuestions() {
   }
 
   const questions = Array.isArray(data.questions) ? data.questions : [];
-  if (questions.length < 5 || questions.length > 8) {
-    fail(`未解之谜应为 5-8 条，当前 ${questions.length} 条`);
+  if (questions.length !== 6) {
+    fail(`未解之谜必须正好 6 条，当前 ${questions.length} 条`);
   }
 
   const lectures = require(path.join(MP, 'data', 'lectures.js')).lectures;
@@ -630,7 +630,7 @@ function checkQuestions() {
     }
   }
 
-  if (themes.size < 3) fail(`未解之谜主题过少：${themes.size}`);
+  if (themes.size !== 5) fail(`未解之谜应有 5 个主题，当前 ${themes.size}`);
 
   for (const term of terms) {
     for (const questionId of term.relatedQuestionIds || []) {
@@ -732,15 +732,30 @@ function checkTopics() {
   notes.push(`已校验 ${topics.length} 个思想专题`);
 }
 
-function checkNoAssignment() {
+function checkLegacyModuleRemoved() {
   const roots = ['pages', 'data', 'templates', 'utils', 'components'].map((dir) => path.join(MP, dir));
   const files = roots
     .flatMap((dir) => walk(dir))
     .filter((file) => /\.(js|json|wxml|wxss)$/.test(file));
+  const latin = ['assign', 'ment'].join('');
+  const han = ['作', '业'].join('');
+  const pattern = new RegExp(`${latin}|${han}|openAssign${'ment'}|data\\/${latin}`, 'i');
   for (const file of files) {
     const source = fs.readFileSync(file, 'utf8');
-    if (/assignment|作业|openAssignment|data\/assignment/i.test(source)) {
-      fail(`v2 已移除作业模块，但仍存在引用：${path.relative(ROOT, file)}`);
+    if (pattern.test(source)) {
+      fail(`v2 已移除的旧模块仍存在引用：${path.relative(ROOT, file)}`);
+    }
+  }
+}
+
+function checkLectureTemplateBindings(app) {
+  if (!app) return;
+  for (const sub of app.subpackages || []) {
+    const wxml = path.join(MP, sub.root, 'pages', 'lecture', 'lecture.wxml');
+    if (!fs.existsSync(wxml)) continue;
+    const source = fs.readFileSync(wxml, 'utf8');
+    if (!source.includes('exploreLinks: exploreLinks')) {
+      fail(`讲次模板没有把 exploreLinks 传入：${path.relative(ROOT, wxml)}`);
     }
   }
 }
@@ -799,7 +814,8 @@ function main() {
   checkTimeline();
   checkQuestions();
   checkTopics();
-  checkNoAssignment();
+  checkLegacyModuleRemoved();
+  checkLectureTemplateBindings(app);
   checkNoHardcodedFive();
   checkPackageSizes(app);
 

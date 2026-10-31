@@ -137,10 +137,13 @@ node scripts/smoke-pages.js
 - 已发布讲次字段与数量；
 - `pagePath` 在 `app.json` 分包中；
 - 图片、缩略图、封面存在且不超限；
-- 专题数据；
+- 专题数据、概念词条、人物/装置、思想链、尺度、时间线、未解之谜的字段与关联 ID；
+- 讲次 `concepts[].termId` 与 `people[].entityId` 都能解析；
 - 包体预算；
 - 仓库中没有被追踪的 PDF / 私钥；
 - 所有 JS 通过 `node --check`。
+
+若新增讲次出现新概念或新人物，同步补 `data/glossary.js` / `data/entities.js`；若新增可开放的课件问题，补 `data/questions.js`，并确保 `lectureIds`、`pages`、`sourceType` 完整。
 
 失败就修，不要带着错误 push。
 
