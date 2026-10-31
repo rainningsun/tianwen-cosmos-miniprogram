@@ -6,7 +6,7 @@
 
 | 文件 | 用途 |
 |---|---|
-| `assignment-showcase.pdf` | **优先发送这个**；15 页，含 15 张页面截图、模块说明、技术实现与验收结果 |
+| `assignment-showcase.pdf` | **优先发送这个**；15 页，含 15 张页面截图、模块说明、技术实现与验收结果。该 PDF 在本地生成，因仓库禁止追踪 PDF，不进入 Git；可通过 DOCX 另存或下方命令重新生成 |
 | `assignment-showcase.docx` | 可编辑版本；填写姓名/学号或改文字后，可另存为 PDF |
 | `assignment-showcase.md` | Markdown 源文件；图片引用 `../screenshots/` |
 | `assignment-showcase.html` | 打印样式源文件；用于重新生成 PDF |
