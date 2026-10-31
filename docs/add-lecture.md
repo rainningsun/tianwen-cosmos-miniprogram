@@ -137,7 +137,7 @@ node scripts/smoke-pages.js
 - 已发布讲次字段与数量；
 - `pagePath` 在 `app.json` 分包中；
 - 图片、缩略图、封面存在且不超限；
-- 专题与作业数据；
+- 专题数据；
 - 包体预算；
 - 仓库中没有被追踪的 PDF / 私钥；
 - 所有 JS 通过 `node --check`。

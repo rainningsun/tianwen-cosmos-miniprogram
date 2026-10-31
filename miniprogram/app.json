@@ -2,8 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/topic/topic",
-    "pages/archive/archive",
-    "pages/assignment/assignment"
+    "pages/archive/archive"
   ],
   "window": {
     "navigationBarBackgroundColor": "#05070d",
@@ -29,10 +28,6 @@
       {
         "pagePath": "pages/archive/archive",
         "text": "原页"
-      },
-      {
-        "pagePath": "pages/assignment/assignment",
-        "text": "作业"
       }
     ]
   },

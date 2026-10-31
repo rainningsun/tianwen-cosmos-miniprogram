@@ -78,24 +78,6 @@ function testArchive() {
   assert.strictEqual(page.data.lectures[5].status, 'upcoming', '第六讲应为待更新');
 }
 
-function testAssignment() {
-  const page = instantiate(loadPage('miniprogram/pages/assignment/assignment.js'));
-  page.onLoad();
-  assert.strictEqual(page.data.totalCount, 17, '灵感清单应为 17 条');
-  assert.strictEqual(page.data.checkedCount, 0, '初始勾选应为空');
-
-  page.toggleItem({ currentTarget: { dataset: { id: 'science-1' } } });
-  assert.strictEqual(page.data.checkedCount, 1, '勾选后计数应为 1');
-  assert.strictEqual(page.data.categories[0].items[0].checked, true, '勾选状态未写入');
-
-  const restored = instantiate(loadPage('miniprogram/pages/assignment/assignment.js'));
-  restored.onLoad();
-  assert.strictEqual(restored.data.checkedCount, 1, '勾选状态应从本机缓存恢复');
-
-  restored.toggleItem({ currentTarget: { dataset: { id: 'science-1' } } });
-  assert.strictEqual(restored.data.checkedCount, 0, '取消勾选后计数应归零');
-}
-
 function testDetails() {
   const cases = [
     ['miniprogram/packageL1/pages/lecture/lecture.js', 'lecture-1', null, 'lecture-2'],
@@ -123,7 +105,6 @@ function testDetails() {
 testIndex();
 testTopic();
 testArchive();
-testAssignment();
 testDetails();
 
-console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 作业 / 5 讲详情 / 第六讲占位');
+console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 5 讲详情 / 第六讲占位');

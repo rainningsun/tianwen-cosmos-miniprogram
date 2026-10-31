@@ -99,10 +99,10 @@ function checkStaticFiles() {
     }
   }
 
-  const expectedTabs = ['pages/index/index', 'pages/topic/topic', 'pages/archive/archive', 'pages/assignment/assignment'];
+  const expectedTabs = ['pages/index/index', 'pages/topic/topic', 'pages/archive/archive'];
   const tabList = (app.tabBar && app.tabBar.list) || [];
-  if (tabList.length !== 4 || expectedTabs.some((page) => !tabList.some((tab) => tab.pagePath === page))) {
-    fail('tabBar 必须包含课程、主线、原页、作业 4 个页面');
+  if (tabList.length !== 3 || expectedTabs.some((page) => !tabList.some((tab) => tab.pagePath === page))) {
+    fail('tabBar 必须包含课程、主线、原页 3 个页面（v2 中间状态）');
   }
 
   return app;
@@ -371,49 +371,17 @@ function checkTopics() {
   notes.push(`已校验 ${topics.length} 个思想专题`);
 }
 
-function checkAssignment() {
-  const file = path.join(MP, 'data', 'assignment.js');
-  if (!fs.existsSync(file)) {
-    fail('缺少 data/assignment.js');
-    return;
-  }
-
-  let data;
-  try {
-    delete require.cache[require.resolve(file)];
-    data = require(file);
-  } catch (error) {
-    fail(`data/assignment.js 无法加载：${error.message}`);
-    return;
-  }
-
-  const assignment = data.assignment || {};
-  if (!Array.isArray(assignment.forms) || assignment.forms.length !== 4) {
-    fail('作业页应有 4 种表现形式');
-  }
-  if (!Array.isArray(assignment.categories) || assignment.categories.length !== 4) {
-    fail('作业页应有 4 类参考选题');
-  }
-  if (!assignment.theme || !assignment.theme.includes('我眼中的宇宙之美')) {
-    fail('作业主题缺少“我眼中的宇宙之美”');
-  }
-  if (!assignment.footnote || !assignment.footnote.includes('选题不限于以上内容')) {
-    fail('作业页缺少“选题不限于以上内容”的说明');
-  }
-
-  const itemIds = new Set();
-  let itemCount = 0;
-  for (const category of assignment.categories || []) {
-    for (const item of category.items || []) {
-      itemCount += 1;
-      if (!item.id || itemIds.has(item.id)) fail(`作业选题 id 缺失或重复：${item.id || category.title}`);
-      itemIds.add(item.id);
-      if (!item.text) fail(`作业选题缺少文字：${category.title}`);
+function checkNoAssignment() {
+  const roots = ['pages', 'data', 'templates', 'utils', 'components'].map((dir) => path.join(MP, dir));
+  const files = roots
+    .flatMap((dir) => walk(dir))
+    .filter((file) => /\.(js|json|wxml|wxss)$/.test(file));
+  for (const file of files) {
+    const source = fs.readFileSync(file, 'utf8');
+    if (/assignment|作业|openAssignment|data\/assignment/i.test(source)) {
+      fail(`v2 已移除作业模块，但仍存在引用：${path.relative(ROOT, file)}`);
     }
   }
-  if (itemCount < 10) fail(`作业参考选题过少：${itemCount} 项`);
-
-  notes.push(`已校验作业：${assignment.forms.length} 种形式、${assignment.categories.length} 类选题、${itemCount} 条灵感`);
 }
 
 function checkNoHardcodedFive() {
@@ -465,7 +433,7 @@ function main() {
   checkTrackedForbidden();
   checkLectureData(app);
   checkTopics();
-  checkAssignment();
+  checkNoAssignment();
   checkNoHardcodedFive();
   checkPackageSizes(app);
 

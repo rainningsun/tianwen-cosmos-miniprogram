@@ -91,21 +91,6 @@
       </view>
     </view>
 
-    <view
-      class="assignment-entry"
-      bindtap="openAssignment"
-      hover-class="assignment-entry--pressed"
-      aria-role="button"
-      aria-label="打开期末作业页"
-    >
-      <view>
-        <text class="assignment-entry__kicker">ASSIGNMENT</text>
-        <text class="assignment-entry__title">期末作业 · 我眼中的宇宙之美</text>
-        <text class="assignment-entry__note">四种形式与四类参考选题，可保存自己的灵感清单。</text>
-      </view>
-      <text class="assignment-entry__arrow">→</text>
-    </view>
-
     <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>
   </view>
 </view>

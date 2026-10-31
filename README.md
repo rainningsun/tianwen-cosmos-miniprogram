@@ -4,7 +4,7 @@
 
 - 课程名：天问：宇宙之美
 - 主讲：李菂
-- 当前状态：5 讲已上线；第六讲保留“待更新”占位
+- 当前状态：v2 信息架构重构中；已移除旧期末任务模块；5 讲已上线，第六讲保留“待更新”占位
 - 仓库：`https://github.com/rainningsun/tianwen-cosmos-miniprogram`（private）
 
 ## 界面截图
@@ -25,10 +25,9 @@
 
 ## 页面
 
-- **课程**：课程名、主讲、《天问》引文、动态“已上线 N 讲”、纵向课程星图、第六讲待更新占位、思想主线入口、作业入口。
+- **课程**：课程名、主讲、《天问》引文、动态“已上线 N 讲”、纵向课程星图、第六讲待更新占位、思想主线入口。
 - **主线**：6 个可切换专题，相关讲次由数据推导。
 - **原页**：按讲次索引课件关键页，点击跳到详情页 `#pages` 区域；第六讲显示待更新。
-- **作业**：完整呈现 `第四讲： 人类超感-中国天眼FAST.pdf` p.64-65；四类参考选题可勾选，状态保存在本机。
 
 ## 目录结构
 
@@ -41,8 +40,7 @@ miniprogram/
   data/
     lectures.js           唯一讲次内容源
     topics.js             6 个思想主线专题
-    assignment.js         作业说明与 17 条参考选题
-  pages/                  课程 / 主线 / 原页 / 作业
+  pages/                  课程 / 主线 / 原页（v2 重构中）
   packageL1/              第 1-2 讲详情与原页
   packageL2/              第 3-4 讲详情与原页
   packageL3/              第 5-6 讲详情与原页
@@ -55,8 +53,10 @@ scripts/
   validate-content.js     内容、资源、包体与敏感文件校验
   smoke-pages.js         页面逻辑冒烟测试（wx / Page 桩）
 docs/
-  add-lecture.md          新增讲次操作手册
-  content-sources.md      内容来源、页码与待确认项
+  information-architecture.md  v2 模块归属与迁移计划
+  removed-assignment.md        旧期末任务模块移除记录
+  add-lecture.md               新增讲次操作手册
+  content-sources.md           内容来源、页码与待确认项
 .github/workflows/
   validate.yml            CI：静态校验 + 拒绝追踪 PDF
 ```
@@ -106,7 +106,7 @@ node scripts/validate-content.js
 node scripts/smoke-pages.js
 ```
 
-页面逻辑冒烟测试用最小 `wx` / `Page` 桩验证首页、专题、原页、作业、5 讲详情与第六讲占位；它不替代微信开发者工具编译。
+页面逻辑冒烟测试用最小 `wx` / `Page` 桩验证首页、专题、原页、5 讲详情与第六讲占位；它不替代微信开发者工具编译。
 
 脚本会检查：
 
@@ -115,7 +115,7 @@ node scripts/smoke-pages.js
 - 已发布讲次的导读、问题、概念、人物、金句、图片数量；
 - `pagePath` 与分包配置；
 - 图片、缩略图、封面存在且不超限；
-- 6 个专题与作业数据；
+- 6 个专题数据与后续 v2 模块数据；
 - 主包/分包/总包体积；
 - 仓库中没有被追踪的 PDF、`project.private.config.json`、`*.key`；
 - 所有 JS 通过 `node --check`。
@@ -127,7 +127,6 @@ GitHub Actions 在 push / PR 时运行校验与页面逻辑冒烟测试，并再
 - 静态校验通过；包体预算通过。
 - **当前开发机未安装微信开发者工具**，因此没有做工具内编译截图，也没有真机预览。导入后请按 `docs/add-lecture.md` 第 8 节检查 360/390/430px 宽度。
 - 第 3 讲 p.20 的“138 亿 / 137 亿年”和“83% + 23% + 4%”按原文保留。
-- 第 4 讲 p.65 原文“你会涉及一台怎样的望远镜”疑为“设计”，作业页按原文保留并加注。
 - 第 5 讲 p.24 的行星数量为课件估算，保留“≥ / 约”措辞。
 - 第 6 讲尚未提供课件，只保留待更新占位。
 

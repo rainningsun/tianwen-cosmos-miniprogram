@@ -91,10 +91,6 @@ Page({
     wx.switchTab({ url: '/pages/topic/topic' });
   },
 
-  openAssignment() {
-    wx.switchTab({ url: '/pages/assignment/assignment' });
-  },
-
   onShareAppMessage() {
     return {
       title: '天问：宇宙之美 · 课程导览',
