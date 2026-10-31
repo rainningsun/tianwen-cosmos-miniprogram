@@ -99,10 +99,10 @@ function checkStaticFiles() {
     }
   }
 
-  const expectedTabs = ['pages/index/index', 'pages/topic/topic', 'pages/reference/reference', 'pages/archive/archive'];
+  const expectedTabs = ['pages/index/index', 'pages/topic/topic', 'pages/reference/reference', 'pages/explore/explore', 'pages/archive/archive'];
   const tabList = (app.tabBar && app.tabBar.list) || [];
-  if (tabList.length !== 4 || expectedTabs.some((page) => !tabList.some((tab) => tab.pagePath === page))) {
-    fail('tabBar 必须包含课程、主线、索引、原页 4 个页面（v2 中间状态）');
+  if (tabList.length !== 5 || expectedTabs.some((page) => !tabList.some((tab) => tab.pagePath === page))) {
+    fail('tabBar 必须正好包含课程、主线、索引、探索、原页 5 个页面');
   }
 
   return app;
@@ -468,6 +468,54 @@ function checkEntities() {
   notes.push(`已校验 ${people.length} 位人物、${devices.length} 个装置、${chains.length} 条思想链`);
 }
 
+function checkScale() {
+  const file = path.join(MP, 'data', 'scale.js');
+  if (!fs.existsSync(file)) {
+    fail('缺少 data/scale.js');
+    return;
+  }
+  let data;
+  try {
+    delete require.cache[require.resolve(file)];
+    data = require(file);
+  } catch (error) {
+    fail(`data/scale.js 无法加载：${error.message}`);
+    return;
+  }
+
+  const stages = Array.isArray(data.stages) ? data.stages : [];
+  if (stages.length < 7 || stages.length > 9) fail(`宇宙尺度应为 7-9 层，当前 ${stages.length}`);
+  const ids = new Set();
+  const lectures = require(path.join(MP, 'data', 'lectures.js')).lectures;
+  const lectureIds = new Set(lectures.map((lecture) => lecture.id));
+  const terms = require(path.join(MP, 'data', 'glossary.js')).glossary;
+  const termIds = new Set(terms.map((term) => term.id));
+  let previous = -1;
+
+  stages.forEach((stage, index) => {
+    const label = stage.id || `order-${stage.order}`;
+    if (!stage.id || ids.has(stage.id)) fail(`尺度层级 id 缺失或重复：${label}`);
+    ids.add(stage.id);
+    if (stage.order !== index + 1) fail(`尺度层级 order 不连续：${stage.id}`);
+    if (!stage.title || !stage.distanceLabel || !stage.method || !stage.description) fail(`尺度层级 ${label} 字段不全`);
+    if (!Number.isFinite(stage.distanceMeters) || stage.distanceMeters < 0) fail(`尺度层级 ${label} distanceMeters 非法`);
+    if (stage.distanceMeters <= previous) fail(`尺度层级 ${label} distanceMeters 未递增`);
+    previous = stage.distanceMeters;
+    if (!['course', 'supplement'].includes(stage.sourceType)) fail(`尺度层级 ${label} sourceType 非法`);
+    if (!Array.isArray(stage.pages) || !stage.pages.length || stage.pages.some((page) => !Number.isInteger(page) || page < 1)) {
+      fail(`尺度层级 ${label} 的 pages 非法`);
+    }
+    for (const lectureId of stage.lectureIds || []) {
+      if (!lectureIds.has(lectureId)) fail(`尺度层级 ${label} 引用了不存在的讲次：${lectureId}`);
+    }
+    for (const termId of stage.relatedTermIds || []) {
+      if (!termIds.has(termId)) fail(`尺度层级 ${label} 引用了不存在的词条：${termId}`);
+    }
+  });
+
+  notes.push(`已校验 ${stages.length} 个宇宙尺度层级`);
+}
+
 function checkTopics() {
   const file = path.join(MP, 'data', 'topics.js');
   if (!fs.existsSync(file)) {
@@ -596,6 +644,7 @@ function main() {
   checkLectureData(app);
   checkGlossary();
   checkEntities();
+  checkScale();
   checkTopics();
   checkNoAssignment();
   checkNoHardcodedFive();

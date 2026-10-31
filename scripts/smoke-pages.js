@@ -124,6 +124,23 @@ function testEntities() {
   assert.ok(detail.data.contexts.length > 0, 'FAST 应有讲次语境');
 }
 
+function testExploreAndScale() {
+  const explore = instantiate(loadPage('miniprogram/pages/explore/explore.js'));
+  assert.strictEqual(explore.data.cards.length, 3, '探索页应有 3 个入口');
+  assert.strictEqual(explore.data.scaleCount, 8, '宇宙尺度应有 8 层');
+
+  const scale = instantiate(loadPage('miniprogram/pages/scale/scale.js'));
+  scale.onLoad({});
+  assert.strictEqual(scale.data.stages.length, 8, '尺度页应有 8 层');
+  assert.strictEqual(scale.data.current.id, 'earth', '初始层级应为地球');
+  scale.onSliderChange({ detail: { value: 100 } });
+  assert.strictEqual(scale.data.current.id, 'cosmic-scale', '滑到末端应到宇宙学尺度');
+  scale.next();
+  assert.strictEqual(scale.data.current.id, 'cosmic-scale', '边界 next 不应报错');
+  scale.previous();
+  assert.strictEqual(scale.data.current.id, 'andromeda', '上一级应正常');
+}
+
 function testDetails() {
   const cases = [
     ['miniprogram/packageL1/pages/lecture/lecture.js', 'lecture-1', null, 'lecture-2'],
@@ -153,6 +170,7 @@ testTopic();
 testArchive();
 testReferenceAndGlossary();
 testEntities();
+testExploreAndScale();
 testDetails();
 
-console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念词典 / 人物与装置 / 5 讲详情 / 第六讲占位');
+console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念 / 人物装置 / 探索 / 尺度 / 5 讲详情 / 第六讲占位');

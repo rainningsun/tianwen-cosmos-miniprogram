@@ -1,0 +1,82 @@
+<view class="page-shell">
+  <view class="scale-shell">
+    <text class="eyebrow">COSMIC SCALE</text>
+    <text class="shell-title">宇宙尺度</text>
+    <text class="shell-desc">从地球到宇宙学尺度，拖动滑杆看测量方法如何逐级变化。</text>
+
+    <view class="scale-note">这是一个“测量方法随尺度变化”的示意滑杆，不是精确宇宙地图；标为“课外补充”的数字只作量级参考。</view>
+
+    <view wx:if="{{current}}" class="scale-current">
+      <view class="scale-current__top">
+        <text class="scale-current__count">{{currentIndex + 1}} / {{total}}</text>
+        <text class="source">{{current.method}}</text>
+      </view>
+      <text class="scale-current__title">{{current.title}}</text>
+      <text class="scale-current__distance">{{current.distanceLabel}}</text>
+      <text class="scale-current__desc">{{current.description}}</text>
+      <text class="source-badge {{current.sourceClass}}">来源 · {{current.sourceLabel}}</text>
+      <text class="source">{{current.pagesText}}</text>
+    </view>
+
+    <view class="scale-slider">
+      <slider
+        min="0"
+        max="100"
+        step="1"
+        value="{{sliderValue}}"
+        activeColor="#d8a84e"
+        backgroundColor="#1a2230"
+        block-color="#d8a84e"
+        block-size="20"
+        bindchanging="onSliderChanging"
+        bindchange="onSliderChange"
+        aria-label="宇宙尺度层级"
+      />
+      <view class="scale-range"><text>地球</text><text>宇宙学尺度</text></view>
+    </view>
+
+    <view class="scale-nav">
+      <view class="scale-nav__button {{currentIndex === 0 ? 'scale-nav__button--disabled' : ''}}" bindtap="previous" aria-role="button">← 上一级</view>
+      <view class="scale-nav__button {{currentIndex === total - 1 ? 'scale-nav__button--disabled' : ''}}" bindtap="next" aria-role="button">下一级 →</view>
+    </view>
+
+    <view class="scale-stages">
+      <view
+        wx:for="{{stages}}"
+        wx:key="id"
+        class="scale-stage {{index === currentIndex ? 'scale-stage--active' : ''}}"
+        data-index="{{index}}"
+        bindtap="selectStage"
+        aria-role="button"
+        aria-label="切换到{{item.title}}"
+      >
+        <text class="scale-stage__title">{{item.order}}. {{item.title}}</text>
+        <text class="scale-stage__label">{{item.distanceLabel}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{relatedTerms.length}}" class="scale-related">
+      <text class="scale-related__title">相关概念</text>
+      <view class="related-links">
+        <text wx:for="{{relatedTerms}}" wx:key="id" class="related-link" data-id="{{item.id}}" bindtap="openTerm" aria-role="button">{{item.term}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{relatedLectures.length}}" class="scale-related">
+      <text class="scale-related__title">相关讲次</text>
+      <view
+        wx:for="{{relatedLectures}}"
+        wx:key="id"
+        class="context-card"
+        data-id="{{item.id}}"
+        bindtap="openLecture"
+        aria-role="button"
+        aria-label="查看第 {{item.order}} 讲"
+      >
+        <text class="context-card__lecture">第 {{item.order}} 讲 · {{item.title}}</text>
+      </view>
+    </view>
+
+    <text class="copyright">尺度层级与测量方法据课件整理；课外补充数字已在页面标明。课件图片版权归授课教师及原作者所有。</text>
+  </view>
+</view>

@@ -3,11 +3,13 @@
     "pages/index/index",
     "pages/topic/topic",
     "pages/reference/reference",
+    "pages/explore/explore",
     "pages/archive/archive",
     "pages/glossary/glossary",
     "pages/glossary-detail/glossary-detail",
     "pages/entities/entities",
-    "pages/entity-detail/entity-detail"
+    "pages/entity-detail/entity-detail",
+    "pages/scale/scale"
   ],
   "window": {
     "navigationBarBackgroundColor": "#05070d",
@@ -33,6 +35,10 @@
       {
         "pagePath": "pages/reference/reference",
         "text": "索引"
+      },
+      {
+        "pagePath": "pages/explore/explore",
+        "text": "探索"
       },
       {
         "pagePath": "pages/archive/archive",
