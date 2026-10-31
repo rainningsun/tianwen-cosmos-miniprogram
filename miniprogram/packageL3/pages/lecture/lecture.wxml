@@ -1,0 +1,5 @@
+<import src="../../../templates/lecture-detail.wxml" />
+<template
+  is="lecture-detail"
+  data="{{lecture: lecture, prevLecture: prevLecture, nextLecture: nextLecture, imageUrls: imageUrls, focusPages: focusPages, notFound: notFound}}"
+/>

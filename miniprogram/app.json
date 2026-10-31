@@ -50,6 +50,13 @@
       "pages": [
         "pages/lecture/lecture"
       ]
+    },
+    {
+      "root": "packageL3",
+      "name": "packageL3",
+      "pages": [
+        "pages/lecture/lecture"
+      ]
     }
   ],
   "style": "v2",

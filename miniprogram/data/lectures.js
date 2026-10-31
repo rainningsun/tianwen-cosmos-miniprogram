@@ -10,7 +10,7 @@ const lectures = [
     package: 'packageL1',
     keywords: ['《天问》', '宇宙距离阶梯', '哈勃', '脉冲星', 'FAST'],
     cover: '/assets/covers/l1.jpg',
-    summary: '这一讲从《天问》的追问出发，把“我们如何知道宇宙有多大”拆成可检验的观测步骤：月食让地球的形状显露，埃拉托斯特尼与阿利斯塔克用几何丈量地月与日地距离，勒维特与哈勃把尺度推向星系。后半程转到 FAST：脉冲星、快速射电暴、仙女座星系中的超级气泡与湍流，说明射电观测如何把宇宙尺度与星际物理连在一起。',
+    summary: '这一讲从《天问》的追问出发，沿着古人的视线，把“我们如何知道宇宙有多大”拆成可检验的观测步骤：月食让地球的形状显露，埃拉托斯特尼与阿利斯塔克用几何丈量地月与日地距离，勒维特与哈勃把尺度推向星系。后半程转到 FAST：脉冲星、快速射电暴、仙女座星系中的超级气泡与湍流，说明射电观测如何把宇宙尺度与星际物理连在一起。',
     questions: [
       '古人如何从月食与日影判断地球是球体，并量出地月、日地距离？',
       '造父变星的周光关系为什么能把距离尺度推向星系？',
@@ -529,6 +529,364 @@ const lectures = [
       }
     ],
     nextHint: '下一讲从可见光转向射电窗口：从牛顿棱镜与夫琅禾费暗线，到阿雷西博与中国天眼 FAST。'
+  },
+  {
+    id: 'lecture-4',
+    order: 4,
+    date: '10/15',
+    title: '射电之眼：从阿雷西博到中国天眼',
+    titleNote: '编者拟题',
+    status: 'published',
+    pagePath: '/packageL2/pages/lecture/lecture',
+    package: 'packageL2',
+    keywords: ['射电窗口', '阿雷西博', '脉冲星', 'FAST', '南仁东'],
+    cover: '/assets/covers/l4.jpg',
+    summary: '这一讲从光谱学讲起：牛顿的棱镜、夫琅禾费的暗线、基尔霍夫与本生把谱线变成识别元素的工具，随后打开大气的射电窗口。雅斯基、雷伯与尤恩把射电天文学建立起来；阿雷西博以 300 米口径发现脉冲星、双中子星与首批脉冲星行星。最后转到中国天眼 FAST：南仁东与选址建设、4500 个主动面单元、30 吨馈源舱，以及超过 1000 颗新脉冲星；也讲到阿雷西博的倒塌与“We will carry on.”',
+    questions: [
+      '光谱学如何从棱镜与暗线，变成识别天体元素的方法？',
+      '阿雷西博为什么能发现脉冲星、双中子星与脉冲星行星？',
+      'FAST 的主动面、馈源舱与支撑塔解决了哪些工程难题？',
+      '阿雷西博倒塌后，“We will carry on”对射电天文意味着什么？'
+    ],
+    concepts: [
+      {
+        term: '光谱学',
+        desc: '牛顿棱镜分光、夫琅禾费暗线、基尔霍夫—本生把吸收与发射谱线同元素对应起来。',
+        page: 9
+      },
+      {
+        term: '射电窗口',
+        desc: '地球大气只在部分波段透明；射电窗口让地面射电望远镜得以观测宇宙。',
+        page: 10
+      },
+      {
+        term: '射电望远镜',
+        desc: '天线接收射电波，馈源把信号送入终端；信号经傅里叶变换成为频谱。',
+        page: 16
+      },
+      {
+        term: '阿雷西博',
+        desc: '300 米口径射电望远镜；1958 年由 Gordon 提议、ARPA 支持，1963 年建成。',
+        page: 20
+      },
+      {
+        term: '脉冲星与双中子星',
+        desc: '高速自转的中子星发出周期性射电脉冲；阿雷西博发现的双中子星为引力波存在提供了证据。',
+        page: 25
+      },
+      {
+        term: '脉冲星行星',
+        desc: '1992 年 Wolszczan 与 Frail 在 PSR B1257+12 周围发现首批系外行星。',
+        page: 26
+      },
+      {
+        term: 'FAST',
+        desc: '500 米口径球面射电望远镜；4500 个主动面单元、30 吨馈源舱、6 座百米支撑塔、10 万根光纤；2011.3-2016.9，投资 11.5 亿元。',
+        page: 50
+      },
+      {
+        term: 'FAST 科学发现',
+        desc: '截至课件写作时已发现超过 1000 颗新脉冲星；HINSA（中性氢窄线自吸收）与 FRB 20190520B 是代表性成果（另见 p.59、p.62）。',
+        page: 54
+      }
+    ],
+    people: [
+      {
+        name: '威廉·戈登',
+        en: 'William E. Gordon',
+        note: '提出 300 米阿雷西博天线，最初用于电离层雷达研究。',
+        page: 21
+      },
+      {
+        name: '泰勒 / 赫尔斯',
+        en: 'Joseph Taylor / Russell Hulse',
+        note: '在阿雷西博发现双中子星，为引力辐射提供证据。',
+        page: 25
+      },
+      {
+        name: '沃兹赞',
+        en: 'Alex Wolszczan',
+        note: '与 Frail 发现首批脉冲星行星。',
+        page: 26
+      },
+      {
+        name: '南仁东',
+        en: 'Nan Rendong',
+        note: 'FAST 发起与建设的关键人物；课件引用其 2004 年百家讲坛画面。',
+        page: 50
+      },
+      {
+        name: '中国天眼 FAST',
+        en: 'Five-hundred-meter Aperture Spherical radio Telescope',
+        note: '500 米口径；2016 年 9 月落成，是当前最灵敏的射电望远镜之一。',
+        page: 50
+      },
+      {
+        name: '阿雷西博望远镜',
+        en: 'Arecibo Observatory',
+        note: '300 米口径，1963-2020；2020 年倒塌。',
+        page: 60
+      }
+    ],
+    quotes: [
+      {
+        text: 'We will carry on.',
+        author: '李菂 · A Tribute to Arecibo',
+        page: 61
+      },
+      {
+        text: 'It necessarily follows that gravitational radiation exists and has a quadrupolar nature.',
+        author: 'J. Taylor · Nobel speech, 1993',
+        page: 25
+      },
+      {
+        text: '“中国天眼”的成功是中国科技崛起的一部分，包含了以南仁东为代表的几代天文学家的艰苦奋斗。我们是这一历史进程的参与者、受益者、更是建设者。',
+        author: '课件原文',
+        page: 63
+      }
+    ],
+    images: [
+      {
+        src: '/packageL2/assets/pages/l4-p9.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p9.jpg',
+        caption: '光谱学的起源：牛顿棱镜、夫琅禾费暗线、基尔霍夫—本生把谱线与元素对应。',
+        page: 9
+      },
+      {
+        src: '/packageL2/assets/pages/l4-p10.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p10.jpg',
+        caption: '地球大气的电磁波透过率；射电窗口让地面射电望远镜得以工作。',
+        page: 10
+      },
+      {
+        src: '/packageL2/assets/pages/l4-p21.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p21.jpg',
+        caption: '阿雷西博的诞生：1958 年 Gordon 提议 300 米天线，ARPA 决定支持。',
+        page: 21
+      },
+      {
+        src: '/packageL2/assets/pages/l4-p25.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p25.jpg',
+        caption: '阿雷西博发现双中子星；课件引 Taylor 诺贝尔演讲：引力辐射存在且为四极辐射。',
+        page: 25
+      },
+      {
+        src: '/packageL2/assets/pages/l4-p26.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p26.jpg',
+        caption: 'PSR B1257+12 与首批脉冲星行星；课件同时列出 2019 年诺贝尔物理学奖。',
+        page: 26
+      },
+      {
+        src: '/packageL2/assets/pages/l4-p43.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p43.jpg',
+        caption: 'FAST 的主动反射面与索网结构。',
+        page: 43
+      },
+      {
+        src: '/packageL2/assets/pages/l4-p50.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p50.jpg',
+        caption: 'FAST 工程参数：500 米口径、4500 个主动面单元、30 吨馈源舱、6 座支撑塔、10 万根光纤；2011.3-2016.9，11.5 亿元。',
+        page: 50
+      },
+      {
+        src: '/packageL2/assets/pages/l4-p54.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p54.jpg',
+        caption: 'FAST 首批成果：2017 年确认 6 颗脉冲星；截至课件写作时已发现超过 1000 颗新脉冲星。',
+        page: 54
+      },
+      {
+        src: '/packageL2/assets/pages/l4-p61.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p61.jpg',
+        caption: '《A Tribute to Arecibo》：李菂以“We will carry on.”作结。',
+        page: 61
+      },
+      {
+        src: '/packageL2/assets/pages/l4-p62.jpg',
+        thumb: '/packageL2/assets/thumbs/l4-p62.jpg',
+        caption: 'FRB 20190520B 与 FAST 的科学产出；同页引用人文清华的评论。',
+        page: 62
+      }
+    ],
+    nextHint: '下一讲把问题推向“Are we alone?”：SETI、费米悖论、卡尔达肖夫尺度与旅行者金唱片。'
+  },
+  {
+    id: 'lecture-5',
+    order: 5,
+    date: '10/22',
+    title: 'Are we alone：SETI 与星际信息',
+    titleNote: '编者拟题',
+    status: 'published',
+    pagePath: '/packageL3/pages/lecture/lecture',
+    package: 'packageL3',
+    keywords: ['SETI', '费米悖论', '卡尔达肖夫尺度', '旅行者金唱片', 'FAST'],
+    cover: '/assets/covers/l5.jpg',
+    summary: '这一讲从卡尔·萨根与《COSMOS》说起，把“宇宙中是否只有我们”拆成可讨论的问题：菲利普·莫里森说 SETI 是未来的考古学，费米问“Where is everybody?”，Cocconi 与 Morrison 1959 年把搜索指向 21 厘米氢线。课件接着讲德雷克方程、Project Phoenix、Breakthrough Listen、开普勒系外行星普查，以及卡尔达肖夫尺度与戴森球；最后落在旅行者金唱片和 FAST 的 SETI 能力上。',
+    questions: [
+      '费米悖论问的是什么，为什么“没有看见”本身是一个科学问题？',
+      '德雷克方程的每一项分别代表什么，哪一项最难估计？',
+      '卡尔达肖夫尺度如何划分技术文明，FAST 能覆盖到哪一级？',
+      '旅行者金唱片试图向星际文明传递哪些关于地球的信息？'
+    ],
+    concepts: [
+      {
+        term: 'SETI',
+        desc: 'Search for ExtraTerrestrial Intelligence；莫里森称其为“未来的考古学”。',
+        page: 6
+      },
+      {
+        term: '费米悖论',
+        desc: '费米问“Where is everybody?”；在银河系尺度与漫长时间里，地外文明本应可见，却尚无证据。',
+        page: 10
+      },
+      {
+        term: '德雷克方程',
+        desc: 'N = R* fp Ne fl fi fc L；课件把 L 框出并打问号，指向文明寿命的不确定性。',
+        page: 20
+      },
+      {
+        term: '星际通讯窗口',
+        desc: 'Cocconi 与 Morrison 1959 年提出在 21 厘米氢线附近以窄带搜索星际信号。',
+        page: 17
+      },
+      {
+        term: '开普勒行星普查',
+        desc: '银河系 ≥1000 亿行星、约 70-280 亿类太阳恒星、≥3 亿潜在宜居类地行星。',
+        page: 24
+      },
+      {
+        term: '卡尔达肖夫尺度',
+        desc: 'I 类 10^16 W、II 类 10^26 W、III 类 10^36 W；FAST 覆盖临近太阳系的 I 类与近邻银河系的 II 类。',
+        page: 41
+      },
+      {
+        term: '戴森球',
+        desc: '围绕恒星收集能量的假想结构；课件引用 Dyson 1960 年论文与 KIC 8462852。',
+        page: 42
+      },
+      {
+        term: '旅行者金唱片',
+        desc: '1977 年随两艘旅行者号发射；115 张图像、55 种语言问候、音乐与自然声音；封面用 14 颗脉冲星定位太阳。',
+        page: 50
+      }
+    ],
+    people: [
+      {
+        name: '卡尔·萨根',
+        en: 'Carl Sagan',
+        note: '《COSMOS》作者与主持人；旅行者金唱片选择委员会主席。',
+        page: 4
+      },
+      {
+        name: '菲利普·莫里森',
+        en: 'Philip Morrison',
+        note: '提出“SETI is the archeology of the future”；1959 年与 Cocconi 发表搜索论文。',
+        page: 7
+      },
+      {
+        name: '弗兰克·德雷克',
+        en: 'Frank Drake',
+        note: '德雷克方程与 1974 年阿雷西博信息。',
+        page: 20
+      },
+      {
+        name: '恩里科·费米',
+        en: 'Enrico Fermi',
+        note: '提出“Where is everybody?”。',
+        page: 10
+      },
+      {
+        name: '卡尔达肖夫',
+        en: 'Nikolai Kardashev',
+        note: '提出 I/II/III 类技术文明尺度。',
+        page: 41
+      },
+      {
+        name: '吉尔·塔特',
+        en: 'Jill Tarter',
+        note: 'Project Phoenix 与 SETI 研究的代表人物；电影《Contact》角色原型。',
+        page: 30
+      }
+    ],
+    quotes: [
+      {
+        text: 'SETI is the archeology of the future.',
+        author: 'Philip Morrison',
+        page: 7
+      },
+      {
+        text: 'Where is everybody?',
+        author: 'Enrico Fermi',
+        page: 10
+      },
+      {
+        text: '只有遇到星际中的先进文明，飞船才会被发现，唱片才会被播放。',
+        author: '卡尔·萨根',
+        page: 52
+      }
+    ],
+    images: [
+      {
+        src: '/packageL3/assets/pages/l5-p4.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p4.jpg',
+        caption: '卡尔·萨根（1934-1996）：行星科学、《COSMOS》与核冬天研究。',
+        page: 4
+      },
+      {
+        src: '/packageL3/assets/pages/l5-p10.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p10.jpg',
+        caption: '费米悖论：“Where is everybody?” 与银河系尺度示意。',
+        page: 10
+      },
+      {
+        src: '/packageL3/assets/pages/l5-p17.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p17.jpg',
+        caption: 'Cocconi 与 Morrison 1959 年《Searching for Interstellar Communications》；课件标出 21 厘米氢线与窄带搜索。',
+        page: 17
+      },
+      {
+        src: '/packageL3/assets/pages/l5-p20.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p20.jpg',
+        caption: '德雷克方程 N = R* fp Ne fl fi fc L；课件把 L 框出并打问号。',
+        page: 20
+      },
+      {
+        src: '/packageL3/assets/pages/l5-p24.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p24.jpg',
+        caption: '开普勒行星普查：银河系 ≥1000 亿行星、约 70-280 亿类太阳恒星、≥3 亿潜在宜居类地行星。',
+        page: 24
+      },
+      {
+        src: '/packageL3/assets/pages/l5-p34.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p34.jpg',
+        caption: 'Project Phoenix 的 SETI 搜索与 SETI@home。',
+        page: 34
+      },
+      {
+        src: '/packageL3/assets/pages/l5-p41.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p41.jpg',
+        caption: '卡尔达肖夫尺度：I 类 10^16 W、II 类 10^26 W、III 类 10^36 W；FAST 覆盖 I 类与近邻 II 类。',
+        page: 41
+      },
+      {
+        src: '/packageL3/assets/pages/l5-p42.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p42.jpg',
+        caption: '戴森球：Dyson 1960 年论文与 KIC 8462852 的光变曲线。',
+        page: 42
+      },
+      {
+        src: '/packageL3/assets/pages/l5-p50.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p50.jpg',
+        caption: '旅行者金唱片：115 张图像、55 种语言问候、音乐与自然声音；封面用脉冲星定位太阳。',
+        page: 50
+      },
+      {
+        src: '/packageL3/assets/pages/l5-p52.jpg',
+        thumb: '/packageL3/assets/thumbs/l5-p52.jpg',
+        caption: '旅行者 2 号离开日球层；课件引卡尔·萨根：“只有遇到星际中的先进文明，飞船才会被发现，唱片才会被播放。”',
+        page: 52
+      }
+    ],
+    nextHint: '课程在这里暂告一段落；后续讲次将按同一套数据与页面结构增量加入。'
   }
 ];
 
