@@ -129,6 +129,7 @@ function testExploreAndScale() {
   assert.strictEqual(explore.data.cards.length, 3, '探索页应有 3 个入口');
   assert.strictEqual(explore.data.scaleCount, 8, '宇宙尺度应有 8 层');
   assert.ok(explore.data.cards.some((card) => card.id === 'timeline' && card.href), '探索页应链接双时间线');
+  assert.ok(explore.data.cards.some((card) => card.id === 'questions' && card.href), '探索页应链接未解之谜');
 
   const scale = instantiate(loadPage('miniprogram/pages/scale/scale.js'));
   scale.onLoad({});
@@ -151,6 +152,22 @@ function testTimeline() {
   assert.strictEqual(page.data.currentTrack.events.length, 13, '观测史应有 13 个节点');
   page.selectMode({ currentTarget: { dataset: { mode: 'compare' } } });
   assert.strictEqual(page.data.compare, true, '应显示对照说明');
+}
+
+function testQuestions() {
+  const list = instantiate(loadPage('miniprogram/pages/questions/questions.js'));
+  list.onLoad();
+  assert.strictEqual(list.data.count, 6, '未解之谜应有 6 条');
+  assert.strictEqual(list.data.themes.length, 6, '未解之谜应有 5 个主题加“全部”');
+  list.selectTheme({ currentTarget: { dataset: { value: '生命与文明' } } });
+  assert.strictEqual(list.data.count, 2, '生命与文明应有 2 条');
+
+  const detail = instantiate(loadPage('miniprogram/pages/question-detail/question-detail.js'));
+  detail.onLoad({ id: 'frb-origin' });
+  assert.strictEqual(detail.data.notFound, false, '快速射电暴问题不应为 notFound');
+  assert.ok(detail.data.item.known && detail.data.item.unknown && detail.data.item.why, '问题详情应有已知/未知/为什么重要');
+  assert.ok(detail.data.lectureLinks.length > 0, '问题详情应有课程出处');
+  assert.ok(detail.data.termLinks.length > 0, '问题详情应有相关概念');
 }
 
 function testDetails() {
@@ -184,6 +201,7 @@ testReferenceAndGlossary();
 testEntities();
 testExploreAndScale();
 testTimeline();
+testQuestions();
 testDetails();
 
-console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念 / 人物装置 / 探索 / 尺度 / 时间线 / 5 讲详情 / 第六讲占位');
+console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念 / 人物装置 / 探索 / 尺度 / 时间线 / 未解之谜 / 5 讲详情 / 第六讲占位');

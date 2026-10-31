@@ -1,0 +1,53 @@
+<view class="page-shell">
+  <view class="ref-hero">
+    <text class="eyebrow">OPEN QUESTIONS</text>
+    <text class="shell-title">未解之谜</text>
+    <text class="shell-desc">课件留下但没有回答的问题。这里展示的是课程中的开放问题，不是标准答案。</text>
+
+    <view class="filter-block">
+      <text class="filter-block__label">主题</text>
+      <view class="filter-chips">
+        <text
+          wx:for="{{themes}}"
+          wx:key="*this"
+          class="filter-chip {{activeTheme === item ? 'filter-chip--active' : ''}}"
+          data-value="{{item}}"
+          bindtap="selectTheme"
+          aria-role="button"
+          aria-label="筛选主题：{{item}}"
+        >{{item}}</text>
+      </view>
+    </view>
+
+    <view class="result-line">
+      <text class="result-line__count">{{count}} 个开放问题</text>
+    </view>
+
+    <view class="question-wall">
+      <view
+        wx:for="{{items}}"
+        wx:key="id"
+        class="question-card"
+        data-id="{{item.id}}"
+        bindtap="openQuestion"
+        aria-role="button"
+        aria-label="打开问题：{{item.question}}"
+      >
+        <text class="question-card__mark" aria-hidden="true">?</text>
+        <text class="question-card__kicker">{{item.kicker}} · {{item.theme}}</text>
+        <text class="question-card__question">{{item.question}}</text>
+        <view class="question-card__meta">
+          <text>{{item.lectureText}}</text>
+          <text>{{item.pageText}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{!items.length}}" class="empty-panel">
+      <text class="empty-panel__title">这个主题暂时没有条目</text>
+      <text class="empty-panel__note">切回“全部”查看六个开放问题。</text>
+    </view>
+
+    <text class="copyright">“已知 / 未知 / 为什么重要”由编者据课件整理；不确定处按原文保留。</text>
+  </view>
+</view>

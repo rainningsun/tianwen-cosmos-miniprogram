@@ -10,7 +10,9 @@
     "pages/entities/entities",
     "pages/entity-detail/entity-detail",
     "pages/scale/scale",
-    "pages/timeline/timeline"
+    "pages/timeline/timeline",
+    "pages/questions/questions",
+    "pages/question-detail/question-detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#05070d",

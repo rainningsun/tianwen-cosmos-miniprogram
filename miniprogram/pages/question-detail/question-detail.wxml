@@ -1,0 +1,106 @@
+<view class="page-shell">
+  <view wx:if="{{notFound}}" class="ref-hero">
+    <text class="eyebrow">OPEN QUESTIONS</text>
+    <text class="shell-title">没有找到这个问题</text>
+    <text class="shell-desc">问题可能已调整，或链接里的编号有误。</text>
+    <view class="detail-actions"><view class="detail-actions__button" bindtap="goBack">返回未解之谜</view></view>
+  </view>
+
+  <view wx:else class="detail-hero">
+    <view class="detail-back" bindtap="goBack" aria-role="button" aria-label="返回未解之谜">← 返回未解之谜</view>
+    <text class="detail-kicker">{{item.kicker}} · {{item.theme}}</text>
+    <text class="detail-title question-detail__title">{{item.question}}</text>
+    <view class="detail-chips">
+      <text class="filter-chip filter-chip--active">开放问题</text>
+      <text class="filter-chip">{{item.sourceLabel}}</text>
+      <text class="filter-chip">{{item.pageText}}</text>
+    </view>
+
+    <view class="question-detail__notice">这里展示的是课程中的开放问题，不是标准答案。</view>
+
+    <view class="detail-section">
+      <text class="detail-section__title">课件已知</text>
+      <view class="question-answer question-answer--known">
+        <text class="question-answer__text">{{item.known}}</text>
+      </view>
+    </view>
+
+    <view class="detail-section">
+      <text class="detail-section__title">仍未知</text>
+      <view class="question-answer question-answer--unknown">
+        <text class="question-answer__text">{{item.unknown}}</text>
+      </view>
+    </view>
+
+    <view class="detail-section">
+      <text class="detail-section__title">为什么重要</text>
+      <view class="question-answer">
+        <text class="question-answer__text">{{item.why}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{lectureLinks.length}}" class="detail-section">
+      <text class="detail-section__title">课程出处</text>
+      <view
+        wx:for="{{lectureLinks}}"
+        wx:key="id"
+        class="context-card"
+        data-id="{{item.id}}"
+        bindtap="openLecture"
+        aria-role="button"
+        aria-label="查看第 {{item.order}} 讲"
+      >
+        <text class="context-card__lecture">第 {{item.order}} 讲 · {{item.title}}</text>
+        <text class="context-card__page">课件 · {{item.pageText}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{termLinks.length}}" class="detail-section">
+      <text class="detail-section__title">相关概念</text>
+      <view class="related-links">
+        <text
+          wx:for="{{termLinks}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openTerm"
+          aria-role="button"
+          aria-label="打开词条：{{item.term}}"
+        >{{item.term}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{entityLinks.length}}" class="detail-section">
+      <text class="detail-section__title">相关人物 / 装置</text>
+      <view class="related-links">
+        <text
+          wx:for="{{entityLinks}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openEntity"
+          aria-role="button"
+          aria-label="打开：{{item.name}}"
+        >{{item.name}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{topicLinks.length}}" class="detail-section">
+      <text class="detail-section__title">相关专题</text>
+      <view class="related-links">
+        <text
+          wx:for="{{topicLinks}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openTopic"
+          aria-role="button"
+          aria-label="打开专题：{{item.title}}"
+        >{{item.title}}</text>
+      </view>
+    </view>
+
+    <view class="detail-actions"><view class="detail-actions__button" bindtap="goBack">← 返回未解之谜</view></view>
+    <text class="copyright">“已知 / 未知 / 为什么重要”由编者据课件整理；课件没有回答的问题，这里保持开放。</text>
+  </view>
+</view>

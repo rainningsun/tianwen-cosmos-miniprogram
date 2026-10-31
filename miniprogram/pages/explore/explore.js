@@ -1,5 +1,6 @@
 const { stages } = require('../../data/scale');
 const { tracks } = require('../../data/timeline');
+const { questions } = require('../../data/questions');
 
 const cosmic = tracks.find((track) => track.id === 'cosmic');
 const human = tracks.find((track) => track.id === 'human');
@@ -29,7 +30,8 @@ Page({
         index: '03',
         title: '未解之谜',
         question: '课件留下了哪些没有回答的问题？',
-        meta: '即将上线'
+        meta: `${questions.length} 个开放问题`,
+        href: '/pages/questions/questions'
       }
     ]
   },

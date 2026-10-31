@@ -572,6 +572,69 @@ function checkTimeline() {
   notes.push(`已校验双时间线：${cosmic ? cosmic.events.length : 0} 个宇宙节点、${human ? human.events.length : 0} 个观测史节点`);
 }
 
+function checkQuestions() {
+  const file = path.join(MP, 'data', 'questions.js');
+  if (!fs.existsSync(file)) {
+    fail('缺少 data/questions.js');
+    return;
+  }
+  let data;
+  try {
+    delete require.cache[require.resolve(file)];
+    data = require(file);
+  } catch (error) {
+    fail(`data/questions.js 无法加载：${error.message}`);
+    return;
+  }
+
+  const questions = Array.isArray(data.questions) ? data.questions : [];
+  if (questions.length < 5 || questions.length > 8) {
+    fail(`未解之谜应为 5-8 条，当前 ${questions.length} 条`);
+  }
+
+  const lectures = require(path.join(MP, 'data', 'lectures.js')).lectures;
+  const lectureIds = new Set(lectures.map((lecture) => lecture.id));
+  const entities = require(path.join(MP, 'data', 'entities.js')).entities;
+  const entityIds = new Set(entities.map((entity) => entity.id));
+  const terms = require(path.join(MP, 'data', 'glossary.js')).glossary;
+  const termIds = new Set(terms.map((term) => term.id));
+  const topics = require(path.join(MP, 'data', 'topics.js')).topics;
+  const topicIds = new Set(topics.map((topic) => topic.id));
+  const ids = new Set();
+  const themes = new Set();
+
+  for (const item of questions) {
+    const label = item.id || item.question || '(未命名问题)';
+    if (!item.id || ids.has(item.id)) fail(`未解之谜 id 缺失或重复：${label}`);
+    ids.add(item.id);
+    for (const field of ['question', 'kicker', 'theme', 'known', 'unknown', 'why']) {
+      if (!item[field]) fail(`未解之谜 ${label} 缺少字段 ${field}`);
+    }
+    themes.add(item.theme);
+    if (!Array.isArray(item.lectureIds) || !item.lectureIds.length) fail(`未解之谜 ${label} 缺少 lectureIds`);
+    if (!Array.isArray(item.pages) || !item.pages.length || item.pages.some((page) => !Number.isInteger(page) || page < 1)) {
+      fail(`未解之谜 ${label} 的 pages 必须是正整数数组`);
+    }
+    if (!['course', 'supplement'].includes(item.sourceType)) fail(`未解之谜 ${label} sourceType 非法`);
+    for (const lectureId of item.lectureIds || []) {
+      if (!lectureIds.has(lectureId)) fail(`未解之谜 ${label} 引用了不存在的讲次：${lectureId}`);
+    }
+    for (const entityId of item.relatedEntityIds || []) {
+      if (!entityIds.has(entityId)) fail(`未解之谜 ${label} 引用了不存在的条目：${entityId}`);
+    }
+    for (const termId of item.relatedTermIds || []) {
+      if (!termIds.has(termId)) fail(`未解之谜 ${label} 引用了不存在的词条：${termId}`);
+    }
+    for (const topicId of item.relatedTopicIds || []) {
+      if (!topicIds.has(topicId)) fail(`未解之谜 ${label} 引用了不存在的专题：${topicId}`);
+    }
+  }
+
+  if (themes.size < 3) fail(`未解之谜主题过少：${themes.size}`);
+
+  notes.push(`已校验 ${questions.length} 个未解之谜（${themes.size} 个主题）`);
+}
+
 function checkTopics() {
   const file = path.join(MP, 'data', 'topics.js');
   if (!fs.existsSync(file)) {
@@ -702,6 +765,7 @@ function main() {
   checkEntities();
   checkScale();
   checkTimeline();
+  checkQuestions();
   checkTopics();
   checkNoAssignment();
   checkNoHardcodedFive();
