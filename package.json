@@ -1,0 +1,9 @@
+{
+  "name": "tianwen-cosmos-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "《天问：宇宙之美》课程小程序",
+  "scripts": {
+    "validate": "node scripts/validate-content.js"
+  }
+}

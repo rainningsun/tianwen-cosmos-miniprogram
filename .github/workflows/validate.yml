@@ -1,0 +1,29 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate content and package budget
+        run: node scripts/validate-content.js
+
+      - name: Reject tracked PDFs
+        run: |
+          tracked="$(git ls-files '*.pdf')"
+          if [ -n "$tracked" ]; then
+            echo "PDF files must not be tracked:"
+            echo "$tracked"
+            exit 1
+          fi
