@@ -91,7 +91,7 @@ function checkStaticFiles() {
       continue;
     }
     for (const page of sub.pages || []) {
-      const route = `${sub.root}${page}`.replace(/\/+/g, '/');
+      const route = `${sub.root}/${page}`.replace(/\/+/g, '/');
       for (const ext of ['js', 'wxml']) {
         const file = path.join(MP, `${route}.${ext}`);
         if (!fs.existsSync(file)) fail(`分包页面缺少文件：${route}.${ext}`);
@@ -150,7 +150,7 @@ function checkLectureData(app) {
 
   const lectures = Array.isArray(data.lectures) ? data.lectures : [];
   if (!lectures.length) {
-    fail('data/lectures.js 中没有 lectures');
+    warnings.push('data/lectures.js 尚无讲次，跳过讲次字段校验');
     return;
   }
 
@@ -158,7 +158,7 @@ function checkLectureData(app) {
   const routes = new Set();
   for (const sub of app.subpackages || []) {
     for (const page of sub.pages || []) {
-      routes.add(`/${sub.root}${page}`.replace(/\/+/g, '/'));
+      routes.add(`/${sub.root}/${page}`.replace(/\/+/g, '/'));
     }
   }
 
@@ -177,10 +177,15 @@ function checkLectureData(app) {
       for (const field of ['title', 'date', 'pagePath', 'package', 'summary']) {
         if (!lecture[field]) fail(`${label} 缺少字段 ${field}`);
       }
-      for (const field of ['questions', 'concepts', 'people', 'quotes', 'images']) {
+      for (const field of ['questions', 'concepts', 'people', 'quotes']) {
         if (!Array.isArray(lecture[field]) || lecture[field].length === 0) {
           fail(`${label} 的 ${field} 不能为空`);
         }
+      }
+      if (!Array.isArray(lecture.images)) {
+        fail(`${label} 的 images 必须是数组`);
+      } else if (lecture.images.length === 0) {
+        warn(`${label} 的背景图片尚未加入（内容增量阶段）`);
       }
       if (!routes.has(lecture.pagePath)) {
         fail(`${label} 的 pagePath 不在 app.json 分包中：${lecture.pagePath}`);

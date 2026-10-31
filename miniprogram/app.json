@@ -36,6 +36,15 @@
       }
     ]
   },
+  "subpackages": [
+    {
+      "root": "packageL1",
+      "name": "packageL1",
+      "pages": [
+        "pages/lecture/lecture"
+      ]
+    }
+  ],
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
