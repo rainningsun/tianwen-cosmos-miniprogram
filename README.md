@@ -27,6 +27,14 @@
 
 讲次详情仍在 `packageL1/`、`packageL2/`、`packageL3/`，分包结构未改。
 
+## 界面截图
+
+| 课程首页 | 索引 | 宇宙尺度 |
+|---|---|---|
+| ![课程首页](docs/screenshots/01-home.png) | ![索引](docs/screenshots/02-reference.png) | ![宇宙尺度](docs/screenshots/04-scale.png) |
+
+完整验收截图与结果见 [`docs/release-v2.0.0.md`](docs/release-v2.0.0.md)。
+
 ## 内容归属
 
 | 内容 | 唯一归属 | 其他页面如何引用 |
