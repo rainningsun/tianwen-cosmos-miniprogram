@@ -43,6 +43,13 @@
       "pages": [
         "pages/lecture/lecture"
       ]
+    },
+    {
+      "root": "packageL2",
+      "name": "packageL2",
+      "pages": [
+        "pages/lecture/lecture"
+      ]
     }
   ],
   "style": "v2",
