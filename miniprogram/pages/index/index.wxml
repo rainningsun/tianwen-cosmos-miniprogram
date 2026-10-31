@@ -1,0 +1,8 @@
+<view class="page-shell">
+  <view class="intro">
+    <text class="eyebrow">COURSE READER</text>
+    <text class="title">{{courseTitle}}</text>
+    <text class="lecturer">主讲 · {{lecturer}}</text>
+    <text class="note">课程小程序正在搭建中。</text>
+  </view>
+</view>

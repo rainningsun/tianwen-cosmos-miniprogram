@@ -1,0 +1,11 @@
+source/
+*.pdf
+project.private.config.json
+node_modules/
+miniprogram_npm/
+.DS_Store
+Thumbs.db
+*.log
+.env
+*.key
+dist/
