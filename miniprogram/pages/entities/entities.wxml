@@ -2,7 +2,7 @@
   <view class="ref-hero">
     <text class="eyebrow">ENTITIES</text>
     <text class="shell-title">人物与装置</text>
-    <text class="shell-desc">按人物、装置与思想链整理课程里的关键角色；不写课件之外的生平。</text>
+    <text class="shell-desc">按人物、装置与思想链整理；角色与规格来自课件，生平/背景为课外补充并单独标注。</text>
 
     <view class="segmented">
       <view

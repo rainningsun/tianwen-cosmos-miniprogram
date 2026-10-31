@@ -12,6 +12,12 @@
     <text class="detail-title">{{item.name}}</text>
     <text wx:if="{{item.en}}" class="detail-en">{{item.en}}</text>
 
+    <view wx:if="{{item.image}}" class="entity-portrait">
+      <image class="entity-portrait__image" src="{{item.image}}" mode="widthFix" lazy-load />
+      <text wx:if="{{item.imageCaption}}" class="entity-portrait__caption">{{item.imageCaption}}</text>
+      <text wx:if="{{item.imageCredit}}" class="entity-portrait__credit">{{item.imageCredit}}</text>
+    </view>
+
     <view class="detail-section">
       <text class="detail-section__title">在本课程中的角色</text>
       <view class="detail-definition">
@@ -23,6 +29,15 @@
     <view wx:if="{{item.contribution}}" class="detail-section">
       <text class="detail-section__title">课程中的线索</text>
       <text class="detail-source" style="margin-top:10rpx;font-size:25rpx;line-height:1.85;color:var(--color-ink-dim)">{{item.contribution}}</text>
+    </view>
+
+    <view wx:if="{{item.bio}}" class="detail-section">
+      <view class="entity-bio__head">
+        <text class="detail-section__title">{{typeLabel === '人物' ? '人物生平' : '装置背景'}}</text>
+        <text class="entity-bio__badge">课外补充</text>
+      </view>
+      <text class="entity-bio">{{item.bio}}</text>
+      <text class="detail-source">编者据公开常识整理，不属于课件原文。</text>
     </view>
 
     <view wx:if="{{item.specs.length}}" class="detail-section">
@@ -112,6 +127,6 @@
     </view>
 
     <view class="detail-actions"><view class="detail-actions__button" bindtap="goBack">← 返回索引</view></view>
-    <text class="copyright">角色与贡献由编者据课件整理；不写课件之外的生平、国籍或奖项清单。</text>
+    <text class="copyright">角色与规格据课件整理；人物生平/装置背景标为课外补充，不替代课件原文。</text>
   </view>
 </view>

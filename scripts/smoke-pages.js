@@ -89,6 +89,7 @@ function testReferenceAndGlossary() {
   assert.strictEqual(reference.data.glossaryCount, 39, '概念词典应有 39 条');
   assert.strictEqual(reference.data.peopleCount, 30, '人物索引应有 30 位');
   assert.strictEqual(reference.data.deviceCount, 6, '装置索引应有 6 个');
+  assert.strictEqual(reference.data.chainCount, 6, '思想链应有 6 条');
   reference.onSearch({ detail: { value: '秒差距' } });
   assert.strictEqual(reference.data.results.length, 1, '索引搜索“秒差距”应返回 1 条');
   reference.onSearch({ detail: { value: '萨根' } });
@@ -131,6 +132,8 @@ function testEntities() {
   assert.strictEqual(detail.data.typeLabel, '装置', 'FAST 应为装置');
   assert.ok(detail.data.item.specs.length >= 4, 'FAST 应有规格');
   assert.ok(detail.data.contexts.length > 0, 'FAST 应有讲次语境');
+  assert.ok(detail.data.item.bio, 'FAST 应有装置背景');
+  assert.strictEqual(detail.data.item.bioSource, 'supplement', 'FAST 背景应标为课外补充');
   assert.strictEqual(detail.data.relatedQuestions.length, 1, 'FAST 应链接快速射电暴问题');
 }
 

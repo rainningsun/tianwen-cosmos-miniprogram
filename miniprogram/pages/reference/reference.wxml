@@ -2,7 +2,7 @@
   <view class="ref-hero">
     <text class="eyebrow">INDEX</text>
     <text class="shell-title">索引</text>
-    <text class="shell-desc">把课程里的概念、人物与装置，整理成可检索的条目。</text>
+    <text class="shell-desc">把课程里的概念、人物与装置、思想链，整理成可检索的条目。</text>
 
     <view class="ref-search">
       <text class="ref-search__icon">⌕</text>
@@ -10,7 +10,7 @@
         class="ref-search__input"
         type="text"
         value="{{query}}"
-        placeholder="搜索概念、人物、装置或别名"
+        placeholder="搜索概念、人物、装置或思想链"
         confirm-type="search"
         bindinput="onSearch"
         aria-label="搜索索引"
@@ -64,21 +64,24 @@
             <text class="ref-card__title">人物与装置</text>
             <text class="ref-card__count">{{peopleCount}} 人物 · {{deviceCount}} 装置</text>
           </view>
-          <text class="ref-card__desc">人物、望远镜与思想链，均只写课程中的角色。</text>
+          <text class="ref-card__desc">人物、望远镜与装置，只写课程中的角色、规格与出现讲次。</text>
           <view class="ref-card__examples">
             <text wx:for="{{entityExamples}}" wx:key="id" class="ref-card__example">{{item.name}}</text>
           </view>
           <view class="ref-card__cta"><text>查看人物与装置</text><text class="ref-card__arrow">→</text></view>
         </view>
-      </view>
 
-      <view class="ref-card" style="margin-top:22rpx" data-mode="chain" bindtap="openEntities" aria-role="button" aria-label="打开思想链">
-        <view class="ref-card__top">
-          <text class="ref-card__title">思想链</text>
-          <text class="ref-card__count">{{chainCount}} 条</text>
+        <view class="ref-card ref-card--chain" data-mode="chain" bindtap="openEntities" aria-role="button" aria-label="打开思想链">
+          <view class="ref-card__top">
+            <text class="ref-card__title">思想链</text>
+            <text class="ref-card__count">{{chainCount}} 条</text>
+          </view>
+          <text class="ref-card__desc">把人物与装置串成可阅读的线索，从古代测天一直到射电天文。</text>
+          <view class="ref-card__examples">
+            <text wx:for="{{chainExamples}}" wx:key="id" class="ref-card__example">{{item.title}}</text>
+          </view>
+          <view class="ref-card__cta"><text>沿思想链阅读</text><text class="ref-card__arrow">→</text></view>
         </view>
-        <text class="ref-card__desc">{{chainExamples[0].title}} · {{chainExamples[1].title}} · 从观测到射电天文</text>
-        <view class="ref-card__cta"><text>沿思想链阅读</text><text class="ref-card__arrow">→</text></view>
       </view>
     </view>
 
