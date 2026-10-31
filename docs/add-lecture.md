@@ -2,7 +2,8 @@
 
 本项目的原则是：**新增讲次只加数据与资源，不改页面渲染逻辑。**
 
-第 6 讲及后续讲次到位后，按以下顺序操作。
+第 6 讲及后续讲次到位后，按以下顺序操作。五个模块的详细接入清单见
+[`lecture-6-integration.md`](lecture-6-integration.md)。
 
 ## 1. 放入本地素材
 
@@ -112,11 +113,11 @@ packageLx/assets/thumbs/lN-pXX.jpg
 
 ## 6. 处理分包体积
 
-- 主包 ≤ 1.8MB；
-- 每个分包 ≤ 1.8MB；
+- 主包 ≤ 1.5MB；
+- 每个分包 ≤ 1.5MB；
 - 总包 ≤ 20MB。
 
-如果新分包超过 1.8MB：
+如果新分包超过 1.5MB：
 
 1. 新建 `packageL4/`（复制现有详情页壳，只改 `require` 路径层级）；
 2. 在 `app.json` 的 `subpackages` 增加 `packageL4`；
