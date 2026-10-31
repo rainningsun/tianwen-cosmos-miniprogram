@@ -5,7 +5,9 @@
     "pages/reference/reference",
     "pages/archive/archive",
     "pages/glossary/glossary",
-    "pages/glossary-detail/glossary-detail"
+    "pages/glossary-detail/glossary-detail",
+    "pages/entities/entities",
+    "pages/entity-detail/entity-detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#05070d",

@@ -72,30 +72,35 @@ const lectures = [
       {
         name: '伽利略',
         en: 'Galileo Galilei',
+        entityId: 'galileo',
         note: '课件以伽利略与月面观测开篇，展示观测如何改变对天空的认识。',
         page: 2
       },
       {
         name: '埃拉托斯特尼',
         en: 'Eratosthenes',
+        entityId: 'eratosthenes',
         note: '亚历山大图书馆馆长；用日影与几何丈量地球。',
         page: 21
       },
       {
         name: '阿利斯塔克',
         en: 'Aristarchus',
+        entityId: 'aristarchus',
         note: '提出最早的日心宇宙模型；用月相几何估计日地距离。',
         page: 23
       },
       {
         name: '亨丽埃塔·勒维特',
         en: 'Henrietta Swan Leavitt',
+        entityId: 'leavitt',
         note: '发现造父变星的周光关系。',
         page: 31
       },
       {
         name: '哈勃',
         en: 'Edwin Hubble',
+        entityId: 'hubble',
         note: '1925 年以仙女座星云等观测把宇宙尺度推远，并发现宇宙在膨胀。',
         page: 32
       }
@@ -254,36 +259,42 @@ const lectures = [
       {
         name: '托勒密',
         en: 'Ptolemy',
+        entityId: 'ptolemy',
         note: '《至大论》作者；课件以本轮与均轮模型作为古代宇宙论的样本。',
         page: 11
       },
       {
         name: '哥白尼',
         en: 'Nicolaus Copernicus',
+        entityId: 'copernicus',
         note: '《天体运行论》提出日心模型。',
         page: 15
       },
       {
         name: '伽利略',
         en: 'Galileo Galilei',
+        entityId: 'galileo',
         note: '以望远镜观测；课件标出 1633 年宗教裁判所审判。',
         page: 19
       },
       {
         name: '牛顿',
         en: 'Isaac Newton',
+        entityId: 'newton',
         note: '《自然哲学的数学原理》与万有引力定律。',
         page: 22
       },
       {
         name: '法拉第 / 麦克斯韦',
         en: 'Michael Faraday / James Clerk Maxwell',
+        entityId: 'faraday-maxwell',
         note: '力线与场方程把电、磁、光统一起来。',
         page: 29
       },
       {
         name: '爱因斯坦',
         en: 'Albert Einstein',
+        entityId: 'einstein',
         note: '1905 奇迹年与狭义相对论；课件以马赫的认识论为前史。',
         page: 41
       }
@@ -442,36 +453,42 @@ const lectures = [
       {
         name: '勒维耶与亚当斯',
         en: 'Urbain Le Verrier / John Couch Adams',
+        entityId: 'leverrier-adams',
         note: '独立计算海王星的位置；1846 年观测证实。',
         page: 13
       },
       {
         name: '图灵',
         en: 'Alan Turing',
+        entityId: 'turing',
         note: '1950 年提出图灵测试。',
         page: 35
       },
       {
         name: '明斯基',
         en: 'Marvin Minsky',
+        entityId: 'minsky',
         note: '达特茅斯会议与早期符号 AI 的代表人物。',
         page: 36
       },
       {
         name: '辛顿',
         en: 'Geoffrey Hinton',
+        entityId: 'hinton',
         note: '反向传播与深度学习的代表人物。',
         page: 37
       },
       {
         name: '杨立昆',
         en: 'Yann LeCun',
+        entityId: 'lecun',
         note: 'LeNet-5 与卷积网络的代表人物。',
         page: 37
       },
       {
         name: '马赫 / 康德',
         en: 'Ernst Mach / Immanuel Kant',
+        entityId: 'mach-kant',
         note: '课件借他们的认识论说明直觉、概念与物理原理的关系。',
         page: 47
       }
@@ -630,36 +647,42 @@ const lectures = [
       {
         name: '威廉·戈登',
         en: 'William E. Gordon',
+        entityId: 'gordon',
         note: '提出 300 米阿雷西博天线，最初用于电离层雷达研究。',
         page: 21
       },
       {
         name: '泰勒 / 赫尔斯',
         en: 'Joseph Taylor / Russell Hulse',
+        entityId: 'taylor-hulse',
         note: '在阿雷西博发现双中子星，为引力辐射提供证据。',
         page: 25
       },
       {
         name: '沃兹赞',
         en: 'Alex Wolszczan',
+        entityId: 'wolszczan',
         note: '与 Frail 发现首批脉冲星行星。',
         page: 26
       },
       {
         name: '南仁东',
         en: 'Nan Rendong',
+        entityId: 'nan-rendong',
         note: 'FAST 发起与建设的关键人物；课件引用其 2004 年百家讲坛画面。',
         page: 50
       },
       {
         name: '中国天眼 FAST',
         en: 'Five-hundred-meter Aperture Spherical radio Telescope',
+        entityId: 'fast-device',
         note: '500 米口径；2016 年 9 月落成，课件称其为世界最灵敏的射电望远镜。',
         page: 50
       },
       {
         name: '阿雷西博望远镜',
         en: 'Arecibo Observatory',
+        entityId: 'arecibo-device',
         note: '300 米口径，1963-2020；2020 年倒塌。',
         page: 60
       }
@@ -818,36 +841,42 @@ const lectures = [
       {
         name: '卡尔·萨根',
         en: 'Carl Sagan',
+        entityId: 'sagan',
         note: '《COSMOS》作者与主持人；旅行者金唱片选择委员会主席。',
         page: 4
       },
       {
         name: '菲利普·莫里森',
         en: 'Philip Morrison',
+        entityId: 'morrison',
         note: '提出“SETI is the archeology of the future”；1959 年与 Cocconi 发表搜索论文。',
         page: 7
       },
       {
         name: '弗兰克·德雷克',
         en: 'Frank Drake',
+        entityId: 'drake',
         note: '德雷克方程与 1974 年阿雷西博信息。',
         page: 20
       },
       {
         name: '恩里科·费米',
         en: 'Enrico Fermi',
+        entityId: 'fermi',
         note: '提出“Where is everybody?”。',
         page: 10
       },
       {
         name: '卡尔达肖夫',
         en: 'Nikolai Kardashev',
+        entityId: 'kardashev',
         note: '提出 I/II/III 类技术文明尺度。',
         page: 41
       },
       {
         name: '吉尔·塔特',
         en: 'Jill Tarter',
+        entityId: 'tarter',
         note: 'Project Phoenix 与 SETI 研究的代表人物；电影《Contact》角色原型。',
         page: 30
       }

@@ -1,0 +1,102 @@
+<view class="page-shell">
+  <view wx:if="{{notFound}}" class="ref-hero">
+    <text class="eyebrow">ENTITIES</text>
+    <text class="shell-title">没有找到这个条目</text>
+    <text class="shell-desc">条目可能已调整，或链接里的编号有误。</text>
+    <view class="detail-actions"><view class="detail-actions__button" bindtap="goBack">返回索引</view></view>
+  </view>
+
+  <view wx:else class="detail-hero">
+    <view class="detail-back" bindtap="goBack" aria-role="button" aria-label="返回人物与装置">← 返回索引</view>
+    <text class="detail-kicker">{{typeLabel}} · {{item.category}}</text>
+    <text class="detail-title">{{item.name}}</text>
+    <text wx:if="{{item.en}}" class="detail-en">{{item.en}}</text>
+
+    <view class="detail-section">
+      <text class="detail-section__title">在本课程中的角色</text>
+      <view class="detail-definition">
+        <text class="detail-definition__text">{{item.role}}</text>
+      </view>
+      <text class="detail-source">来源：编者据课件整理 · 页码为 PDF 阅读器页码</text>
+    </view>
+
+    <view wx:if="{{item.contribution}}" class="detail-section">
+      <text class="detail-section__title">课程中的线索</text>
+      <text class="detail-source" style="margin-top:10rpx;font-size:25rpx;line-height:1.85;color:var(--color-ink-dim)">{{item.contribution}}</text>
+    </view>
+
+    <view wx:if="{{item.specs.length}}" class="detail-section">
+      <text class="detail-section__title">课件规格</text>
+      <view class="spec-table">
+        <view wx:for="{{item.specs}}" wx:key="label" class="spec-row">
+          <text class="spec-row__label">{{item.label}}</text>
+          <text class="spec-row__value">{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{contexts.length}}" class="detail-section">
+      <text class="detail-section__title">出现于</text>
+      <view
+        wx:for="{{contexts}}"
+        wx:key="id"
+        class="context-card"
+        data-id="{{item.id}}"
+        bindtap="openLecture"
+        aria-role="button"
+        aria-label="查看第 {{item.order}} 讲"
+      >
+        <text class="context-card__lecture">第 {{item.order}} 讲 · {{item.title}}</text>
+        <text class="context-card__page">课件 · {{item.pages}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{relatedEntities.length}}" class="detail-section">
+      <text class="detail-section__title">相关人物 / 装置</text>
+      <view class="related-links">
+        <text
+          wx:for="{{relatedEntities}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openEntity"
+          aria-role="button"
+          aria-label="打开：{{item.name}}"
+        >{{item.name}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{relatedTerms.length}}" class="detail-section">
+      <text class="detail-section__title">相关概念</text>
+      <view class="related-links">
+        <text
+          wx:for="{{relatedTerms}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openTerm"
+          aria-role="button"
+          aria-label="打开词条：{{item.term}}"
+        >{{item.term}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{relatedTopics.length}}" class="detail-section">
+      <text class="detail-section__title">相关专题</text>
+      <view class="related-links">
+        <text
+          wx:for="{{relatedTopics}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openTopic"
+          aria-role="button"
+          aria-label="打开专题：{{item.title}}"
+        >{{item.title}}</text>
+      </view>
+    </view>
+
+    <view class="detail-actions"><view class="detail-actions__button" bindtap="goBack">← 返回索引</view></view>
+    <text class="copyright">角色与贡献由编者据课件整理；不写课件之外的生平、国籍或奖项清单。</text>
+  </view>
+</view>

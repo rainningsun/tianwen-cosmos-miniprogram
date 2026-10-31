@@ -82,8 +82,12 @@ function testArchive() {
 function testReferenceAndGlossary() {
   const reference = instantiate(loadPage('miniprogram/pages/reference/reference.js'));
   assert.strictEqual(reference.data.glossaryCount, 39, '概念词典应有 39 条');
+  assert.strictEqual(reference.data.peopleCount, 30, '人物索引应有 30 位');
+  assert.strictEqual(reference.data.deviceCount, 6, '装置索引应有 6 个');
   reference.onSearch({ detail: { value: '秒差距' } });
   assert.strictEqual(reference.data.results.length, 1, '索引搜索“秒差距”应返回 1 条');
+  reference.onSearch({ detail: { value: '萨根' } });
+  assert.ok(reference.data.results.some((item) => item.kind === 'entity'), '索引搜索“萨根”应返回人物条目');
 
   const glossary = instantiate(loadPage('miniprogram/pages/glossary/glossary.js'));
   glossary.onLoad();
@@ -100,6 +104,24 @@ function testReferenceAndGlossary() {
   assert.strictEqual(detail.data.notFound, false, '秒差距详情不应为 notFound');
   assert.strictEqual(detail.data.item.term, '秒差距', '详情词条错误');
   assert.ok(detail.data.contexts.length > 0, '秒差距应有讲次语境');
+}
+
+function testEntities() {
+  const list = instantiate(loadPage('miniprogram/pages/entities/entities.js'));
+  list.onLoad({ mode: 'person' });
+  assert.strictEqual(list.data.items.length, 30, '人物列表应有 30 位');
+  list.selectMode({ currentTarget: { dataset: { mode: 'device' } } });
+  assert.strictEqual(list.data.items.length, 6, '装置列表应有 6 个');
+  list.selectMode({ currentTarget: { dataset: { mode: 'chain' } } });
+  assert.strictEqual(list.data.chains.length, 6, '思想链应有 6 条');
+
+  const detail = instantiate(loadPage('miniprogram/pages/entity-detail/entity-detail.js'));
+  detail.onLoad({ id: 'fast-device' });
+  assert.strictEqual(detail.data.notFound, false, 'FAST 详情不应为 notFound');
+  assert.strictEqual(detail.data.item.name, '中国天眼 FAST', 'FAST 详情名称错误');
+  assert.strictEqual(detail.data.typeLabel, '装置', 'FAST 应为装置');
+  assert.ok(detail.data.item.specs.length >= 4, 'FAST 应有规格');
+  assert.ok(detail.data.contexts.length > 0, 'FAST 应有讲次语境');
 }
 
 function testDetails() {
@@ -130,6 +152,7 @@ testIndex();
 testTopic();
 testArchive();
 testReferenceAndGlossary();
+testEntities();
 testDetails();
 
-console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念词典 / 5 讲详情 / 第六讲占位');
+console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念词典 / 人物与装置 / 5 讲详情 / 第六讲占位');

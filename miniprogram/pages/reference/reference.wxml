@@ -10,10 +10,10 @@
         class="ref-search__input"
         type="text"
         value="{{query}}"
-        placeholder="搜索概念、别名或英文"
+        placeholder="搜索概念、人物、装置或别名"
         confirm-type="search"
         bindinput="onSearch"
-        aria-label="搜索概念"
+        aria-label="搜索索引"
       />
       <text wx:if="{{query}}" class="filter-chip" bindtap="clearSearch" aria-role="button">清除</text>
     </view>
@@ -27,45 +27,61 @@
         wx:for="{{results}}"
         wx:key="id"
         class="term-card"
+        data-kind="{{item.kind}}"
         data-id="{{item.id}}"
-        bindtap="openTerm"
+        bindtap="openResult"
         aria-role="button"
-        aria-label="打开词条：{{item.term}}"
+        aria-label="打开{{item.kindLabel}}：{{item.title}}"
       >
         <view class="term-card__head">
-          <text class="term-card__term">{{item.term}}</text>
-          <text class="term-card__en">{{item.en}}</text>
+          <text class="term-card__term">{{item.title}}</text>
+          <text class="term-card__en">{{item.kindLabel}}<text wx:if="{{item.en}}"> · {{item.en}}</text></text>
         </view>
-        <text class="term-card__desc">{{item.definition}}</text>
+        <text class="term-card__desc">{{item.text}}</text>
       </view>
       <view wx:if="{{!results.length}}" class="empty-panel">
-        <text class="empty-panel__title">没有找到相关词条</text>
-        <text class="empty-panel__note">试试“秒差距”“FAST”或“物理智觉”。</text>
+        <text class="empty-panel__title">没有找到相关条目</text>
+        <text class="empty-panel__note">试试“秒差距”“FAST”“萨根”或“物理智觉”。</text>
       </view>
     </view>
 
-    <view wx:else class="ref-grid">
-      <view class="ref-card ref-card--accent" bindtap="openGlossary" aria-role="button" aria-label="打开概念词典">
-        <view class="ref-card__top">
-          <text class="ref-card__title">概念词典</text>
-          <text class="ref-card__count">{{glossaryCount}} 条</text>
+    <view wx:else>
+      <view class="ref-grid">
+        <view class="ref-card ref-card--accent" bindtap="openGlossary" aria-role="button" aria-label="打开概念词典">
+          <view class="ref-card__top">
+            <text class="ref-card__title">概念词典</text>
+            <text class="ref-card__count">{{glossaryCount}} 条</text>
+          </view>
+          <text class="ref-card__desc">从 5 讲的核心概念出发，按分类、讲次和别名检索。</text>
+          <view class="ref-card__examples">
+            <text wx:for="{{examples}}" wx:key="id" class="ref-card__example">{{item.term}}</text>
+          </view>
+          <view class="ref-card__cta"><text>查看全部词条</text><text class="ref-card__arrow">→</text></view>
         </view>
-        <text class="ref-card__desc">从 5 讲的核心概念出发，按分类、讲次和别名检索。</text>
-        <view class="ref-card__examples">
-          <text wx:for="{{examples}}" wx:key="id" class="ref-card__example">{{item.term}}</text>
+
+        <view class="ref-card" data-mode="person" bindtap="openEntities" aria-role="button" aria-label="打开人物与装置">
+          <view class="ref-card__top">
+            <text class="ref-card__title">人物与装置</text>
+            <text class="ref-card__count">{{peopleCount}} 人物 · {{deviceCount}} 装置</text>
+          </view>
+          <text class="ref-card__desc">人物、望远镜与思想链，均只写课程中的角色。</text>
+          <view class="ref-card__examples">
+            <text wx:for="{{entityExamples}}" wx:key="id" class="ref-card__example">{{item.name}}</text>
+          </view>
+          <view class="ref-card__cta"><text>查看人物与装置</text><text class="ref-card__arrow">→</text></view>
         </view>
-        <view class="ref-card__cta"><text>查看全部词条</text><text class="ref-card__arrow">→</text></view>
       </view>
 
-      <view class="ref-card">
+      <view class="ref-card" style="margin-top:22rpx" data-mode="chain" bindtap="openEntities" aria-role="button" aria-label="打开思想链">
         <view class="ref-card__top">
-          <text class="ref-card__title">人物与装置</text>
-          <text class="ref-card__count">整理中</text>
+          <text class="ref-card__title">思想链</text>
+          <text class="ref-card__count">{{chainCount}} 条</text>
         </view>
-        <text class="ref-card__desc">人物、望远镜与思想链，将在下一步接入。</text>
+        <text class="ref-card__desc">{{chainExamples[0].title}} · {{chainExamples[1].title}} · 从观测到射电天文</text>
+        <view class="ref-card__cta"><text>沿思想链阅读</text><text class="ref-card__arrow">→</text></view>
       </view>
     </view>
 
-    <text class="copyright">概念定义由编者据课件整理；页码为 PDF 阅读器页码。课件图片版权归授课教师及原作者所有。</text>
+    <text class="copyright">概念定义与人物角色由编者据课件整理；页码为 PDF 阅读器页码。课件图片版权归授课教师及原作者所有。</text>
   </view>
 </view>

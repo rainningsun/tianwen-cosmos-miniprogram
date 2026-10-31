@@ -42,6 +42,21 @@
       </view>
     </view>
 
+    <view wx:if="{{relatedEntities.length}}" class="detail-section">
+      <text class="detail-section__title">相关人物 / 装置</text>
+      <view class="related-links">
+        <text
+          wx:for="{{relatedEntities}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openEntity"
+          aria-role="button"
+          aria-label="打开：{{item.name}}"
+        >{{item.name}}</text>
+      </view>
+    </view>
+
     <view wx:if="{{relatedTerms.length}}" class="detail-section">
       <text class="detail-section__title">相关概念</text>
       <view class="related-links">

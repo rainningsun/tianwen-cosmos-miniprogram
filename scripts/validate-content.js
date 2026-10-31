@@ -363,6 +363,16 @@ function checkGlossary() {
     }
   }
 
+  const entitiesFile = path.join(MP, 'data', 'entities.js');
+  if (fs.existsSync(entitiesFile)) {
+    const entityIds = new Set(require(entitiesFile).entities.map((entity) => entity.id));
+    for (const item of glossary) {
+      for (const entityId of item.relatedEntityIds || []) {
+        if (!entityIds.has(entityId)) fail(`词条 ${item.id} 关联了不存在的人物/装置：${entityId}`);
+      }
+    }
+  }
+
   for (const lecture of lectureData.lectures || []) {
     for (const concept of lecture.concepts || []) {
       if (!concept.termId) fail(`${lecture.id} 概念“${concept.term}”缺少 termId`);
@@ -371,6 +381,91 @@ function checkGlossary() {
   }
 
   notes.push(`已校验 ${glossary.length} 个概念词条`);
+}
+
+function checkEntities() {
+  const file = path.join(MP, 'data', 'entities.js');
+  if (!fs.existsSync(file)) {
+    fail('缺少 data/entities.js');
+    return;
+  }
+  let data;
+  try {
+    delete require.cache[require.resolve(file)];
+    data = require(file);
+  } catch (error) {
+    fail(`data/entities.js 无法加载：${error.message}`);
+    return;
+  }
+
+  const entities = Array.isArray(data.entities) ? data.entities : [];
+  const chains = Array.isArray(data.chains) ? data.chains : [];
+  const people = entities.filter((entity) => entity.type === 'person');
+  const devices = entities.filter((entity) => entity.type === 'device');
+  if (people.length < 20) fail(`人物条目应至少 20 位，当前 ${people.length}`);
+  if (devices.length < 5) fail(`装置条目应至少 5 个，当前 ${devices.length}`);
+  if (chains.length < 6) fail(`思想链应至少 6 条，当前 ${chains.length}`);
+
+  const ids = new Set();
+  for (const entity of entities) {
+    const label = entity.id || entity.name || '(未命名条目)';
+    if (!entity.id || ids.has(entity.id)) fail(`人物/装置 id 缺失或重复：${label}`);
+    ids.add(entity.id);
+    if (!['person', 'device'].includes(entity.type)) fail(`${label} 的 type 非法`);
+    for (const field of ['name', 'en', 'category', 'role', 'contribution']) {
+      if (!entity[field]) fail(`${label} 缺少字段 ${field}`);
+    }
+    if (!Array.isArray(entity.lectureIds) || !entity.lectureIds.length) fail(`${label} 缺少 lectureIds`);
+    if (!Array.isArray(entity.pages) || !entity.pages.length || entity.pages.some((page) => !Number.isInteger(page) || page < 1)) {
+      fail(`${label} 的 pages 必须是正整数数组`);
+    }
+    if (!Array.isArray(entity.specs)) fail(`${label} 的 specs 必须是数组`);
+    if (!['course', 'supplement'].includes(entity.sourceType)) fail(`${label} sourceType 非法`);
+  }
+
+  const glossary = require(path.join(MP, 'data', 'glossary.js')).glossary;
+  const topics = require(path.join(MP, 'data', 'topics.js')).topics;
+  const lectures = require(path.join(MP, 'data', 'lectures.js')).lectures;
+  const termIds = new Set(glossary.map((item) => item.id));
+  const topicIds = new Set(topics.map((topic) => topic.id));
+  const lectureIds = new Set(lectures.map((lecture) => lecture.id));
+
+  for (const entity of entities) {
+    for (const lectureId of entity.lectureIds || []) {
+      if (!lectureIds.has(lectureId)) fail(`条目 ${entity.id} 引用了不存在的讲次：${lectureId}`);
+    }
+    for (const entityId of entity.relatedEntityIds || []) {
+      if (entityId === entity.id) fail(`条目 ${entity.id} 不能关联自身`);
+      else if (!ids.has(entityId)) fail(`条目 ${entity.id} 关联了不存在的条目：${entityId}`);
+    }
+    for (const termId of entity.relatedTermIds || []) {
+      if (!termIds.has(termId)) fail(`条目 ${entity.id} 关联了不存在的词条：${termId}`);
+    }
+    for (const topicId of entity.relatedTopicIds || []) {
+      if (!topicIds.has(topicId)) fail(`条目 ${entity.id} 关联了不存在的专题：${topicId}`);
+    }
+  }
+
+  for (const chain of chains) {
+    if (!chain.id || !chain.title || !chain.description) fail('思想链字段不全');
+    if (!Array.isArray(chain.entityIds) || chain.entityIds.length < 2) fail(`思想链 ${chain.id} 至少需要 2 个节点`);
+    for (const entityId of chain.entityIds || []) {
+      if (!ids.has(entityId)) fail(`思想链 ${chain.id} 引用了不存在的条目：${entityId}`);
+    }
+    for (const lectureId of chain.lectureIds || []) {
+      if (!lectureIds.has(lectureId)) fail(`思想链 ${chain.id} 引用了不存在的讲次：${lectureId}`);
+    }
+    if (!Array.isArray(chain.pages) || !chain.pages.length) fail(`思想链 ${chain.id} 缺少页码`);
+  }
+
+  for (const lecture of lectures) {
+    for (const person of lecture.people || []) {
+      if (!person.entityId) fail(`${lecture.id} 人物“${person.name}”缺少 entityId`);
+      else if (!ids.has(person.entityId)) fail(`${lecture.id} 人物“${person.name}”的 entityId 不存在：${person.entityId}`);
+    }
+  }
+
+  notes.push(`已校验 ${people.length} 位人物、${devices.length} 个装置、${chains.length} 条思想链`);
 }
 
 function checkTopics() {
@@ -500,6 +595,7 @@ function main() {
   checkTrackedForbidden();
   checkLectureData(app);
   checkGlossary();
+  checkEntities();
   checkTopics();
   checkNoAssignment();
   checkNoHardcodedFive();

@@ -1,6 +1,7 @@
 const { getGlossaryById } = require('../../data/glossary');
 const { getPublishedLectures } = require('../../data/lectures');
 const { getTopicById } = require('../../data/topics');
+const { getEntityById } = require('../../data/entities');
 const { lectureLabel } = require('../../utils/format');
 
 Page({
@@ -8,6 +9,7 @@ Page({
     item: null,
     contexts: [],
     relatedTerms: [],
+    relatedEntities: [],
     relatedTopics: [],
     notFound: false
   },
@@ -46,7 +48,12 @@ Page({
       .filter(Boolean)
       .map((topic) => ({ id: topic.id, title: topic.title }));
 
-    this.setData({ item, contexts, relatedTerms, relatedTopics, notFound: false });
+    const relatedEntities = (item.relatedEntityIds || [])
+      .map((entityId) => getEntityById(entityId))
+      .filter(Boolean)
+      .map((entity) => ({ id: entity.id, name: entity.name, type: entity.type }));
+
+    this.setData({ item, contexts, relatedTerms, relatedEntities, relatedTopics, notFound: false });
     wx.setNavigationBarTitle({ title: item.term });
   },
 
@@ -70,6 +77,12 @@ Page({
     const id = event.currentTarget.dataset.id;
     if (!id) return;
     wx.navigateTo({ url: `/pages/glossary-detail/glossary-detail?id=${id}` });
+  },
+
+  openEntity(event) {
+    const id = event.currentTarget.dataset.id;
+    if (!id) return;
+    wx.navigateTo({ url: `/pages/entity-detail/entity-detail?id=${id}` });
   },
 
   openTopic(event) {

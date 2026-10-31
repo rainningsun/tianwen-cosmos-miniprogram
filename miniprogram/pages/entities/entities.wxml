@@ -1,0 +1,83 @@
+<view class="page-shell">
+  <view class="ref-hero">
+    <text class="eyebrow">ENTITIES</text>
+    <text class="shell-title">人物与装置</text>
+    <text class="shell-desc">按人物、装置与思想链整理课程里的关键角色；不写课件之外的生平。</text>
+
+    <view class="segmented">
+      <view
+        wx:for="{{modes}}"
+        wx:key="id"
+        class="segmented__item {{mode === item.id ? 'segmented__item--active' : ''}}"
+        data-mode="{{item.id}}"
+        bindtap="selectMode"
+        aria-role="tab"
+        aria-selected="{{mode === item.id}}"
+      >{{item.label}}</view>
+    </view>
+
+    <view wx:if="{{mode !== 'chain'}}" class="filter-block">
+      <text class="filter-block__label">分类</text>
+      <view class="filter-chips">
+        <text
+          wx:for="{{categories}}"
+          wx:key="*this"
+          class="filter-chip {{activeCategory === item ? 'filter-chip--active' : ''}}"
+          data-value="{{item}}"
+          bindtap="selectCategory"
+          aria-role="button"
+          aria-label="筛选分类：{{item}}"
+        >{{item}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{mode === 'chain'}}">
+      <view class="chain-list">
+        <view wx:for="{{chains}}" wx:key="id" class="chain-card">
+          <text class="chain-title">{{item.title}}</text>
+          <text class="chain-desc">{{item.description}}</text>
+          <view class="chain-nodes">
+            <block wx:for="{{item.nodes}}" wx:for-item="node" wx:key="id">
+              <text
+                class="chain-node"
+                data-id="{{node.id}}"
+                bindtap="openEntity"
+                aria-role="button"
+                aria-label="打开：{{node.name}}"
+              >{{node.name}}</text>
+              <text wx:if="{{index < item.nodes.length - 1}}" class="chain-arrow">→</text>
+            </block>
+          </view>
+          <text class="source">{{item.meta}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:else class="entity-list">
+      <view
+        wx:for="{{items}}"
+        wx:key="id"
+        class="entity-card"
+        data-id="{{item.id}}"
+        bindtap="openEntity"
+        aria-role="button"
+        aria-label="打开{{mode === 'person' ? '人物' : '装置'}}：{{item.name}}"
+      >
+        <text class="entity-mark">{{item.mark}}</text>
+        <view class="entity-body">
+          <text class="entity-name">{{item.name}}</text>
+          <text class="entity-en">{{item.en}}</text>
+          <text class="entity-role">{{item.role}}</text>
+          <view class="entity-meta"><text>{{item.meta}}</text><text>·</text><text>{{item.pageText}}</text></view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{mode !== 'chain' && !items.length}}" class="empty-panel">
+      <text class="empty-panel__title">没有匹配条目</text>
+      <text class="empty-panel__note">换一个分类，或回到全部。</text>
+    </view>
+
+    <text class="copyright">人物与装置条目由编者据课件整理；页码为 PDF 阅读器页码。</text>
+  </view>
+</view>

@@ -75,6 +75,14 @@
           <text wx:if="{{item.en}}" class="person__en">{{item.en}}</text>
           <text class="person__note">{{item.note}}</text>
           <text class="person__page">第 {{lecture.order}} 讲 · p.{{item.page}}</text>
+          <text
+            wx:if="{{item.entityId}}"
+            class="person__link"
+            data-entity-id="{{item.entityId}}"
+            bindtap="goEntity"
+            aria-role="button"
+            aria-label="查看索引：{{item.name}}"
+          >查看索引 →</text>
         </view>
       </view>
     </view>

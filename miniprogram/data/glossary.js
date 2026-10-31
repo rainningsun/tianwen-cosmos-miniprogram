@@ -9,7 +9,7 @@ const glossary = [
     lectureIds: ['lecture-1', 'lecture-3'],
     pages: [28, 19],
     relatedTermIds: ['parsec', 'cepheid', 'hubble-expansion'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["leavitt","hubble"],
     relatedTopicIds: ['distance-ladder'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -39,7 +39,7 @@ const glossary = [
     lectureIds: ['lecture-1'],
     pages: [31],
     relatedTermIds: ['distance-ladder', 'hubble-expansion'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["leavitt"],
     relatedTopicIds: ['distance-ladder'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -54,7 +54,7 @@ const glossary = [
     lectureIds: ['lecture-1'],
     pages: [32],
     relatedTermIds: ['distance-ladder', 'cepheid'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["hubble"],
     relatedTopicIds: ['distance-ladder'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -69,7 +69,7 @@ const glossary = [
     lectureIds: ['lecture-1', 'lecture-4'],
     pages: [16, 62],
     relatedTermIds: ['fast', 'fast-discoveries', 'radio-telescope'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["fast-device"],
     relatedTopicIds: ['tianwen-fast'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -234,7 +234,7 @@ const glossary = [
     lectureIds: ['lecture-2'],
     pages: [40, 41],
     relatedTermIds: ['two-clouds-quantum', 'maxwell-equations'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["einstein"],
     relatedTopicIds: ['three-steps'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -249,7 +249,7 @@ const glossary = [
     lectureIds: ['lecture-3'],
     pages: [13],
     relatedTermIds: ['kepler-ellipse'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["leverrier-adams"],
     relatedTopicIds: ['intellitution'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -279,7 +279,7 @@ const glossary = [
     lectureIds: ['lecture-3'],
     pages: [35],
     relatedTermIds: ['symbolic-ai', 'deep-learning', 'transformer'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["turing"],
     relatedTopicIds: ['intellitution'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -309,7 +309,7 @@ const glossary = [
     lectureIds: ['lecture-3'],
     pages: [37],
     relatedTermIds: ['symbolic-ai', 'transformer', 'intellitution'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["hinton","lecun"],
     relatedTopicIds: ['intellitution'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -339,7 +339,7 @@ const glossary = [
     lectureIds: ['lecture-3'],
     pages: [48, 51],
     relatedTermIds: ['deep-learning', 'transformer'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["einstein","mach-kant"],
     relatedTopicIds: ['intellitution'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -354,7 +354,7 @@ const glossary = [
     lectureIds: ['lecture-4'],
     pages: [9],
     relatedTermIds: ['radio-window'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["newton"],
     relatedTopicIds: ['tianwen-fast'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -384,7 +384,7 @@ const glossary = [
     lectureIds: ['lecture-4'],
     pages: [16, 17, 18],
     relatedTermIds: ['radio-window', 'arecibo', 'fast'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["arecibo-device","fast-device"],
     relatedTopicIds: ['tianwen-fast'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -399,7 +399,7 @@ const glossary = [
     lectureIds: ['lecture-4'],
     pages: [20, 21, 60],
     relatedTermIds: ['radio-telescope', 'pulsar-binary', 'pulsar-planets'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["arecibo-device","gordon"],
     relatedTopicIds: ['tianwen-fast'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -414,7 +414,7 @@ const glossary = [
     lectureIds: ['lecture-4'],
     pages: [24, 25],
     relatedTermIds: ['pulsar-planets', 'arecibo', 'fast'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["taylor-hulse","arecibo-device"],
     relatedTopicIds: ['tianwen-fast'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -429,7 +429,7 @@ const glossary = [
     lectureIds: ['lecture-4'],
     pages: [26],
     relatedTermIds: ['pulsar-binary', 'arecibo'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["wolszczan"],
     relatedTopicIds: ['are-we-alone'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -444,7 +444,7 @@ const glossary = [
     lectureIds: ['lecture-4'],
     pages: [50],
     relatedTermIds: ['arecibo', 'frb', 'fast-discoveries'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["fast-device","nan-rendong"],
     relatedTopicIds: ['tianwen-fast'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -459,7 +459,7 @@ const glossary = [
     lectureIds: ['lecture-4'],
     pages: [54, 59, 62],
     relatedTermIds: ['fast', 'frb', 'pulsar-binary'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["fast-device"],
     relatedTopicIds: ['tianwen-fast'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -474,7 +474,7 @@ const glossary = [
     lectureIds: ['lecture-5'],
     pages: [6, 7],
     relatedTermIds: ['fermi-paradox', 'drake-equation', 'voyager-record'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["sagan","drake"],
     relatedTopicIds: ['are-we-alone'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -489,7 +489,7 @@ const glossary = [
     lectureIds: ['lecture-5'],
     pages: [10],
     relatedTermIds: ['seti', 'drake-equation', 'kardashev'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["fermi"],
     relatedTopicIds: ['are-we-alone'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -504,7 +504,7 @@ const glossary = [
     lectureIds: ['lecture-5'],
     pages: [20],
     relatedTermIds: ['seti', 'fermi-paradox', 'kardashev'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["drake"],
     relatedTopicIds: ['are-we-alone'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -549,7 +549,7 @@ const glossary = [
     lectureIds: ['lecture-5'],
     pages: [41],
     relatedTermIds: ['fermi-paradox', 'dyson-sphere', 'seti'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["kardashev"],
     relatedTopicIds: ['are-we-alone'],
     relatedQuestionIds: [],
     sourceType: 'course'
@@ -579,7 +579,7 @@ const glossary = [
     lectureIds: ['lecture-5'],
     pages: [50],
     relatedTermIds: ['seti'],
-    relatedEntityIds: [],
+    relatedEntityIds: ["sagan","voyager-device"],
     relatedTopicIds: ['are-we-alone'],
     relatedQuestionIds: [],
     sourceType: 'course'

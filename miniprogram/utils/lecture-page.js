@@ -187,6 +187,14 @@ function createLecturePage() {
       });
     },
 
+    goEntity(event) {
+      const entityId = event.currentTarget.dataset.entityId;
+      if (!entityId) return;
+      wx.navigateTo({
+        url: `/pages/entity-detail/entity-detail?id=${entityId}`
+      });
+    },
+
     goHome() {
       wx.switchTab({ url: '/pages/index/index' });
     },

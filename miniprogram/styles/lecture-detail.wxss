@@ -199,6 +199,15 @@
   font-size: 21rpx;
 }
 
+.person__link {
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+  color: var(--color-gold);
+  font-size: 23rpx;
+  letter-spacing: 1rpx;
+}
+
 .lecture-quote {
   margin-top: 24rpx;
   padding: 26rpx 26rpx 24rpx;
