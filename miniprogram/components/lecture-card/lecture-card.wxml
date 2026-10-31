@@ -4,9 +4,8 @@
   hover-stay-time="60"
   bindtap="onTap"
   aria-role="button"
-  aria-label="{{lecture.status === 'published' ? lecture.title : '第六讲待更新，暂不可进入'}}"
-  aria-disabled="{{lecture.status !== 'published'}}"
->
+  aria-label="{{lecture.status === 'published' ? lecture.title : lecture.orderLabel + '待更新，暂不可进入'}}"
+  aria-disabled="{{lecture.status !== 'published'}}">
   <view class="lecture-card__visual">
     <image
       wx:if="{{lecture.cover}}"
@@ -20,12 +19,11 @@
       <text class="lecture-card__ordinal">{{lecture.orderLabel}}</text>
     </view>
     <view class="lecture-card__date">{{lecture.date}}</view>
-    <view wx:if="{{lecture.status === 'upcoming'}}" class="lecture-card__badge">待更新</view>
   </view>
 
   <view class="lecture-card__body">
-    <text class="lecture-card__kicker">{{lecture.orderLabel}}{{lecture.titleNote ? ' · ' + lecture.titleNote : ''}}</text>
-    <text class="lecture-card__title">{{lecture.title}}</text>
+    <text class="lecture-card__kicker">{{lecture.status === 'upcoming' ? 'UPCOMING' : lecture.orderLabel + (lecture.titleNote ? ' · ' + lecture.titleNote : '')}}</text>
+    <text class="lecture-card__title">{{lecture.status === 'upcoming' ? lecture.orderLabel + ' · 待更新' : lecture.title}}</text>
     <text wx:if="{{lecture.summary}}" class="lecture-card__summary">{{lecture.summary}}</text>
 
     <view wx:if="{{lecture.keywords && lecture.keywords.length}}" class="lecture-card__keywords">

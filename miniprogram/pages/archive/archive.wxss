@@ -16,6 +16,10 @@
   opacity: 0.72;
 }
 
+.archive-row--upcoming {
+  opacity: 0.62;
+}
+
 .archive-row__body {
   flex: 1;
 }

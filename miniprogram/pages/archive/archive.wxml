@@ -9,21 +9,23 @@
     <view
       wx:for="{{lectures}}"
       wx:key="id"
-      class="archive-row"
+      class="archive-row {{item.status === 'upcoming' ? 'archive-row--upcoming' : ''}}"
       data-id="{{item.id}}"
       data-page-path="{{item.pagePath}}"
       bindtap="openLecture"
-      hover-class="archive-row--pressed"
+      hover-class="{{item.status === 'published' ? 'archive-row--pressed' : 'none'}}"
       aria-role="button"
-      aria-label="查看第 {{item.order}} 讲课件原页"
+      aria-label="{{item.status === 'published' ? '查看第 ' + item.order + ' 讲课件原页' : item.orderLabel + '待更新，暂无原页'}}"
+      aria-disabled="{{item.status !== 'published'}}"
     >
       <view class="archive-row__body">
-        <text class="archive-row__title">第 {{item.order}} 讲 · {{item.title}}</text>
-        <text class="archive-row__meta">{{item.date}} · 收录 {{item.count}} 页</text>
+        <text class="archive-row__title">{{item.orderLabel}} · {{item.status === 'upcoming' ? '待更新' : item.title}}</text>
+        <text wx:if="{{item.status === 'published'}}" class="archive-row__meta">{{item.date}} · 收录 {{item.count}} 页</text>
+        <text wx:else class="archive-row__meta">课件尚未提供 · 暂未收录</text>
       </view>
       <view class="archive-row__action">
-        <text class="archive-row__label">原页</text>
-        <text class="archive-row__arrow">→</text>
+        <text class="archive-row__label">{{item.status === 'published' ? '原页' : '待更新'}}</text>
+        <text wx:if="{{item.status === 'published'}}" class="archive-row__arrow">→</text>
       </view>
     </view>
   </view>

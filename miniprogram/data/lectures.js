@@ -887,6 +887,25 @@ const lectures = [
       }
     ],
     nextHint: '课程在这里暂告一段落；后续讲次将按同一套数据与页面结构增量加入。'
+  },
+  {
+    id: 'lecture-6',
+    order: 6,
+    date: '待定',
+    title: '第六讲',
+    titleNote: '',
+    status: 'upcoming',
+    pagePath: '',
+    package: '',
+    keywords: [],
+    cover: '',
+    summary: '',
+    questions: [],
+    concepts: [],
+    people: [],
+    quotes: [],
+    images: [],
+    nextHint: ''
   }
 ];
 
