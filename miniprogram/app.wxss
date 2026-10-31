@@ -42,6 +42,7 @@ scroll-view {
 }
 
 .eyebrow {
+  display: block;
   color: var(--color-gold);
   font-size: 22rpx;
   letter-spacing: 6rpx;
@@ -53,6 +54,7 @@ scroll-view {
 }
 
 .shell-title {
+  display: block;
   margin-top: 22rpx;
   font-family: var(--font-serif);
   font-size: 64rpx;
@@ -61,6 +63,7 @@ scroll-view {
 }
 
 .shell-desc {
+  display: block;
   margin-top: 24rpx;
   max-width: 620rpx;
   color: var(--color-ink-dim);

@@ -56,7 +56,7 @@
 
     <view class="lecture__section">
       <view class="lecture__section-head">
-        <text class="lecture__kicker">PEOPLE &amp; INSTRUMENTS</text>
+        <text class="lecture__kicker">PEOPLE / INSTRUMENTS</text>
         <text class="lecture__section-title">关键人物 / 装置</text>
       </view>
       <view wx:for="{{lecture.people}}" wx:key="name" class="person">
