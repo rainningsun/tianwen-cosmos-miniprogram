@@ -129,6 +129,31 @@
       <text class="next-hint__text">{{lecture.nextHint}}</text>
     </view>
 
+    <view wx:if="{{exploreLinks.length}}" class="lecture-explore">
+      <view class="lecture__section-head">
+        <text class="lecture__kicker">EXPLORE</text>
+        <text class="lecture__section-title">继续探索</text>
+      </view>
+      <view
+        wx:for="{{exploreLinks}}"
+        wx:key="title"
+        class="lecture-explore__link"
+        data-kind="{{item.kind}}"
+        data-mode="{{item.mode}}"
+        data-target="{{item.target}}"
+        bindtap="goExplore"
+        hover-class="lecture-explore__link--pressed"
+        aria-role="button"
+        aria-label="打开：{{item.title}}"
+      >
+        <view class="lecture-explore__body">
+          <text class="lecture-explore__title">{{item.title}}</text>
+          <text class="lecture-explore__note">{{item.note}}</text>
+        </view>
+        <text class="lecture-explore__arrow">→</text>
+      </view>
+    </view>
+
     <view class="lecture-nav">
       <view
         wx:if="{{prevLecture}}"

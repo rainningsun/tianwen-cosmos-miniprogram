@@ -60,6 +60,8 @@ function testIndex() {
   assert.strictEqual(page.data.lectures.length, 5, '首页时间轴应有 5 讲');
   assert.ok(page.data.upcoming, '应显示第六讲占位');
   assert.strictEqual(page.data.upcoming.order, 6, '占位应为第六讲');
+  assert.strictEqual(typeof page.openReference, 'function', '首页应有索引入口');
+  assert.strictEqual(typeof page.openExplore, 'function', '首页应有探索入口');
 }
 
 function testTopic() {
@@ -70,6 +72,9 @@ function testTopic() {
   page.selectTopic({ currentTarget: { dataset: { id: 'are-we-alone' } } });
   assert.strictEqual(page.data.topic.id, 'are-we-alone', '专题切换失败');
   assert.ok(page.data.related.length > 0, '专题应有相关讲次');
+  assert.strictEqual(page.data.relatedTerms.length, 3, 'Are we alone 应有 3 个相关词条');
+  assert.strictEqual(page.data.relatedEntities.length, 3, 'Are we alone 应有 3 个相关人物');
+  assert.strictEqual(page.data.exploreLinks.length, 2, 'Are we alone 应有 2 个探索链接');
 }
 
 function testArchive() {
@@ -104,6 +109,10 @@ function testReferenceAndGlossary() {
   assert.strictEqual(detail.data.notFound, false, '秒差距详情不应为 notFound');
   assert.strictEqual(detail.data.item.term, '秒差距', '详情词条错误');
   assert.ok(detail.data.contexts.length > 0, '秒差距应有讲次语境');
+
+  const frb = instantiate(loadPage('miniprogram/pages/glossary-detail/glossary-detail.js'));
+  frb.onLoad({ id: 'frb' });
+  assert.strictEqual(frb.data.relatedQuestions.length, 1, '快速射电暴词条应链接未解之谜');
 }
 
 function testEntities() {
@@ -122,6 +131,7 @@ function testEntities() {
   assert.strictEqual(detail.data.typeLabel, '装置', 'FAST 应为装置');
   assert.ok(detail.data.item.specs.length >= 4, 'FAST 应有规格');
   assert.ok(detail.data.contexts.length > 0, 'FAST 应有讲次语境');
+  assert.strictEqual(detail.data.relatedQuestions.length, 1, 'FAST 应链接快速射电暴问题');
 }
 
 function testExploreAndScale() {
@@ -187,6 +197,7 @@ function testDetails() {
     assert.strictEqual(page.data.imageUrls.length, 10, `${id} 应有 10 张原页`);
     assert.strictEqual(page.data.prevLecture ? page.data.prevLecture.id : null, prevId, `${id} 上一讲错误`);
     assert.strictEqual(page.data.nextLecture ? page.data.nextLecture.id : null, nextId, `${id} 下一讲错误`);
+    assert.ok(page.data.exploreLinks.length >= 1 && page.data.exploreLinks.length <= 3, `${id} 应有 1-3 个继续探索链接`);
   }
 
   const upcoming = instantiate(loadPage('miniprogram/packageL3/pages/lecture/lecture.js'));

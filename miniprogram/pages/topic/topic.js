@@ -1,12 +1,17 @@
 const { topics, getTopicById } = require('../../data/topics');
 const { getLectureById } = require('../../data/lectures');
+const { getGlossaryById } = require('../../data/glossary');
+const { getEntityById } = require('../../data/entities');
 
 Page({
   data: {
     topics: topics.map((topic) => ({ id: topic.id, title: topic.title })),
     activeId: topics[0].id,
     topic: null,
-    related: []
+    related: [],
+    relatedTerms: [],
+    relatedEntities: [],
+    exploreLinks: []
   },
 
   onLoad(options) {
@@ -41,12 +46,24 @@ Page({
         pagePath: lecture.pagePath
       }));
 
+    const relatedTerms = (topic.relatedGlossaryIds || [])
+      .map((termId) => getGlossaryById(termId))
+      .filter(Boolean)
+      .map((term) => ({ id: term.id, term: term.term }));
+    const relatedEntities = (topic.relatedEntityIds || [])
+      .map((entityId) => getEntityById(entityId))
+      .filter(Boolean)
+      .map((entity) => ({ id: entity.id, name: entity.name }));
+
     this.setData({
       activeId: topic.id,
       topic: Object.assign({}, topic, {
         quoteSource: topic.quote ? `${topic.quote.author} · p.${topic.quote.page}` : ''
       }),
-      related
+      related,
+      relatedTerms,
+      relatedEntities,
+      exploreLinks: topic.relatedExplore || []
     });
   },
 
@@ -56,6 +73,29 @@ Page({
     wx.navigateTo({
       url: `${lecture.pagePath}?id=${lecture.id}`
     });
+  },
+
+  openTerm(event) {
+    const id = event.currentTarget.dataset.id;
+    if (!id) return;
+    wx.navigateTo({ url: `/pages/glossary-detail/glossary-detail?id=${id}` });
+  },
+
+  openEntity(event) {
+    const id = event.currentTarget.dataset.id;
+    if (!id) return;
+    wx.navigateTo({ url: `/pages/entity-detail/entity-detail?id=${id}` });
+  },
+
+  openExplore(event) {
+    const { kind, mode, target } = event.currentTarget.dataset;
+    if (kind === 'scale') {
+      wx.navigateTo({ url: '/pages/scale/scale' });
+    } else if (kind === 'timeline') {
+      wx.navigateTo({ url: `/pages/timeline/timeline?mode=${mode || 'cosmic'}` });
+    } else if (kind === 'question' && target) {
+      wx.navigateTo({ url: `/pages/question-detail/question-detail?id=${target}` });
+    }
   },
 
   onShareAppMessage() {

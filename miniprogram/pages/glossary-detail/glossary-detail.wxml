@@ -87,6 +87,21 @@
       </view>
     </view>
 
+    <view wx:if="{{relatedQuestions.length}}" class="detail-section">
+      <text class="detail-section__title">相关问题</text>
+      <view class="related-links">
+        <text
+          wx:for="{{relatedQuestions}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openQuestion"
+          aria-role="button"
+          aria-label="打开问题：{{item.question}}"
+        >{{item.question}}</text>
+      </view>
+    </view>
+
     <view class="detail-actions">
       <view class="detail-actions__button" bindtap="goBack">← 返回词典</view>
     </view>

@@ -1,6 +1,32 @@
 const { getLectureById, getPublishedLectures } = require('../data/lectures');
 const { lectureLabel } = require('./format');
 
+const LECTURE_EXPLORE = {
+  'lecture-1': [
+    { kind: 'scale', title: '宇宙尺度滑杆', note: '从地球到宇宙学尺度，看测量方法如何变化' },
+    { kind: 'timeline', mode: 'human', title: '观测历史', note: '把埃拉托斯特尼到哈勃放在一条线上' },
+    { kind: 'question', target: 'turbulence-prediction', title: '湍流为什么难以预测？', note: '未解之谜 · 星际介质' }
+  ],
+  'lecture-2': [
+    { kind: 'timeline', mode: 'human', title: '观测历史', note: '从哥白尼、伽利略到牛顿' }
+  ],
+  'lecture-3': [
+    { kind: 'timeline', mode: 'cosmic', title: '宇宙的 138 亿年', note: '从最初时刻到今天的加速膨胀' },
+    { kind: 'question', target: 'dark-sector', title: '暗物质和暗能量究竟是什么？', note: '未解之谜 · 宇宙构成' },
+    { kind: 'question', target: 'ai-understand-universe', title: 'AI 能真正理解宇宙吗？', note: '未解之谜 · 智能与认知' }
+  ],
+  'lecture-4': [
+    { kind: 'scale', title: '宇宙尺度滑杆', note: '从地球一路走到宇宙学尺度' },
+    { kind: 'timeline', mode: 'human', title: '观测历史', note: '从央斯基、阿雷西博到 FAST' },
+    { kind: 'question', target: 'frb-origin', title: '快速射电暴从哪里来？', note: '未解之谜 · 高能现象' }
+  ],
+  'lecture-5': [
+    { kind: 'timeline', mode: 'human', title: '观测历史', note: '从日影到旅行者号与 FAST' },
+    { kind: 'question', target: 'are-we-alone', title: '我们在宇宙中孤独吗？', note: '未解之谜 · 生命与文明' },
+    { kind: 'question', target: 'interstellar-travel', title: '人类能走多远？', note: '未解之谜 · 生命与文明' }
+  ]
+};
+
 function toNavItem(lecture) {
   if (!lecture) return null;
   return {
@@ -20,7 +46,8 @@ function createLecturePage() {
       nextLecture: null,
       imageUrls: [],
       focusPages: false,
-      notFound: false
+      notFound: false,
+      exploreLinks: []
     },
 
     onLoad(options) {
@@ -51,7 +78,8 @@ function createLecturePage() {
         nextLecture: toNavItem(next),
         imageUrls: (lecture.images || []).map((image) => image.src),
         focusPages: query.focus === 'pages',
-        notFound: false
+        notFound: false,
+        exploreLinks: LECTURE_EXPLORE[lecture.id] || []
       });
 
       wx.setNavigationBarTitle({ title: lecture.title });
@@ -193,6 +221,17 @@ function createLecturePage() {
       wx.navigateTo({
         url: `/pages/entity-detail/entity-detail?id=${entityId}`
       });
+    },
+
+    goExplore(event) {
+      const { kind, mode, target } = event.currentTarget.dataset;
+      if (kind === 'scale') {
+        wx.navigateTo({ url: '/pages/scale/scale' });
+      } else if (kind === 'timeline') {
+        wx.navigateTo({ url: `/pages/timeline/timeline?mode=${mode || 'cosmic'}` });
+      } else if (kind === 'question' && target) {
+        wx.navigateTo({ url: `/pages/question-detail/question-detail?id=${target}` });
+      }
     },
 
     goHome() {

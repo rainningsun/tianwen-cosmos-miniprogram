@@ -304,6 +304,46 @@
   line-height: 1.88;
 }
 
+.lecture-explore {
+  margin-top: 38rpx;
+  padding-top: 4rpx;
+}
+
+.lecture-explore__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100rpx;
+  margin-top: 12rpx;
+  padding: 18rpx 22rpx;
+  border: 1rpx solid var(--color-line-cool);
+  border-radius: var(--radius-card);
+  background: linear-gradient(135deg, rgba(16, 22, 35, 0.72), rgba(8, 11, 18, 0.84));
+}
+
+.lecture-explore__link--pressed {
+  opacity: 0.72;
+}
+
+.lecture-explore__title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+.lecture-explore__note {
+  display: block;
+  margin-top: 2rpx;
+  color: var(--color-muted);
+  font-size: 21rpx;
+}
+
+.lecture-explore__arrow {
+  color: var(--color-gold);
+  font-size: 30rpx;
+}
+
 .lecture-nav {
   display: flex;
   justify-content: space-between;

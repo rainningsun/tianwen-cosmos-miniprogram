@@ -2,6 +2,7 @@ const { getEntityById } = require('../../data/entities');
 const { getPublishedLectures } = require('../../data/lectures');
 const { getGlossaryById } = require('../../data/glossary');
 const { getTopicById } = require('../../data/topics');
+const { getQuestionById } = require('../../data/questions');
 
 Page({
   data: {
@@ -11,6 +12,7 @@ Page({
     relatedEntities: [],
     relatedTerms: [],
     relatedTopics: [],
+    relatedQuestions: [],
     notFound: false
   },
 
@@ -49,6 +51,11 @@ Page({
       .filter(Boolean)
       .map((topic) => ({ id: topic.id, title: topic.title }));
 
+    const relatedQuestions = (item.relatedQuestionIds || [])
+      .map((questionId) => getQuestionById(questionId))
+      .filter(Boolean)
+      .map((question) => ({ id: question.id, question: question.question }));
+
     this.setData({
       item,
       typeLabel: item.type === 'person' ? '人物' : '装置',
@@ -56,6 +63,7 @@ Page({
       relatedEntities,
       relatedTerms,
       relatedTopics,
+      relatedQuestions,
       notFound: false
     });
     wx.setNavigationBarTitle({ title: item.name });
@@ -97,6 +105,12 @@ Page({
       // 缓存失败时打开默认专题。
     }
     wx.switchTab({ url: '/pages/topic/topic' });
+  },
+
+  openQuestion(event) {
+    const id = event.currentTarget.dataset.id;
+    if (!id) return;
+    wx.navigateTo({ url: `/pages/question-detail/question-detail?id=${id}` });
   },
 
   onShareAppMessage() {

@@ -200,7 +200,7 @@ const entities = [
     relatedEntityIds: ['einstein'],
     relatedTermIds: ['special-relativity', 'intellitution'],
     relatedTopicIds: ['intellitution', 'three-steps'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -234,7 +234,7 @@ const entities = [
     relatedEntityIds: ['leavitt'],
     relatedTermIds: ['hubble-expansion', 'distance-ladder'],
     relatedTopicIds: ['distance-ladder'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["dark-sector"],
     sourceType: 'course'
   },
   {
@@ -251,7 +251,7 @@ const entities = [
     relatedEntityIds: ['newton'],
     relatedTermIds: ['neptune-discovery'],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -268,7 +268,7 @@ const entities = [
     relatedEntityIds: ['minsky'],
     relatedTermIds: ['turing-test'],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -285,7 +285,7 @@ const entities = [
     relatedEntityIds: ['turing', 'hinton'],
     relatedTermIds: ['symbolic-ai'],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -302,7 +302,7 @@ const entities = [
     relatedEntityIds: ['lecun', 'minsky'],
     relatedTermIds: ['deep-learning'],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -319,7 +319,7 @@ const entities = [
     relatedEntityIds: ['hinton'],
     relatedTermIds: ['deep-learning'],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -387,7 +387,7 @@ const entities = [
     relatedEntityIds: ['taylor-hulse'],
     relatedTermIds: ['pulsar-planets'],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -404,7 +404,7 @@ const entities = [
     relatedEntityIds: ['fast-device'],
     relatedTermIds: ['fast'],
     relatedTopicIds: ['tianwen-fast'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["frb-origin"],
     sourceType: 'course'
   },
   {
@@ -421,7 +421,7 @@ const entities = [
     relatedEntityIds: ['drake', 'morrison', 'voyager-device'],
     relatedTermIds: ['voyager-record', 'seti'],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone","interstellar-travel"],
     sourceType: 'course'
   },
   {
@@ -438,7 +438,7 @@ const entities = [
     relatedEntityIds: ['drake', 'sagan'],
     relatedTermIds: ['seti', 'interstellar-window'],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -455,7 +455,7 @@ const entities = [
     relatedEntityIds: ['sagan', 'morrison', 'arecibo-device'],
     relatedTermIds: ['drake-equation'],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -472,7 +472,7 @@ const entities = [
     relatedEntityIds: ['drake', 'kardashev'],
     relatedTermIds: ['fermi-paradox'],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -489,7 +489,7 @@ const entities = [
     relatedEntityIds: ['fermi', 'drake'],
     relatedTermIds: ['kardashev', 'dyson-sphere'],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -506,7 +506,7 @@ const entities = [
     relatedEntityIds: ['drake', 'sagan'],
     relatedTermIds: ['seti'],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -544,7 +544,7 @@ const entities = [
     relatedEntityIds: ['gbt-device', 'fast-device', 'gordon'],
     relatedTermIds: ['arecibo', 'pulsar-binary', 'pulsar-planets'],
     relatedTopicIds: ['tianwen-fast'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -587,7 +587,7 @@ const entities = [
     relatedEntityIds: ['arecibo-device', 'gbt-device', 'nan-rendong'],
     relatedTermIds: ['fast', 'frb', 'fast-discoveries'],
     relatedTopicIds: ['tianwen-fast'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["frb-origin"],
     sourceType: 'course'
   },
   {
@@ -624,7 +624,7 @@ const entities = [
     relatedEntityIds: ['sagan'],
     relatedTermIds: ['voyager-record'],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["interstellar-travel"],
     sourceType: 'course'
   }
 ];

@@ -113,6 +113,61 @@
         <text class="related-row__arrow">→</text>
       </view>
     </view>
+
+    <view wx:if="{{relatedTerms.length || relatedEntities.length || exploreLinks.length}}" class="topic-cross">
+      <text class="related__kicker">INDEX / EXPLORE</text>
+
+      <view wx:if="{{relatedTerms.length}}" class="cross-block">
+        <text class="cross-block__label">相关概念</text>
+        <view class="cross-chips">
+          <text
+            wx:for="{{relatedTerms}}"
+            wx:key="id"
+            class="cross-chip"
+            data-id="{{item.id}}"
+            bindtap="openTerm"
+            aria-role="button"
+            aria-label="打开词条：{{item.term}}"
+          >{{item.term}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{relatedEntities.length}}" class="cross-block">
+        <text class="cross-block__label">相关人物 / 装置</text>
+        <view class="cross-chips">
+          <text
+            wx:for="{{relatedEntities}}"
+            wx:key="id"
+            class="cross-chip"
+            data-id="{{item.id}}"
+            bindtap="openEntity"
+            aria-role="button"
+            aria-label="打开：{{item.name}}"
+          >{{item.name}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{exploreLinks.length}}" class="cross-block">
+        <text class="cross-block__label">继续探索</text>
+        <view
+          wx:for="{{exploreLinks}}"
+          wx:key="title"
+          class="cross-link"
+          data-kind="{{item.kind}}"
+          data-mode="{{item.mode}}"
+          data-target="{{item.target}}"
+          bindtap="openExplore"
+          aria-role="button"
+          aria-label="打开：{{item.title}}"
+        >
+          <view class="cross-link__body">
+            <text class="cross-link__title">{{item.title}}</text>
+            <text class="cross-link__note">{{item.note}}</text>
+          </view>
+          <text class="cross-link__arrow">→</text>
+        </view>
+      </view>
+    </view>
   </view>
 
   <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>

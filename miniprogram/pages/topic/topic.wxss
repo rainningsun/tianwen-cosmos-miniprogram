@@ -405,3 +405,67 @@
   color: var(--color-gold);
   font-size: 30rpx;
 }
+.topic-cross {
+  margin-top: 12rpx;
+  padding-bottom: 18rpx;
+}
+
+.cross-block {
+  margin-top: 22rpx;
+}
+
+.cross-block__label {
+  display: block;
+  color: var(--color-muted);
+  font-size: 21rpx;
+  letter-spacing: 2rpx;
+}
+
+.cross-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-top: 10rpx;
+}
+
+.cross-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 66rpx;
+  padding: 0 18rpx;
+  border: 1rpx solid var(--color-line);
+  border-radius: 999rpx;
+  color: var(--color-gold);
+  font-size: 23rpx;
+}
+
+.cross-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100rpx;
+  margin-top: 12rpx;
+  padding: 18rpx 22rpx;
+  border: 1rpx solid var(--color-line-cool);
+  border-radius: var(--radius-card);
+  background: linear-gradient(135deg, rgba(16, 22, 35, 0.75), rgba(8, 11, 18, 0.85));
+}
+
+.cross-link__title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+.cross-link__note {
+  display: block;
+  margin-top: 2rpx;
+  color: var(--color-muted);
+  font-size: 21rpx;
+}
+
+.cross-link__arrow {
+  color: var(--color-gold);
+  font-size: 30rpx;
+}

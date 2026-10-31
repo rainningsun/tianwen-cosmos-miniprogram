@@ -48,7 +48,12 @@ const topics = [
       author: '李菂 · 宇宙认知三段论',
       page: 44
     },
-    lectureIds: ['lecture-1', 'lecture-2', 'lecture-4']
+    lectureIds: ['lecture-1', 'lecture-2', 'lecture-4'],
+    relatedGlossaryIds: ['discovery-origin-principle', 'intellitution'],
+    relatedEntityIds: ['galileo', 'newton'],
+    relatedExplore: [
+      { kind: 'timeline', mode: 'human', title: '观测历史', note: '从日影到 FAST 的观测史' }
+    ]
   },
   {
     id: 'beauty-truth',
@@ -82,7 +87,10 @@ const topics = [
       author: 'John Keats（济慈）',
       page: 18
     },
-    lectureIds: ['lecture-1', 'lecture-2', 'lecture-3']
+    lectureIds: ['lecture-1', 'lecture-2', 'lecture-3'],
+    relatedGlossaryIds: ['maxwell-equations'],
+    relatedEntityIds: ['faraday-maxwell'],
+    relatedExplore: []
   },
   {
     id: 'distance-ladder',
@@ -143,7 +151,12 @@ const topics = [
       author: '课件原文 · 哈勃',
       page: 32
     },
-    lectureIds: ['lecture-1', 'lecture-3']
+    lectureIds: ['lecture-1', 'lecture-3'],
+    relatedGlossaryIds: ['parsec', 'cepheid', 'hubble-expansion'],
+    relatedEntityIds: ['leavitt', 'hubble'],
+    relatedExplore: [
+      { kind: 'scale', title: '宇宙尺度滑杆', note: '从地球到宇宙学尺度，看测量方法如何变化' }
+    ]
   },
   {
     id: 'tianwen-fast',
@@ -199,7 +212,13 @@ const topics = [
       author: '课件原文',
       page: 63
     },
-    lectureIds: ['lecture-1', 'lecture-4']
+    lectureIds: ['lecture-1', 'lecture-4'],
+    relatedGlossaryIds: ['fast', 'arecibo', 'frb'],
+    relatedEntityIds: ['fast-device', 'arecibo-device', 'nan-rendong'],
+    relatedExplore: [
+      { kind: 'timeline', mode: 'human', title: '观测历史', note: '从央斯基、阿雷西博到 FAST' },
+      { kind: 'question', target: 'frb-origin', title: '快速射电暴从哪里来？', note: '未解之谜 · 高能现象' }
+    ]
   },
   {
     id: 'intellitution',
@@ -238,7 +257,12 @@ const topics = [
       author: '课件原文 · Thesis',
       page: 51
     },
-    lectureIds: ['lecture-3']
+    lectureIds: ['lecture-3'],
+    relatedGlossaryIds: ['intellitution', 'deep-learning', 'transformer'],
+    relatedEntityIds: ['turing', 'hinton', 'lecun'],
+    relatedExplore: [
+      { kind: 'question', target: 'ai-understand-universe', title: 'AI 能真正理解宇宙吗？', note: '未解之谜 · 智能与认知' }
+    ]
   },
   {
     id: 'are-we-alone',
@@ -277,7 +301,13 @@ const topics = [
       author: '卡尔·萨根',
       page: 52
     },
-    lectureIds: ['lecture-5']
+    lectureIds: ['lecture-5'],
+    relatedGlossaryIds: ['seti', 'fermi-paradox', 'drake-equation'],
+    relatedEntityIds: ['sagan', 'drake', 'morrison'],
+    relatedExplore: [
+      { kind: 'question', target: 'are-we-alone', title: '我们在宇宙中孤独吗？', note: '未解之谜 · 生命与文明' },
+      { kind: 'question', target: 'interstellar-travel', title: '人类能走多远？', note: '未解之谜 · 生命与文明' }
+    ]
   }
 ];
 

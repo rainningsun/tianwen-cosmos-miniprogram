@@ -632,6 +632,17 @@ function checkQuestions() {
 
   if (themes.size < 3) fail(`未解之谜主题过少：${themes.size}`);
 
+  for (const term of terms) {
+    for (const questionId of term.relatedQuestionIds || []) {
+      if (!ids.has(questionId)) fail(`词条 ${term.id} 关联了不存在的问题：${questionId}`);
+    }
+  }
+  for (const entity of entities) {
+    for (const questionId of entity.relatedQuestionIds || []) {
+      if (!ids.has(questionId)) fail(`条目 ${entity.id} 关联了不存在的问题：${questionId}`);
+    }
+  }
+
   notes.push(`已校验 ${questions.length} 个未解之谜（${themes.size} 个主题）`);
 }
 
@@ -661,6 +672,9 @@ function checkTopics() {
     lectureData = { lectures: [] };
   }
   const lectureById = new Map((lectureData.lectures || []).map((lecture) => [lecture.id, lecture]));
+  const glossaryIds = new Set(require(path.join(MP, 'data', 'glossary.js')).glossary.map((term) => term.id));
+  const entityIds = new Set(require(path.join(MP, 'data', 'entities.js')).entities.map((entity) => entity.id));
+  const questionIds = new Set(require(path.join(MP, 'data', 'questions.js')).questions.map((question) => question.id));
   const ids = new Set();
 
   for (const topic of topics) {
@@ -672,6 +686,24 @@ function checkTopics() {
     }
     if (!Array.isArray(topic.sections) || topic.sections.length < 3) {
       fail(`专题 ${label} 至少需要 3 段导读`);
+    }
+    for (const termId of topic.relatedGlossaryIds || []) {
+      if (!glossaryIds.has(termId)) fail(`专题 ${label} 关联了不存在的词条：${termId}`);
+    }
+    for (const entityId of topic.relatedEntityIds || []) {
+      if (!entityIds.has(entityId)) fail(`专题 ${label} 关联了不存在的条目：${entityId}`);
+    }
+    for (const link of topic.relatedExplore || []) {
+      if (!['scale', 'timeline', 'question'].includes(link.kind)) {
+        fail(`专题 ${label} 的探索链接类型非法：${link.kind}`);
+      }
+      if (!link.title) fail(`专题 ${label} 的探索链接缺少标题`);
+      if (link.kind === 'question' && !questionIds.has(link.target)) {
+        fail(`专题 ${label} 关联了不存在的问题：${link.target}`);
+      }
+      if (link.kind === 'timeline' && !['cosmic', 'human', 'compare'].includes(link.mode)) {
+        fail(`专题 ${label} 的时间线模式非法：${link.mode}`);
+      }
     }
     if (!Array.isArray(topic.lectureIds) || topic.lectureIds.length === 0) {
       fail(`专题 ${label} 没有关联讲次`);

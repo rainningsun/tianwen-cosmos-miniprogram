@@ -56,7 +56,7 @@ const glossary = [
     relatedTermIds: ['distance-ladder', 'cepheid'],
     relatedEntityIds: ["hubble"],
     relatedTopicIds: ['distance-ladder'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["dark-sector"],
     sourceType: 'course'
   },
   {
@@ -71,7 +71,7 @@ const glossary = [
     relatedTermIds: ['fast', 'fast-discoveries', 'radio-telescope'],
     relatedEntityIds: ["fast-device"],
     relatedTopicIds: ['tianwen-fast'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["frb-origin"],
     sourceType: 'course'
   },
   {
@@ -86,7 +86,7 @@ const glossary = [
     relatedTermIds: ['turbulence', 'stardust'],
     relatedEntityIds: [],
     relatedTopicIds: ['tianwen-fast'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["turbulence-prediction"],
     sourceType: 'course'
   },
   {
@@ -101,7 +101,7 @@ const glossary = [
     relatedTermIds: ['superbubble'],
     relatedEntityIds: [],
     relatedTopicIds: ['tianwen-fast'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["turbulence-prediction"],
     sourceType: 'course'
   },
   {
@@ -251,7 +251,7 @@ const glossary = [
     relatedTermIds: ['kepler-ellipse'],
     relatedEntityIds: ["leverrier-adams"],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -266,7 +266,7 @@ const glossary = [
     relatedTermIds: [],
     relatedEntityIds: [],
     relatedTopicIds: ['three-steps'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["dark-sector"],
     sourceType: 'course'
   },
   {
@@ -281,7 +281,7 @@ const glossary = [
     relatedTermIds: ['symbolic-ai', 'deep-learning', 'transformer'],
     relatedEntityIds: ["turing"],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -296,7 +296,7 @@ const glossary = [
     relatedTermIds: ['turing-test', 'deep-learning'],
     relatedEntityIds: [],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -311,7 +311,7 @@ const glossary = [
     relatedTermIds: ['symbolic-ai', 'transformer', 'intellitution'],
     relatedEntityIds: ["hinton","lecun"],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -326,7 +326,7 @@ const glossary = [
     relatedTermIds: ['deep-learning', 'intellitution'],
     relatedEntityIds: [],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -341,7 +341,7 @@ const glossary = [
     relatedTermIds: ['deep-learning', 'transformer'],
     relatedEntityIds: ["einstein","mach-kant"],
     relatedTopicIds: ['intellitution'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["ai-understand-universe"],
     sourceType: 'course'
   },
   {
@@ -401,7 +401,7 @@ const glossary = [
     relatedTermIds: ['radio-telescope', 'pulsar-binary', 'pulsar-planets'],
     relatedEntityIds: ["arecibo-device","gordon"],
     relatedTopicIds: ['tianwen-fast'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -431,7 +431,7 @@ const glossary = [
     relatedTermIds: ['pulsar-binary', 'arecibo'],
     relatedEntityIds: ["wolszczan"],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -446,7 +446,7 @@ const glossary = [
     relatedTermIds: ['arecibo', 'frb', 'fast-discoveries'],
     relatedEntityIds: ["fast-device","nan-rendong"],
     relatedTopicIds: ['tianwen-fast'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["frb-origin"],
     sourceType: 'course'
   },
   {
@@ -461,7 +461,7 @@ const glossary = [
     relatedTermIds: ['fast', 'frb', 'pulsar-binary'],
     relatedEntityIds: ["fast-device"],
     relatedTopicIds: ['tianwen-fast'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["frb-origin"],
     sourceType: 'course'
   },
   {
@@ -476,7 +476,7 @@ const glossary = [
     relatedTermIds: ['fermi-paradox', 'drake-equation', 'voyager-record'],
     relatedEntityIds: ["sagan","drake"],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -491,7 +491,7 @@ const glossary = [
     relatedTermIds: ['seti', 'drake-equation', 'kardashev'],
     relatedEntityIds: ["fermi"],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -506,7 +506,7 @@ const glossary = [
     relatedTermIds: ['seti', 'fermi-paradox', 'kardashev'],
     relatedEntityIds: ["drake"],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -521,7 +521,7 @@ const glossary = [
     relatedTermIds: ['seti', 'radio-window'],
     relatedEntityIds: [],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -536,7 +536,7 @@ const glossary = [
     relatedTermIds: ['fermi-paradox', 'seti'],
     relatedEntityIds: [],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -551,7 +551,7 @@ const glossary = [
     relatedTermIds: ['fermi-paradox', 'dyson-sphere', 'seti'],
     relatedEntityIds: ["kardashev"],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -566,7 +566,7 @@ const glossary = [
     relatedTermIds: ['kardashev'],
     relatedEntityIds: [],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["are-we-alone"],
     sourceType: 'course'
   },
   {
@@ -581,7 +581,7 @@ const glossary = [
     relatedTermIds: ['seti'],
     relatedEntityIds: ["sagan","voyager-device"],
     relatedTopicIds: ['are-we-alone'],
-    relatedQuestionIds: [],
+    relatedQuestionIds: ["interstellar-travel"],
     sourceType: 'course'
   }
 ];

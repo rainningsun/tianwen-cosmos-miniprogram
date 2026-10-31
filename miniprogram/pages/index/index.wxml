@@ -91,6 +91,44 @@
       </view>
     </view>
 
+    <section-head
+      kicker="INDEX / EXPLORE"
+      title="继续追问"
+      desc="从概念与人物，走向尺度、时间与未知。"
+    />
+
+    <view class="module-list">
+      <view
+        class="module-item"
+        bindtap="openReference"
+        hover-class="module-item--pressed"
+        aria-role="button"
+        aria-label="打开索引"
+      >
+        <view class="module-item__head">
+          <text class="module-item__kicker">INDEX</text>
+          <text class="module-item__arrow">→</text>
+        </view>
+        <text class="module-item__title">索引</text>
+        <text class="module-item__note">概念词典 · 人物与装置 · 思想链</text>
+      </view>
+
+      <view
+        class="module-item module-item--explore"
+        bindtap="openExplore"
+        hover-class="module-item--pressed"
+        aria-role="button"
+        aria-label="打开探索"
+      >
+        <view class="module-item__head">
+          <text class="module-item__kicker">EXPLORE</text>
+          <text class="module-item__arrow">→</text>
+        </view>
+        <text class="module-item__title">探索</text>
+        <text class="module-item__note">宇宙尺度 · 双时间线 · 未解之谜</text>
+      </view>
+    </view>
+
     <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>
   </view>
 </view>
