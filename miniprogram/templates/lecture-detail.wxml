@@ -11,7 +11,7 @@
     </view>
   </view>
 
-  <view wx:else class="page-shell lecture">
+  <view wx:elif="{{lecture}}" class="page-shell lecture">
     <view class="lecture__hero">
       <text class="eyebrow">LECTURE {{lecture.order}} · {{lecture.date}}</text>
       <view class="lecture__title">{{lecture.title}}</view>
