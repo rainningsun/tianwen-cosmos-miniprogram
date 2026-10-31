@@ -2,7 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/topic/topic",
-    "pages/archive/archive"
+    "pages/reference/reference",
+    "pages/archive/archive",
+    "pages/glossary/glossary",
+    "pages/glossary-detail/glossary-detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#05070d",
@@ -24,6 +27,10 @@
       {
         "pagePath": "pages/topic/topic",
         "text": "主线"
+      },
+      {
+        "pagePath": "pages/reference/reference",
+        "text": "索引"
       },
       {
         "pagePath": "pages/archive/archive",

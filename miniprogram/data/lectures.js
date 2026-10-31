@@ -21,41 +21,49 @@ const lectures = [
     concepts: [
       {
         term: '宇宙距离阶梯',
+        termId: 'distance-ladder',
         desc: '从雷达与激光测距、恒星视差、造父变星，到 Ia 型超新星与红移膨胀模型，逐级校准天体距离的测量体系。',
         page: 28
       },
       {
         term: '秒差距',
+        termId: 'parsec',
         desc: '视差角为 1 角秒时对应的距离；课件写作 1 pc 约 3 光年。',
         page: 28
       },
       {
         term: '造父变星周光关系',
+        termId: 'cepheid',
         desc: '造父变星的光变周期与光度相关，可由周期推光度，再比较视亮度求出距离。',
         page: 31
       },
       {
         term: '哈勃膨胀',
+        termId: 'hubble-expansion',
         desc: '哈勃把星系距离与退行速度联系起来，观测到宇宙在膨胀。',
         page: 32
       },
       {
         term: '快速射电暴',
+        termId: 'frb',
         desc: '持续时间极短的射电脉冲，是 FAST 的重要科学目标之一。',
         page: 16
       },
       {
         term: '超级气泡',
+        termId: 'superbubble',
         desc: '星系盘中由多颗超新星爆炸和星风撑开的大尺度空腔；仙女座星系中已发现 118 个。',
         page: 45
       },
       {
         term: '湍流',
+        termId: 'turbulence',
         desc: '流体在多尺度上的不规则运动；Kolmogorov 1941 的标度分析描述了惯性区的统计规律。',
         page: 40
       },
       {
         term: '星尘',
+        termId: 'stardust',
         desc: '重元素在恒星内部合成，超新星爆炸把它们撒入星际介质；课件以“我们都是星尘”收束。',
         page: 39
       }
@@ -195,41 +203,49 @@ const lectures = [
     concepts: [
       {
         term: '本轮与均轮',
+        termId: 'epicycle',
         desc: '托勒密用以解释行星运动的几何模型；课件把它放在“模型构建”这一环。',
         page: 10
       },
       {
         term: '日心说',
+        termId: 'heliocentrism',
         desc: '哥白尼《天体运行论》把太阳置于中心，取代以地球为中心的宇宙模型。',
         page: 15
       },
       {
         term: '开普勒椭圆',
+        termId: 'kepler-ellipse',
         desc: '开普勒以椭圆轨道解释行星运动；课件标出“发现！”与“原理？”。',
         page: 20
       },
       {
         term: '发现—起源—原理',
+        termId: 'discovery-origin-principle',
         desc: '课件用三种追问组织科学史：伽利略对应发现，达尔文对应起源，牛顿对应原理。',
         page: 26
       },
       {
         term: '法拉第力线',
+        termId: 'faraday-lines',
         desc: '法拉第用“力线”理解电磁感应；课件引他 1822 年自述数学训练不足。',
         page: 27
       },
       {
         term: '麦克斯韦方程',
+        termId: 'maxwell-equations',
         desc: '麦克斯韦方程统一电、磁与光；课件称其统一了“天堂的光和尘世的电”。',
         page: 29
       },
       {
         term: '两朵乌云与量子',
+        termId: 'two-clouds-quantum',
         desc: '开尔文 1900 年说物理学知识几乎完备，只剩地平线上的两朵小乌云；普朗克随后以能量量子化解释黑体辐射。',
         page: 32
       },
       {
         term: '狭义相对论',
+        termId: 'special-relativity',
         desc: '爱因斯坦以光速不变与相对性原理重建时空；课件写出 E=mc² 与洛伦兹变换。',
         page: 40
       }
@@ -375,41 +391,49 @@ const lectures = [
     concepts: [
       {
         term: '笔尖上的发现',
+        termId: 'neptune-discovery',
         desc: '天王星观测位置与引力计算不符，勒维耶与亚当斯独立反推未知行星，1846 年伽勒等在预测位置找到海王星。',
         page: 13
       },
       {
         term: '距离阶梯五法',
+        termId: 'distance-ladder',
         desc: '雷达与激光测距、恒星视差、造父变星、Ia 型超新星、红移与膨胀模型；相邻方法需重叠样本校准。',
         page: 19
       },
       {
         term: '宇宙构成',
+        termId: 'cosmic-composition',
         desc: '课件以暗能量、暗物质与普通物质划分宇宙成分；p.17 写约 73% / 23%，p.20 写 83% / 23% / 4%，数字不一致，按原页保留。',
         page: 17
       },
       {
         term: '图灵测试',
+        termId: 'turing-test',
         desc: '1950 年图灵提出以对话行为判断机器能否思考的测试。',
         page: 35
       },
       {
         term: '符号 AI',
+        termId: 'symbolic-ai',
         desc: '1960s-80s 以规则、推理与知识表示为核心，专家系统是代表形态。',
         page: 35
       },
       {
         term: '深度学习',
+        termId: 'deep-learning',
         desc: 'Hopfield 网络、反向传播、LeNet-5、深度信念网络与 AlexNet 依次推进。',
         page: 37
       },
       {
         term: 'Transformer',
+        termId: 'transformer',
         desc: '2017 年提出的注意力架构；随后出现 2018 GPT 与 2022 ChatGPT。',
         page: 38
       },
       {
         term: '物理智觉',
+        termId: 'intellitution',
         desc: 'Intellitution = Intelligence + Intuition；AI 是高维空间里的拟合能力，物理是有限心智对世界规律的经济总结。',
         page: 48
       }
@@ -555,41 +579,49 @@ const lectures = [
     concepts: [
       {
         term: '光谱学',
+        termId: 'spectroscopy',
         desc: '牛顿棱镜分光、夫琅禾费暗线、基尔霍夫—本生把吸收与发射谱线同元素对应起来。',
         page: 9
       },
       {
         term: '射电窗口',
+        termId: 'radio-window',
         desc: '地球大气只在部分波段透明；射电窗口让地面射电望远镜得以观测宇宙。',
         page: 10
       },
       {
         term: '射电望远镜',
+        termId: 'radio-telescope',
         desc: '天线接收射电波，馈源把信号送入终端；信号经傅里叶变换成为频谱。',
         page: 16
       },
       {
         term: '阿雷西博',
+        termId: 'arecibo',
         desc: '300 米口径射电望远镜；1958 年由 Gordon 提议、ARPA 支持，1963 年建成。',
         page: 20
       },
       {
         term: '脉冲星与双中子星',
+        termId: 'pulsar-binary',
         desc: '高速自转的中子星发出周期性射电脉冲；阿雷西博发现的双中子星为引力波存在提供了证据。',
         page: 25
       },
       {
         term: '脉冲星行星',
+        termId: 'pulsar-planets',
         desc: '1992 年 Wolszczan 与 Frail 在 PSR B1257+12 周围发现首批系外行星。',
         page: 26
       },
       {
         term: 'FAST',
+        termId: 'fast',
         desc: '500 米口径球面射电望远镜；4500 个主动面单元、30 吨馈源舱、6 座百米支撑塔、10 万根光纤；2011.3-2016.9，投资 11.5 亿（课件原文）。',
         page: 50
       },
       {
         term: 'FAST 科学发现',
+        termId: 'fast-discoveries',
         desc: '截至课件写作时已发现超过 1000 颗新脉冲星；HINSA（中性氢窄线自吸收）与 FRB 20190520B 是代表性成果（另见 p.59、p.62）。',
         page: 54
       }
@@ -735,41 +767,49 @@ const lectures = [
     concepts: [
       {
         term: 'SETI',
+        termId: 'seti',
         desc: 'Search for ExtraTerrestrial Intelligence；莫里森称其为“未来的考古学”。',
         page: 6
       },
       {
         term: '费米悖论',
+        termId: 'fermi-paradox',
         desc: '费米问“Where is everybody?”；在银河系尺度与漫长时间里，地外文明本应可见，却尚无证据。',
         page: 10
       },
       {
         term: '德雷克方程',
+        termId: 'drake-equation',
         desc: 'N = R* fp Ne fl fi fc L；课件把 L 框出并打问号，指向文明寿命的不确定性。',
         page: 20
       },
       {
         term: '星际通讯窗口',
+        termId: 'interstellar-window',
         desc: 'Cocconi 与 Morrison 1959 年提出在 21 厘米氢线附近以窄带搜索星际信号。',
         page: 17
       },
       {
         term: '开普勒行星普查',
+        termId: 'kepler-census',
         desc: '银河系 ≥1000 亿行星、约 70-280 亿类太阳恒星、≥3 亿潜在宜居类地行星。',
         page: 24
       },
       {
         term: '卡尔达肖夫尺度',
+        termId: 'kardashev',
         desc: 'I 类 10^16 W、II 类 10^26 W、III 类 10^36 W；FAST 覆盖临近太阳系的 I 类与近邻银河系的 II 类。',
         page: 41
       },
       {
         term: '戴森球',
+        termId: 'dyson-sphere',
         desc: '围绕恒星收集能量的假想结构；课件引用 Dyson 1960 年论文与 KIC 8462852。',
         page: 42
       },
       {
         term: '旅行者金唱片',
+        termId: 'voyager-record',
         desc: '1977 年随两艘旅行者号发射；115 张图像、55 种语言问候、音乐与自然声音；封面用 14 颗脉冲星定位太阳。',
         page: 50
       }

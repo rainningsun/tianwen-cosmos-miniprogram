@@ -99,10 +99,10 @@ function checkStaticFiles() {
     }
   }
 
-  const expectedTabs = ['pages/index/index', 'pages/topic/topic', 'pages/archive/archive'];
+  const expectedTabs = ['pages/index/index', 'pages/topic/topic', 'pages/reference/reference', 'pages/archive/archive'];
   const tabList = (app.tabBar && app.tabBar.list) || [];
-  if (tabList.length !== 3 || expectedTabs.some((page) => !tabList.some((tab) => tab.pagePath === page))) {
-    fail('tabBar 必须包含课程、主线、原页 3 个页面（v2 中间状态）');
+  if (tabList.length !== 4 || expectedTabs.some((page) => !tabList.some((tab) => tab.pagePath === page))) {
+    fail('tabBar 必须包含课程、主线、索引、原页 4 个页面（v2 中间状态）');
   }
 
   return app;
@@ -306,6 +306,73 @@ function checkLectureData(app) {
   }
 }
 
+function checkGlossary() {
+  const file = path.join(MP, 'data', 'glossary.js');
+  if (!fs.existsSync(file)) {
+    fail('缺少 data/glossary.js');
+    return;
+  }
+  let data;
+  try {
+    delete require.cache[require.resolve(file)];
+    data = require(file);
+  } catch (error) {
+    fail(`data/glossary.js 无法加载：${error.message}`);
+    return;
+  }
+
+  const glossary = Array.isArray(data.glossary) ? data.glossary : [];
+  if (glossary.length < 30 || glossary.length > 40) {
+    fail(`概念词典应为 30-40 条，当前 ${glossary.length} 条`);
+  }
+
+  const categories = ['观测与方法', '天体与现象', '物理概念', '装置与技术', '思想与人文'];
+  const lectureData = require(path.join(MP, 'data', 'lectures.js'));
+  const topicData = require(path.join(MP, 'data', 'topics.js'));
+  const lectureIds = new Set((lectureData.lectures || []).map((lecture) => lecture.id));
+  const topicIds = new Set((topicData.topics || []).map((topic) => topic.id));
+  const ids = new Set();
+
+  for (const item of glossary) {
+    const label = item.id || item.term || '(未命名词条)';
+    if (!item.id || ids.has(item.id)) fail(`词条 id 缺失或重复：${label}`);
+    ids.add(item.id);
+    for (const field of ['term', 'en', 'category', 'definition']) {
+      if (!item[field]) fail(`词条 ${label} 缺少字段 ${field}`);
+    }
+    if (!categories.includes(item.category)) fail(`词条 ${label} 分类非法：${item.category}`);
+    if (!Array.isArray(item.lectureIds) || !item.lectureIds.length) fail(`词条 ${label} 缺少 lectureIds`);
+    if (!Array.isArray(item.pages) || !item.pages.length || item.pages.some((page) => !Number.isInteger(page) || page < 1)) {
+      fail(`词条 ${label} 的 pages 必须是正整数数组`);
+    }
+    if (!['course', 'supplement'].includes(item.sourceType)) fail(`词条 ${label} sourceType 非法`);
+    for (const lectureId of item.lectureIds || []) {
+      if (!lectureIds.has(lectureId)) fail(`词条 ${label} 引用了不存在的讲次：${lectureId}`);
+    }
+    for (const topicId of item.relatedTopicIds || []) {
+      if (!topicIds.has(topicId)) fail(`词条 ${label} 引用了不存在的专题：${topicId}`);
+    }
+    for (const termId of item.relatedTermIds || []) {
+      if (termId === item.id) fail(`词条 ${label} 不能关联自身`);
+    }
+  }
+
+  for (const item of glossary) {
+    for (const termId of item.relatedTermIds || []) {
+      if (!ids.has(termId)) fail(`词条 ${item.id} 关联了不存在的词条：${termId}`);
+    }
+  }
+
+  for (const lecture of lectureData.lectures || []) {
+    for (const concept of lecture.concepts || []) {
+      if (!concept.termId) fail(`${lecture.id} 概念“${concept.term}”缺少 termId`);
+      else if (!ids.has(concept.termId)) fail(`${lecture.id} 概念“${concept.term}”的 termId 不存在：${concept.termId}`);
+    }
+  }
+
+  notes.push(`已校验 ${glossary.length} 个概念词条`);
+}
+
 function checkTopics() {
   const file = path.join(MP, 'data', 'topics.js');
   if (!fs.existsSync(file)) {
@@ -432,6 +499,7 @@ function main() {
   checkJsonAndComponents();
   checkTrackedForbidden();
   checkLectureData(app);
+  checkGlossary();
   checkTopics();
   checkNoAssignment();
   checkNoHardcodedFive();

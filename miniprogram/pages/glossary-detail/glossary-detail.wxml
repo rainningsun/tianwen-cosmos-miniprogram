@@ -1,0 +1,81 @@
+<view class="page-shell">
+  <view wx:if="{{notFound}}" class="ref-hero">
+    <text class="eyebrow">GLOSSARY</text>
+    <text class="shell-title">没有找到这个词条</text>
+    <text class="shell-desc">词条可能已调整，或链接里的编号有误。</text>
+    <view class="detail-actions">
+      <view class="detail-actions__button" bindtap="goBack">返回词典</view>
+    </view>
+  </view>
+
+  <view wx:else class="detail-hero">
+    <view class="detail-back" bindtap="goBack" aria-role="button" aria-label="返回概念词典">← 返回词典</view>
+    <text class="detail-kicker">{{item.category}}</text>
+    <text class="detail-title">{{item.term}}</text>
+    <text wx:if="{{item.en}}" class="detail-en">{{item.en}}</text>
+    <view wx:if="{{item.aliases.length}}" class="detail-chips">
+      <text wx:for="{{item.aliases}}" wx:key="*this" class="filter-chip">{{item}}</text>
+    </view>
+
+    <view class="detail-section">
+      <text class="detail-section__title">定义</text>
+      <view class="detail-definition">
+        <text class="detail-definition__text">{{item.definition}}</text>
+      </view>
+      <text class="detail-source">来源：编者据课件整理 · 页码为 PDF 阅读器页码</text>
+    </view>
+
+    <view wx:if="{{contexts.length}}" class="detail-section">
+      <text class="detail-section__title">在课程中的语境</text>
+      <view
+        wx:for="{{contexts}}"
+        wx:key="lectureId"
+        class="context-card"
+        data-id="{{item.lectureId}}"
+        bindtap="openLecture"
+        aria-role="button"
+        aria-label="查看第 {{item.order}} 讲"
+      >
+        <text class="context-card__lecture">第 {{item.order}} 讲 · {{item.title}}</text>
+        <text class="context-card__text">{{item.desc}}</text>
+        <text class="context-card__page">课件 · p.{{item.page}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{relatedTerms.length}}" class="detail-section">
+      <text class="detail-section__title">相关概念</text>
+      <view class="related-links">
+        <text
+          wx:for="{{relatedTerms}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openTerm"
+          aria-role="button"
+          aria-label="打开词条：{{item.term}}"
+        >{{item.term}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{relatedTopics.length}}" class="detail-section">
+      <text class="detail-section__title">相关专题</text>
+      <view class="related-links">
+        <text
+          wx:for="{{relatedTopics}}"
+          wx:key="id"
+          class="related-link"
+          data-id="{{item.id}}"
+          bindtap="openTopic"
+          aria-role="button"
+          aria-label="打开专题：{{item.title}}"
+        >{{item.title}}</text>
+      </view>
+    </view>
+
+    <view class="detail-actions">
+      <view class="detail-actions__button" bindtap="goBack">← 返回词典</view>
+    </view>
+
+    <text class="copyright">概念定义由编者据课件整理，不替代课件原文。</text>
+  </view>
+</view>

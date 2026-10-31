@@ -1,0 +1,71 @@
+<view class="page-shell">
+  <view class="ref-hero">
+    <text class="eyebrow">INDEX</text>
+    <text class="shell-title">索引</text>
+    <text class="shell-desc">把课程里的概念、人物与装置，整理成可检索的条目。</text>
+
+    <view class="ref-search">
+      <text class="ref-search__icon">⌕</text>
+      <input
+        class="ref-search__input"
+        type="text"
+        value="{{query}}"
+        placeholder="搜索概念、别名或英文"
+        confirm-type="search"
+        bindinput="onSearch"
+        aria-label="搜索概念"
+      />
+      <text wx:if="{{query}}" class="filter-chip" bindtap="clearSearch" aria-role="button">清除</text>
+    </view>
+
+    <view wx:if="{{searching}}" class="term-group">
+      <view class="result-line">
+        <text class="term-group__name">搜索结果</text>
+        <text class="result-line__count">{{results.length}} 条</text>
+      </view>
+      <view
+        wx:for="{{results}}"
+        wx:key="id"
+        class="term-card"
+        data-id="{{item.id}}"
+        bindtap="openTerm"
+        aria-role="button"
+        aria-label="打开词条：{{item.term}}"
+      >
+        <view class="term-card__head">
+          <text class="term-card__term">{{item.term}}</text>
+          <text class="term-card__en">{{item.en}}</text>
+        </view>
+        <text class="term-card__desc">{{item.definition}}</text>
+      </view>
+      <view wx:if="{{!results.length}}" class="empty-panel">
+        <text class="empty-panel__title">没有找到相关词条</text>
+        <text class="empty-panel__note">试试“秒差距”“FAST”或“物理智觉”。</text>
+      </view>
+    </view>
+
+    <view wx:else class="ref-grid">
+      <view class="ref-card ref-card--accent" bindtap="openGlossary" aria-role="button" aria-label="打开概念词典">
+        <view class="ref-card__top">
+          <text class="ref-card__title">概念词典</text>
+          <text class="ref-card__count">{{glossaryCount}} 条</text>
+        </view>
+        <text class="ref-card__desc">从 5 讲的核心概念出发，按分类、讲次和别名检索。</text>
+        <view class="ref-card__examples">
+          <text wx:for="{{examples}}" wx:key="id" class="ref-card__example">{{item.term}}</text>
+        </view>
+        <view class="ref-card__cta"><text>查看全部词条</text><text class="ref-card__arrow">→</text></view>
+      </view>
+
+      <view class="ref-card">
+        <view class="ref-card__top">
+          <text class="ref-card__title">人物与装置</text>
+          <text class="ref-card__count">整理中</text>
+        </view>
+        <text class="ref-card__desc">人物、望远镜与思想链，将在下一步接入。</text>
+      </view>
+    </view>
+
+    <text class="copyright">概念定义由编者据课件整理；页码为 PDF 阅读器页码。课件图片版权归授课教师及原作者所有。</text>
+  </view>
+</view>

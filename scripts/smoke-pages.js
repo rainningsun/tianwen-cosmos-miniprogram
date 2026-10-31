@@ -45,8 +45,9 @@ function loadPage(relativePath) {
 function instantiate(config) {
   const instance = Object.assign({}, config);
   instance.data = JSON.parse(JSON.stringify(config.data || {}));
-  instance.setData = function setData(patch) {
+  instance.setData = function setData(patch, callback) {
     Object.assign(this.data, patch);
+    if (typeof callback === 'function') callback();
   };
   return instance;
 }
@@ -78,6 +79,29 @@ function testArchive() {
   assert.strictEqual(page.data.lectures[5].status, 'upcoming', '第六讲应为待更新');
 }
 
+function testReferenceAndGlossary() {
+  const reference = instantiate(loadPage('miniprogram/pages/reference/reference.js'));
+  assert.strictEqual(reference.data.glossaryCount, 39, '概念词典应有 39 条');
+  reference.onSearch({ detail: { value: '秒差距' } });
+  assert.strictEqual(reference.data.results.length, 1, '索引搜索“秒差距”应返回 1 条');
+
+  const glossary = instantiate(loadPage('miniprogram/pages/glossary/glossary.js'));
+  glossary.onLoad();
+  assert.strictEqual(glossary.data.resultCount, 39, '词典列表应显示 39 条');
+  assert.strictEqual(glossary.data.groups.length, 5, '词典应按 5 个分类分组');
+  glossary.onSearch({ detail: { value: '秒差距' } });
+  assert.strictEqual(glossary.data.resultCount, 1, '词典搜索“秒差距”应返回 1 条');
+  glossary.onSearch({ detail: { value: '' } });
+  glossary.selectLecture({ currentTarget: { dataset: { value: 'lecture-4' } } });
+  assert.ok(glossary.data.resultCount > 0, '按第 4 讲筛选应有词条');
+
+  const detail = instantiate(loadPage('miniprogram/pages/glossary-detail/glossary-detail.js'));
+  detail.onLoad({ id: 'parsec' });
+  assert.strictEqual(detail.data.notFound, false, '秒差距详情不应为 notFound');
+  assert.strictEqual(detail.data.item.term, '秒差距', '详情词条错误');
+  assert.ok(detail.data.contexts.length > 0, '秒差距应有讲次语境');
+}
+
 function testDetails() {
   const cases = [
     ['miniprogram/packageL1/pages/lecture/lecture.js', 'lecture-1', null, 'lecture-2'],
@@ -105,6 +129,7 @@ function testDetails() {
 testIndex();
 testTopic();
 testArchive();
+testReferenceAndGlossary();
 testDetails();
 
-console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 5 讲详情 / 第六讲占位');
+console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念词典 / 5 讲详情 / 第六讲占位');

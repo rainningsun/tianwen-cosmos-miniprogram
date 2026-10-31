@@ -1,0 +1,98 @@
+<view class="page-shell">
+  <view class="ref-hero">
+    <text class="eyebrow">GLOSSARY</text>
+    <text class="shell-title">概念词典</text>
+    <text class="shell-desc">从 5 讲的核心概念出发，按术语、别名、分类或讲次查找。</text>
+
+    <view class="ref-search">
+      <text class="ref-search__icon">⌕</text>
+      <input
+        class="ref-search__input"
+        type="text"
+        value="{{query}}"
+        placeholder="搜索概念、英文或别名"
+        confirm-type="search"
+        bindinput="onSearch"
+        aria-label="搜索概念词典"
+      />
+    </view>
+
+    <view class="filter-block">
+      <text class="filter-block__label">分类</text>
+      <view class="filter-chips">
+        <text
+          wx:for="{{categories}}"
+          wx:key="*this"
+          class="filter-chip {{activeCategory === item ? 'filter-chip--active' : ''}}"
+          data-value="{{item}}"
+          bindtap="selectCategory"
+          aria-role="button"
+          aria-label="筛选分类：{{item}}"
+        >{{item}}</text>
+      </view>
+    </view>
+
+    <view class="filter-block">
+      <text class="filter-block__label">讲次</text>
+      <view class="filter-chips">
+        <text
+          class="filter-chip {{activeLecture === 'all' ? 'filter-chip--active' : ''}}"
+          data-value="all"
+          bindtap="selectLecture"
+          aria-role="button"
+        >全部讲次</text>
+        <text
+          wx:for="{{lectures}}"
+          wx:key="id"
+          class="filter-chip {{activeLecture === item.id ? 'filter-chip--active' : ''}}"
+          data-value="{{item.id}}"
+          bindtap="selectLecture"
+          aria-role="button"
+          aria-label="筛选讲次：{{item.label}}"
+        >{{item.label}}</text>
+      </view>
+    </view>
+
+    <view class="result-line">
+      <text class="result-line__count">{{resultCount}} 个词条</text>
+      <button wx:if="{{hasFilters}}" class="clear-filters" bindtap="clearFilters">清除筛选</button>
+    </view>
+
+    <view wx:if="{{groups.length}}">
+      <view wx:for="{{groups}}" wx:key="category" class="term-group">
+        <view class="term-group__title">
+          <text class="term-group__name">{{item.category}}</text>
+          <text class="term-group__count">{{item.items.length}}</text>
+        </view>
+        <view
+          wx:for="{{item.items}}"
+          wx:for-item="term"
+          wx:key="id"
+          class="term-card"
+          data-id="{{term.id}}"
+          bindtap="openTerm"
+          aria-role="button"
+          aria-label="打开词条：{{term.term}}"
+        >
+          <view class="term-card__head">
+            <text class="term-card__term">{{term.term}}</text>
+            <text class="term-card__en">{{term.en}}</text>
+          </view>
+          <text class="term-card__desc">{{term.definition}}</text>
+          <view class="term-card__meta">
+            <text>{{term.meta}}</text>
+            <text>·</text>
+            <text>{{term.pageText}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:else class="empty-panel">
+      <text class="empty-panel__title">没有找到匹配词条</text>
+      <text class="empty-panel__note">尝试清除筛选，或搜索“距离”“FAST”“量子”。</text>
+    </view>
+
+    <text class="copyright">定义由编者据课件整理；页码为 PDF 阅读器页码。课件图片版权归授课教师及原作者所有。</text>
+  </view>
+</view>

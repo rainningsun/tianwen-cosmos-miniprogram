@@ -139,6 +139,15 @@
   line-height: 1.85;
 }
 
+.concept__link {
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+  color: var(--color-gold);
+  font-size: 23rpx;
+  letter-spacing: 1rpx;
+}
+
 .person {
   display: flex;
   align-items: flex-start;

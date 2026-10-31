@@ -179,6 +179,14 @@ function createLecturePage() {
       });
     },
 
+    goGlossary(event) {
+      const termId = event.currentTarget.dataset.termId;
+      if (!termId) return;
+      wx.navigateTo({
+        url: `/pages/glossary-detail/glossary-detail?id=${termId}`
+      });
+    },
+
     goHome() {
       wx.switchTab({ url: '/pages/index/index' });
     },

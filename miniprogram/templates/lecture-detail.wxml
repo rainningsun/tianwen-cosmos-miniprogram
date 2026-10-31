@@ -52,6 +52,14 @@
           <text class="concept__page">p.{{item.page}}</text>
         </view>
         <text class="concept__desc">{{item.desc}}</text>
+        <text
+          wx:if="{{item.termId}}"
+          class="concept__link"
+          data-term-id="{{item.termId}}"
+          bindtap="goGlossary"
+          aria-role="button"
+          aria-label="查看词条：{{item.term}}"
+        >查看词条 →</text>
       </view>
     </view>
 
