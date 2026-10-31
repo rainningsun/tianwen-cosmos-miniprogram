@@ -2,12 +2,117 @@
   <view class="shell-head">
     <text class="eyebrow">THREADS</text>
     <text class="shell-title">思想主线</text>
-    <text class="shell-desc">把散落在各讲中的问题串起来：我们如何知道宇宙有规律，又如何通过观测认识它。</text>
+    <text class="shell-desc">把散落在各讲中的问题串起来。以下为编者导读，引文与页码均回到课件。</text>
   </view>
 
-  <view class="empty-panel">
-    <text class="empty-panel__title">专题正在整理</text>
-    <text class="empty-panel__note">六个跨讲专题将在这里展开，并链接回相关讲次。</text>
+  <scroll-view class="topic-tabs" scroll-x="true" show-scrollbar="false">
+    <view class="topic-tabs__inner">
+      <view
+        wx:for="{{topics}}"
+        wx:key="id"
+        class="topic-tab {{item.id === activeId ? 'topic-tab--active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="selectTopic"
+        aria-role="tab"
+        aria-selected="{{item.id === activeId}}"
+      >
+        {{item.title}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <view wx:if="{{topic}}" class="topic-article">
+    <text class="topic-article__en">{{topic.en}}</text>
+    <text class="topic-article__title">{{topic.title}}</text>
+    <text class="topic-article__lede">{{topic.lede}}</text>
+
+    <view wx:if="{{topic.layout === 'nodes'}}" class="triad">
+      <view wx:for="{{topic.nodes}}" wx:key="label" class="triad__node">
+        <text class="triad__index">0{{index + 1}}</text>
+        <text class="triad__label">{{item.label}}</text>
+        <text class="triad__text">{{item.text}}</text>
+        <text class="triad__source">{{item.source}}</text>
+      </view>
+    </view>
+
+    <view wx:elif="{{topic.layout === 'ladder'}}" class="ladder">
+      <view
+        wx:for="{{topic.steps}}"
+        wx:key="title"
+        class="ladder__step"
+        style="margin-left: {{index * 12}}rpx"
+      >
+        <view class="ladder__mark">{{index + 1}}</view>
+        <view class="ladder__body">
+          <text class="ladder__title">{{item.title}}</text>
+          <text class="ladder__text">{{item.text}}</text>
+          <text class="ladder__source">{{item.source}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:elif="{{topic.layout === 'timeline'}}" class="topic-timeline">
+      <view wx:for="{{topic.steps}}" wx:key="title" class="topic-timeline__item">
+        <view class="topic-timeline__dot"></view>
+        <view class="topic-timeline__body">
+          <text class="topic-timeline__title">{{item.title}}</text>
+          <text class="topic-timeline__text">{{item.text}}</text>
+          <text class="topic-timeline__source">{{item.source}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:elif="{{topic.layout === 'editorial'}}" class="editorial">
+      <text class="editorial__mark">“</text>
+      <text class="editorial__quote">{{topic.thesis}}</text>
+      <text class="editorial__source">{{topic.source}}</text>
+    </view>
+
+    <view wx:elif="{{topic.layout === 'pause'}}" class="pause">
+      <text class="pause__question">Are we alone?</text>
+      <text class="pause__sub">{{topic.thesis}}</text>
+      <text class="pause__source">{{topic.source}}</text>
+    </view>
+
+    <view wx:if="{{topic.layout !== 'editorial' && topic.layout !== 'pause'}}" class="topic-thesis">
+      <text class="topic-thesis__label">本专题的主线</text>
+      <text class="topic-thesis__text">{{topic.thesis}}</text>
+      <text class="topic-thesis__source">{{topic.source}}</text>
+    </view>
+
+    <view class="topic-sections">
+      <view wx:for="{{topic.sections}}" wx:key="title" class="topic-section">
+        <text class="topic-section__title">{{item.title}}</text>
+        <text class="topic-section__text">{{item.text}}</text>
+        <text class="topic-section__source">{{item.source}}</text>
+      </view>
+    </view>
+
+    <quote-block
+      wx:if="{{topic.quote}}"
+      quote="{{topic.quote.text}}"
+      source="{{topic.quoteSource}}"
+    />
+
+    <view wx:if="{{related.length}}" class="related">
+      <text class="related__kicker">RELATED LECTURES</text>
+      <view
+        wx:for="{{related}}"
+        wx:key="id"
+        class="related-row"
+        data-id="{{item.id}}"
+        bindtap="openLecture"
+        hover-class="related-row--pressed"
+        aria-role="button"
+        aria-label="打开第 {{item.order}} 讲"
+      >
+        <view>
+          <text class="related-row__title">第 {{item.order}} 讲 · {{item.title}}</text>
+          <text class="related-row__note">回到本讲详情与原页</text>
+        </view>
+        <text class="related-row__arrow">→</text>
+      </view>
+    </view>
   </view>
 
   <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>

@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "思想主线"
+  "navigationBarTitleText": "思想主线",
+  "usingComponents": {
+    "quote-block": "/components/quote-block/quote-block"
+  }
 }
