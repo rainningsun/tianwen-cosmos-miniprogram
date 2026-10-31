@@ -1,0 +1,141 @@
+.lecture-card {
+  overflow: hidden;
+  border: 1rpx solid var(--color-line-cool);
+  border-radius: var(--radius-card);
+  background: linear-gradient(160deg, rgba(16, 22, 35, 0.96), rgba(8, 11, 18, 0.98));
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.lecture-card--pressed {
+  border-color: var(--color-line);
+  background: linear-gradient(160deg, rgba(21, 28, 43, 0.98), rgba(10, 14, 22, 0.99));
+}
+
+.lecture-card--upcoming {
+  border-style: dashed;
+  border-color: rgba(139, 147, 167, 0.32);
+  background: transparent;
+}
+
+.lecture-card__visual {
+  position: relative;
+  height: 260rpx;
+}
+
+.lecture-card__cover {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.lecture-card__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 22% 34%, rgba(101, 200, 208, 0.14), transparent 34%),
+    radial-gradient(circle at 74% 62%, rgba(216, 168, 78, 0.12), transparent 38%),
+    #080c14;
+}
+
+.lecture-card__orbit {
+  position: absolute;
+  color: rgba(216, 168, 78, 0.5);
+  font-size: 46rpx;
+}
+
+.lecture-card__ordinal {
+  padding: 8rpx 18rpx;
+  border: 1rpx solid rgba(216, 168, 78, 0.35);
+  border-radius: 999rpx;
+  color: var(--color-gold);
+  font-family: var(--font-serif);
+  font-size: 24rpx;
+  letter-spacing: 4rpx;
+}
+
+.lecture-card__date {
+  position: absolute;
+  right: 20rpx;
+  bottom: 16rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 4rpx;
+  background: rgba(5, 7, 13, 0.78);
+  color: var(--color-ink);
+  font-size: 24rpx;
+  letter-spacing: 2rpx;
+}
+
+.lecture-card__badge {
+  position: absolute;
+  left: 20rpx;
+  top: 18rpx;
+  padding: 4rpx 14rpx;
+  border: 1rpx solid rgba(139, 147, 167, 0.4);
+  border-radius: 4rpx;
+  background: rgba(5, 7, 13, 0.72);
+  color: var(--color-muted);
+  font-size: 22rpx;
+}
+
+.lecture-card__body {
+  padding: 28rpx 30rpx 32rpx;
+}
+
+.lecture-card__kicker {
+  display: block;
+  color: var(--color-gold);
+  font-size: 22rpx;
+  letter-spacing: 4rpx;
+}
+
+.lecture-card__title {
+  display: block;
+  margin-top: 10rpx;
+  font-family: var(--font-serif);
+  font-size: 42rpx;
+  line-height: 1.45;
+}
+
+.lecture-card__summary {
+  display: block;
+  margin-top: 14rpx;
+  color: var(--color-ink-dim);
+  font-size: 26rpx;
+  line-height: 1.8;
+}
+
+.lecture-card__keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-top: 20rpx;
+}
+
+.lecture-card__keyword {
+  padding: 4rpx 14rpx;
+  border: 1rpx solid var(--color-line);
+  border-radius: 999rpx;
+  color: var(--color-gold);
+  font-size: 22rpx;
+  line-height: 1.6;
+}
+
+.lecture-card__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 88rpx;
+  margin-top: 18rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx solid var(--color-line-cool);
+  color: var(--color-ink);
+  font-size: 26rpx;
+}
+
+.lecture-card__arrow {
+  color: var(--color-gold);
+  font-size: 32rpx;
+}

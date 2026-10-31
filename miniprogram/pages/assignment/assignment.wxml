@@ -1,0 +1,14 @@
+<view class="page-shell">
+  <view class="shell-head">
+    <text class="eyebrow">ASSIGNMENT</text>
+    <text class="shell-title">我眼中的宇宙之美</text>
+    <text class="shell-desc">期末作业的完整说明、四种形式与四类参考选题，稍后在这里整理。</text>
+  </view>
+
+  <view class="empty-panel">
+    <text class="empty-panel__title">作业页正在录入</text>
+    <text class="empty-panel__note">将以课件 p.64-65 为准，保留“选题不限于以上内容”的原意。</text>
+  </view>
+
+  <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>
+</view>

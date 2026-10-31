@@ -1,0 +1,14 @@
+<view class="page-shell">
+  <view class="shell-head">
+    <text class="eyebrow">THREADS</text>
+    <text class="shell-title">思想主线</text>
+    <text class="shell-desc">把散落在各讲中的问题串起来：我们如何知道宇宙有规律，又如何通过观测认识它。</text>
+  </view>
+
+  <view class="empty-panel">
+    <text class="empty-panel__title">专题正在整理</text>
+    <text class="empty-panel__note">六个跨讲专题将在这里展开，并链接回相关讲次。</text>
+  </view>
+
+  <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>
+</view>

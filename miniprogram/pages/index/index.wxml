@@ -1,8 +1,111 @@
-<view class="page-shell">
-  <view class="intro">
-    <text class="eyebrow">COURSE READER</text>
-    <text class="title">{{courseTitle}}</text>
-    <text class="lecturer">主讲 · {{lecturer}}</text>
-    <text class="note">课程小程序正在搭建中。</text>
+<view class="page-shell home">
+  <view
+    class="starfield {{starfieldEnabled ? 'starfield--animated' : ''}}"
+    aria-hidden="true"
+  ></view>
+
+  <view class="home__inner">
+    <view class="home__topbar">
+      <text class="home__mark">天问 · 课程导览</text>
+      <view
+        class="star-toggle"
+        bindtap="toggleStarfield"
+        hover-class="star-toggle--pressed"
+        aria-role="switch"
+        aria-checked="{{starfieldEnabled}}"
+        aria-label="星野动效开关"
+      >
+        <view class="star-toggle__dot {{starfieldEnabled ? 'star-toggle__dot--on' : ''}}"></view>
+        <text>星野动效</text>
+      </view>
+    </view>
+
+    <view class="hero">
+      <text class="eyebrow">TSINGHUA ASTRONOMY · COURSE READER</text>
+      <view class="hero__title">
+        <text>天问</text>
+        <text class="hero__colon">：</text>
+        <text>宇宙之美</text>
+      </view>
+      <text class="hero__lecturer">主讲 · {{lecturer}}</text>
+      <text class="hero__mission">从古人问天到射电观测，沿着距离、信号与认知的阶梯，重走人类理解宇宙的路径。</text>
+    </view>
+
+    <quote-block
+      quote="遂古之初，谁传道之？上下未形，何由考之？"
+      source="《天问》"
+    />
+
+    <view class="count-line">
+      <text class="count-line__num">{{publishedCount}}</text>
+      <text class="count-line__label">讲已上线</text>
+      <text wx:if="{{upcoming}}" class="count-line__next">下一讲 · 待更新</text>
+    </view>
+
+    <section-head
+      kicker="LECTURES"
+      title="课程星图"
+      desc="按课程时间排列。先读导读，再回到课件原页核对。"
+    />
+
+    <view wx:if="{{lectures.length}}" class="timeline">
+      <view class="timeline__rail" aria-hidden="true"></view>
+      <view wx:for="{{lectures}}" wx:key="id" class="timeline__item">
+        <view class="timeline__node" aria-hidden="true"></view>
+        <lecture-card lecture="{{item}}" bind:select="goLecture" />
+      </view>
+
+      <view wx:if="{{upcoming}}" class="timeline__item timeline__item--upcoming">
+        <view class="timeline__node timeline__node--hollow" aria-hidden="true"></view>
+        <lecture-card lecture="{{upcoming}}" />
+      </view>
+    </view>
+
+    <view wx:else class="empty-panel">
+      <text class="empty-panel__title">课程内容正在整理</text>
+      <text class="empty-panel__note">第一讲的导读、概念与原页正在从课件中逐页核对，稍后回来看看。</text>
+    </view>
+
+    <section-head
+      kicker="THREADS"
+      title="思想的几条线索"
+      desc="同一组问题，在不同讲次里反复出现。"
+    />
+
+    <view class="thread-list">
+      <view
+        wx:for="{{topicEntries}}"
+        wx:key="id"
+        class="thread-item"
+        data-id="{{item.id}}"
+        bindtap="openTopic"
+        hover-class="thread-item--pressed"
+        aria-role="button"
+        aria-label="打开思想主线：{{item.title}}"
+      >
+        <view class="thread-item__text">
+          <text class="thread-item__title">{{item.title}}</text>
+          <text class="thread-item__note">{{item.note}}</text>
+        </view>
+        <text class="thread-item__arrow">→</text>
+      </view>
+    </view>
+
+    <view
+      class="assignment-entry"
+      bindtap="openAssignment"
+      hover-class="assignment-entry--pressed"
+      aria-role="button"
+      aria-label="打开期末作业页"
+    >
+      <view>
+        <text class="assignment-entry__kicker">ASSIGNMENT</text>
+        <text class="assignment-entry__title">期末作业 · 我眼中的宇宙之美</text>
+        <text class="assignment-entry__note">四种形式与四类参考选题，可保存自己的灵感清单。</text>
+      </view>
+      <text class="assignment-entry__arrow">→</text>
+    </view>
+
+    <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>
   </view>
 </view>

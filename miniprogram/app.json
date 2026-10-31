@@ -1,6 +1,9 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/topic/topic",
+    "pages/archive/archive",
+    "pages/assignment/assignment"
   ],
   "window": {
     "navigationBarBackgroundColor": "#05070d",
@@ -8,6 +11,30 @@
     "navigationBarTitleText": "天问：宇宙之美",
     "backgroundColor": "#05070d",
     "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#8b93a7",
+    "selectedColor": "#d8a84e",
+    "backgroundColor": "#05070d",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "课程"
+      },
+      {
+        "pagePath": "pages/topic/topic",
+        "text": "主线"
+      },
+      {
+        "pagePath": "pages/archive/archive",
+        "text": "原页"
+      },
+      {
+        "pagePath": "pages/assignment/assignment",
+        "text": "作业"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

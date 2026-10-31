@@ -1,0 +1,5 @@
+<view class="section-head">
+  <text wx:if="{{kicker}}" class="section-head__kicker">{{kicker}}</text>
+  <text class="section-head__title">{{title}}</text>
+  <text wx:if="{{desc}}" class="section-head__desc">{{desc}}</text>
+</view>

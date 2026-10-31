@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "天问：宇宙之美",
+  "usingComponents": {
+    "lecture-card": "/components/lecture-card/lecture-card",
+    "section-head": "/components/section-head/section-head",
+    "quote-block": "/components/quote-block/quote-block"
+  }
+}

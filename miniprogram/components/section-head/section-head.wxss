@@ -1,0 +1,27 @@
+.section-head {
+  margin-top: 76rpx;
+  margin-bottom: 28rpx;
+}
+
+.section-head__kicker {
+  display: block;
+  color: var(--color-gold);
+  font-size: 22rpx;
+  letter-spacing: 6rpx;
+}
+
+.section-head__title {
+  display: block;
+  margin-top: 12rpx;
+  font-family: var(--font-serif);
+  font-size: 42rpx;
+  line-height: 1.45;
+}
+
+.section-head__desc {
+  display: block;
+  margin-top: 12rpx;
+  color: var(--color-muted);
+  font-size: 25rpx;
+  line-height: 1.8;
+}

@@ -1,0 +1,39 @@
+.quote-block {
+  position: relative;
+  margin-top: 32rpx;
+  padding: 30rpx 30rpx 26rpx;
+  border-left: 2rpx solid var(--color-gold);
+  background: linear-gradient(90deg, rgba(216, 168, 78, 0.08), transparent 78%);
+}
+
+.quote-block__mark {
+  position: absolute;
+  top: 2rpx;
+  left: 18rpx;
+  color: rgba(216, 168, 78, 0.5);
+  font-family: var(--font-serif);
+  font-size: 54rpx;
+  line-height: 1;
+}
+
+.quote-block__text {
+  display: block;
+  padding-left: 26rpx;
+  font-family: var(--font-serif);
+  font-size: 32rpx;
+  line-height: 1.9;
+}
+
+.quote-block__source {
+  display: block;
+  margin-top: 14rpx;
+  padding-left: 26rpx;
+  color: var(--color-muted);
+  font-size: 23rpx;
+  text-align: right;
+}
+
+.quote-block--large .quote-block__text {
+  font-size: 44rpx;
+  line-height: 1.75;
+}

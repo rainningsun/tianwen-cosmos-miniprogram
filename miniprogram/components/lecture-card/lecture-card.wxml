@@ -1,0 +1,40 @@
+<view
+  class="lecture-card {{lecture.status === 'upcoming' ? 'lecture-card--upcoming' : ''}}"
+  hover-class="{{lecture.status === 'published' ? 'lecture-card--pressed' : 'none'}}"
+  hover-stay-time="60"
+  bindtap="onTap"
+  aria-role="button"
+  aria-label="{{lecture.status === 'published' ? lecture.title : '第六讲待更新，暂不可进入'}}"
+  aria-disabled="{{lecture.status !== 'published'}}"
+>
+  <view class="lecture-card__visual">
+    <image
+      wx:if="{{lecture.cover}}"
+      class="lecture-card__cover"
+      src="{{lecture.cover}}"
+      mode="aspectFill"
+      lazy-load
+    />
+    <view wx:else class="lecture-card__placeholder">
+      <text class="lecture-card__orbit">✦</text>
+      <text class="lecture-card__ordinal">{{lecture.orderLabel}}</text>
+    </view>
+    <view class="lecture-card__date">{{lecture.date}}</view>
+    <view wx:if="{{lecture.status === 'upcoming'}}" class="lecture-card__badge">待更新</view>
+  </view>
+
+  <view class="lecture-card__body">
+    <text class="lecture-card__kicker">{{lecture.orderLabel}}{{lecture.titleNote ? ' · ' + lecture.titleNote : ''}}</text>
+    <text class="lecture-card__title">{{lecture.title}}</text>
+    <text wx:if="{{lecture.summary}}" class="lecture-card__summary">{{lecture.summary}}</text>
+
+    <view wx:if="{{lecture.keywords && lecture.keywords.length}}" class="lecture-card__keywords">
+      <text wx:for="{{lecture.keywords}}" wx:key="*this" class="lecture-card__keyword">{{item}}</text>
+    </view>
+
+    <view wx:if="{{lecture.status === 'published'}}" class="lecture-card__cta">
+      <text>进入本讲</text>
+      <text class="lecture-card__arrow">→</text>
+    </view>
+  </view>
+</view>

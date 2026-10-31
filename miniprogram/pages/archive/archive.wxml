@@ -1,0 +1,24 @@
+<view class="page-shell">
+  <view class="shell-head">
+    <text class="eyebrow">ARCHIVE</text>
+    <text class="shell-title">课件原页</text>
+    <text class="shell-desc">只收录每讲的关键页，按 PDF 阅读器页码标注。点击讲次进入对应的原页区域。</text>
+  </view>
+
+  <view wx:if="{{lectures.length}}" class="archive-list">
+    <view wx:for="{{lectures}}" wx:key="id" class="archive-row">
+      <view>
+        <text class="archive-row__title">第 {{item.order}} 讲 · {{item.title}}</text>
+        <text class="archive-row__meta">{{item.date}} · 收录 {{item.count}} 页</text>
+      </view>
+      <text class="archive-row__arrow">→</text>
+    </view>
+  </view>
+
+  <view wx:else class="empty-panel">
+    <text class="empty-panel__title">原页索引正在建立</text>
+    <text class="empty-panel__note">每讲将选取 6-10 张关键页，并附页码与客观图注。</text>
+  </view>
+
+  <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>
+</view>

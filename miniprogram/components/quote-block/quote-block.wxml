@@ -1,0 +1,5 @@
+<view class="quote-block {{large ? 'quote-block--large' : ''}}">
+  <text class="quote-block__mark">“</text>
+  <text class="quote-block__text">{{quote}}</text>
+  <text wx:if="{{source}}" class="quote-block__source">{{source}}</text>
+</view>

@@ -1,0 +1,99 @@
+page {
+  --color-bg: #05070d;
+  --color-bg-raised: #0b0f19;
+  --color-bg-soft: #101623;
+  --color-ink: #f2ede3;
+  --color-ink-dim: #b9b4aa;
+  --color-muted: #8b93a7;
+  --color-gold: #d8a84e;
+  --color-gold-soft: rgba(216, 168, 78, 0.14);
+  --color-cyan: #65c8d0;
+  --color-line: rgba(216, 168, 78, 0.22);
+  --color-line-cool: rgba(139, 147, 167, 0.18);
+  --page-gutter: 40rpx;
+  --radius-card: 10rpx;
+  --font-serif: "Songti SC", "STSong", "SimSun", serif;
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 30rpx;
+  line-height: 1.8;
+}
+
+view,
+text,
+image,
+button,
+scroll-view {
+  box-sizing: border-box;
+}
+
+.page-shell {
+  position: relative;
+  min-height: 100vh;
+  padding: 0 var(--page-gutter) calc(72rpx + env(safe-area-inset-bottom));
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+.eyebrow {
+  color: var(--color-gold);
+  font-size: 22rpx;
+  letter-spacing: 6rpx;
+  text-transform: uppercase;
+}
+
+.shell-head {
+  padding-top: 96rpx;
+}
+
+.shell-title {
+  margin-top: 22rpx;
+  font-family: var(--font-serif);
+  font-size: 64rpx;
+  line-height: 1.35;
+  letter-spacing: 2rpx;
+}
+
+.shell-desc {
+  margin-top: 24rpx;
+  max-width: 620rpx;
+  color: var(--color-ink-dim);
+  font-size: 28rpx;
+  line-height: 1.85;
+}
+
+.empty-panel {
+  margin-top: 72rpx;
+  padding: 48rpx 36rpx;
+  border: 1rpx dashed var(--color-line);
+  border-radius: var(--radius-card);
+  background: rgba(11, 15, 25, 0.55);
+}
+
+.empty-panel__title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 34rpx;
+}
+
+.empty-panel__note {
+  display: block;
+  margin-top: 12rpx;
+  color: var(--color-muted);
+  font-size: 26rpx;
+  line-height: 1.8;
+}
+
+.copyright {
+  margin-top: 72rpx;
+  padding-top: 26rpx;
+  border-top: 1rpx solid var(--color-line-cool);
+  color: var(--color-muted);
+  font-size: 22rpx;
+  line-height: 1.75;
+}

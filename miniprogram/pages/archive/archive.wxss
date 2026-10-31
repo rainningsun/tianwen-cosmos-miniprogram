@@ -1,0 +1,31 @@
+.archive-list {
+  margin-top: 64rpx;
+  border-top: 1rpx solid var(--color-line-cool);
+}
+
+.archive-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 112rpx;
+  padding: 20rpx 6rpx;
+  border-bottom: 1rpx solid var(--color-line-cool);
+}
+
+.archive-row__title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 31rpx;
+}
+
+.archive-row__meta {
+  display: block;
+  margin-top: 4rpx;
+  color: var(--color-muted);
+  font-size: 23rpx;
+}
+
+.archive-row__arrow {
+  color: var(--color-gold);
+  font-size: 30rpx;
+}
