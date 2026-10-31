@@ -139,9 +139,9 @@ const topics = [
       }
     ],
     quote: {
-      text: '当 PARALLEX = 1″，D = 1 秒差距（PARSEC）；1 pc 约 3 光年。',
-      author: '课件原文 · 距离与时间',
-      page: 28
+      text: '宇宙在膨胀！',
+      author: '课件原文 · 哈勃',
+      page: 32
     },
     lectureIds: ['lecture-1', 'lecture-3']
   },

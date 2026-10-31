@@ -98,11 +98,11 @@
 .lecture-card__keywords {
   display: flex;
   flex-wrap: wrap;
-  gap: 10rpx;
   margin-top: 20rpx;
 }
 
 .lecture-card__keyword {
+  margin: 0 10rpx 10rpx 0;
   padding: 4rpx 14rpx;
   border: 1rpx solid var(--color-line);
   border-radius: 999rpx;

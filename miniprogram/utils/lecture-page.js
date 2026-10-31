@@ -24,7 +24,8 @@ function createLecturePage() {
     },
 
     onLoad(options) {
-      const id = (options && options.id) || 'lecture-1';
+      const query = options || {};
+      const id = query.id || 'lecture-1';
       const lecture = getLectureById(id);
       if (!lecture || lecture.status !== 'published') {
         this.setData({ notFound: true });
@@ -49,7 +50,7 @@ function createLecturePage() {
         prevLecture: toNavItem(prev),
         nextLecture: toNavItem(next),
         imageUrls: (lecture.images || []).map((image) => image.src),
-        focusPages: options.focus === 'pages',
+        focusPages: query.focus === 'pages',
         notFound: false
       });
 

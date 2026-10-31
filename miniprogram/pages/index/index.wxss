@@ -182,13 +182,13 @@
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 10rpx;
   margin-top: 52rpx;
   padding-top: 24rpx;
   border-top: 1rpx solid var(--color-line-cool);
 }
 
 .count-line__num {
+  margin-right: 10rpx;
   color: var(--color-gold);
   font-family: var(--font-serif);
   font-size: 52rpx;

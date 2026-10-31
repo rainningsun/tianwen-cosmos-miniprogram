@@ -14,7 +14,10 @@
 }
 
 .topic-tab {
+  display: inline-flex;
+  align-items: center;
   flex: none;
+  min-height: 88rpx;
   margin-right: 12rpx;
   padding: 14rpx 22rpx;
   border: 1rpx solid var(--color-line-cool);

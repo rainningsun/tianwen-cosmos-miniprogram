@@ -16,7 +16,7 @@
         aria-label="星野动效开关"
       >
         <view class="star-toggle__dot {{starfieldEnabled ? 'star-toggle__dot--on' : ''}}"></view>
-        <text>星野动效</text>
+        <text>星野动效 {{starfieldEnabled ? '开' : '关'}}</text>
       </view>
     </view>
 

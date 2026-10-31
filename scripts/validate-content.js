@@ -99,6 +99,12 @@ function checkStaticFiles() {
     }
   }
 
+  const expectedTabs = ['pages/index/index', 'pages/topic/topic', 'pages/archive/archive', 'pages/assignment/assignment'];
+  const tabList = (app.tabBar && app.tabBar.list) || [];
+  if (tabList.length !== 4 || expectedTabs.some((page) => !tabList.some((tab) => tab.pagePath === page))) {
+    fail('tabBar 必须包含课程、主线、原页、作业 4 个页面');
+  }
+
   return app;
 }
 
@@ -115,15 +121,41 @@ function checkJavaScript() {
   notes.push(`已检查 ${files.length} 个 JavaScript 文件`);
 }
 
-function checkTrackedPdfs() {
+function checkJsonAndComponents() {
+  const jsonFiles = walk(MP).filter((file) => file.endsWith('.json'));
+  for (const file of jsonFiles) {
+    let data;
+    try {
+      data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    } catch (error) {
+      fail(`${path.relative(ROOT, file)} 不是合法 JSON：${error.message}`);
+      continue;
+    }
+    for (const ref of Object.values(data.usingComponents || {})) {
+      if (typeof ref !== 'string' || !ref.startsWith('/')) {
+        fail(`${path.relative(ROOT, file)} 的组件路径必须是绝对路径：${ref}`);
+        continue;
+      }
+      const base = path.join(MP, ref.slice(1));
+      for (const ext of ['js', 'json', 'wxml']) {
+        if (!fs.existsSync(`${base}.${ext}`)) {
+          fail(`${path.relative(ROOT, file)} 引用的组件缺少 ${ref}.${ext}`);
+        }
+      }
+    }
+  }
+  notes.push(`已检查 ${jsonFiles.length} 个 JSON 与组件引用`);
+}
+
+function checkTrackedForbidden() {
   try {
-    const output = execFileSync('git', ['ls-files', '--', '*.pdf'], {
+    const output = execFileSync('git', ['ls-files', '--', '*.pdf', 'project.private.config.json', '*.key'], {
       cwd: ROOT,
       encoding: 'utf8'
     }).trim();
-    if (output) fail(`仓库中存在被追踪的 PDF：\n${output}`);
+    if (output) fail(`仓库中存在不应追踪的文件：\n${output}`);
   } catch (error) {
-    warn('当前目录不是可用的 git 仓库，跳过 PDF 追踪检查');
+    warn('当前目录不是可用的 git 仓库，跳过敏感文件追踪检查');
   }
 }
 
@@ -177,16 +209,31 @@ function checkLectureData(app) {
       for (const field of ['title', 'date', 'pagePath', 'package', 'summary']) {
         if (!lecture[field]) fail(`${label} 缺少字段 ${field}`);
       }
-      for (const field of ['questions', 'concepts', 'people', 'quotes']) {
+      for (const field of ['questions', 'concepts', 'people', 'quotes', 'images']) {
         if (!Array.isArray(lecture[field]) || lecture[field].length === 0) {
           fail(`${label} 的 ${field} 不能为空`);
         }
       }
-      if (!Array.isArray(lecture.images)) {
-        fail(`${label} 的 images 必须是数组`);
-      } else if (lecture.images.length === 0) {
-        warn(`${label} 的背景图片尚未加入（内容增量阶段）`);
+
+      const summaryLength = Array.from(lecture.summary || '').length;
+      if (summaryLength < 150 || summaryLength > 250) {
+        fail(`${label} 导读应为 150-250 字，当前 ${summaryLength} 字`);
       }
+
+      const ranges = {
+        questions: [2, 4],
+        concepts: [5, 8],
+        people: [3, 6],
+        quotes: [1, 3],
+        images: [6, 10]
+      };
+      for (const [field, [min, max]] of Object.entries(ranges)) {
+        const count = (lecture[field] || []).length;
+        if (count < min || count > max) {
+          fail(`${label} 的 ${field} 应为 ${min}-${max} 项，当前 ${count} 项`);
+        }
+      }
+
       if (!routes.has(lecture.pagePath)) {
         fail(`${label} 的 pagePath 不在 app.json 分包中：${lecture.pagePath}`);
       }
@@ -198,9 +245,7 @@ function checkLectureData(app) {
           fail(`${label} 封面图超过 30KB：${lecture.cover}`);
         }
       }
-      if (lecture.summary && lecture.summary.length < 120) {
-        warn(`${label} 导读偏短（${lecture.summary.length} 字）`);
-      }
+
       for (const image of lecture.images || []) {
         const abs = resolveAsset(image.src);
         if (!abs || !fs.existsSync(abs)) {
@@ -214,7 +259,26 @@ function checkLectureData(app) {
         } else if (fs.statSync(thumb).size > THUMB_LIMIT) {
           fail(`${label} 缩略图超过 20KB：${image.thumb} (${formatSize(fs.statSync(thumb).size)})`);
         }
-        if (!image.caption || !image.page) warn(`${label} 的图片缺少图注或页码：${image.src}`);
+        if (!image.caption) fail(`${label} 的图片缺少图注：${image.src}`);
+        if (!Number.isInteger(image.page) || image.page < 1) {
+          fail(`${label} 的图片页码无效：${image.src}`);
+        }
+      }
+
+      for (const concept of lecture.concepts || []) {
+        if (!concept.term || !concept.desc || !Number.isInteger(concept.page)) {
+          fail(`${label} 存在字段不全的概念卡：${concept.term || '(未命名)'}`);
+        }
+      }
+      for (const person of lecture.people || []) {
+        if (!person.name || !person.note || !Number.isInteger(person.page)) {
+          fail(`${label} 存在字段不全的人物/装置条目：${person.name || '(未命名)'}`);
+        }
+      }
+      for (const quote of lecture.quotes || []) {
+        if (!quote.text || !quote.author || !Number.isInteger(quote.page)) {
+          fail(`${label} 存在字段不全的金句：${quote.text || '(空)'}`);
+        }
       }
     } else if (lecture.status === 'upcoming') {
       const contentFields = ['summary', 'questions', 'concepts', 'people', 'quotes', 'images'];
@@ -235,6 +299,126 @@ function checkLectureData(app) {
   for (const file of walk(coverDir)) {
     if (fs.statSync(file).size > COVER_LIMIT) {
       fail(`封面图超过 30KB：${path.relative(ROOT, file)}`);
+    }
+  }
+}
+
+function checkTopics() {
+  const file = path.join(MP, 'data', 'topics.js');
+  if (!fs.existsSync(file)) {
+    fail('缺少 data/topics.js');
+    return;
+  }
+
+  let data;
+  try {
+    delete require.cache[require.resolve(file)];
+    data = require(file);
+  } catch (error) {
+    fail(`data/topics.js 无法加载：${error.message}`);
+    return;
+  }
+
+  const topics = Array.isArray(data.topics) ? data.topics : [];
+  if (topics.length < 6) fail(`思想主线应至少 6 个专题，当前 ${topics.length} 个`);
+
+  let lectureData;
+  try {
+    lectureData = require(path.join(MP, 'data', 'lectures.js'));
+  } catch (error) {
+    lectureData = { lectures: [] };
+  }
+  const lectureById = new Map((lectureData.lectures || []).map((lecture) => [lecture.id, lecture]));
+  const ids = new Set();
+
+  for (const topic of topics) {
+    const label = topic.id || topic.title || '(未命名专题)';
+    if (!topic.id || ids.has(topic.id)) fail(`专题 id 缺失或重复：${label}`);
+    ids.add(topic.id);
+    for (const field of ['title', 'en', 'lede', 'thesis', 'source', 'layout']) {
+      if (!topic[field]) fail(`专题 ${label} 缺少字段 ${field}`);
+    }
+    if (!Array.isArray(topic.sections) || topic.sections.length < 3) {
+      fail(`专题 ${label} 至少需要 3 段导读`);
+    }
+    if (!Array.isArray(topic.lectureIds) || topic.lectureIds.length === 0) {
+      fail(`专题 ${label} 没有关联讲次`);
+    } else {
+      for (const lectureId of topic.lectureIds) {
+        const lecture = lectureById.get(lectureId);
+        if (!lecture || lecture.status !== 'published') {
+          fail(`专题 ${label} 关联了未上线讲次：${lectureId}`);
+        }
+      }
+    }
+    if (topic.layout === 'nodes' && (!Array.isArray(topic.nodes) || topic.nodes.length !== 3)) {
+      fail(`专题 ${label} 的三段论应有 3 个节点`);
+    }
+    if (topic.layout === 'ladder' && (!Array.isArray(topic.steps) || topic.steps.length !== 5)) {
+      fail(`专题 ${label} 的距离阶梯应有 5 级`);
+    }
+    if (topic.layout === 'timeline' && (!Array.isArray(topic.steps) || topic.steps.length < 3)) {
+      fail(`专题 ${label} 的时间线至少 3 个节点`);
+    }
+    if (topic.quote && (!topic.quote.text || !topic.quote.author || !Number.isInteger(topic.quote.page))) {
+      fail(`专题 ${label} 的金句字段不全`);
+    }
+  }
+
+  notes.push(`已校验 ${topics.length} 个思想专题`);
+}
+
+function checkAssignment() {
+  const file = path.join(MP, 'data', 'assignment.js');
+  if (!fs.existsSync(file)) {
+    fail('缺少 data/assignment.js');
+    return;
+  }
+
+  let data;
+  try {
+    delete require.cache[require.resolve(file)];
+    data = require(file);
+  } catch (error) {
+    fail(`data/assignment.js 无法加载：${error.message}`);
+    return;
+  }
+
+  const assignment = data.assignment || {};
+  if (!Array.isArray(assignment.forms) || assignment.forms.length !== 4) {
+    fail('作业页应有 4 种表现形式');
+  }
+  if (!Array.isArray(assignment.categories) || assignment.categories.length !== 4) {
+    fail('作业页应有 4 类参考选题');
+  }
+  if (!assignment.theme || !assignment.theme.includes('我眼中的宇宙之美')) {
+    fail('作业主题缺少“我眼中的宇宙之美”');
+  }
+  if (!assignment.footnote || !assignment.footnote.includes('选题不限于以上内容')) {
+    fail('作业页缺少“选题不限于以上内容”的说明');
+  }
+
+  const itemIds = new Set();
+  let itemCount = 0;
+  for (const category of assignment.categories || []) {
+    for (const item of category.items || []) {
+      itemCount += 1;
+      if (!item.id || itemIds.has(item.id)) fail(`作业选题 id 缺失或重复：${item.id || category.title}`);
+      itemIds.add(item.id);
+      if (!item.text) fail(`作业选题缺少文字：${category.title}`);
+    }
+  }
+  if (itemCount < 10) fail(`作业参考选题过少：${itemCount} 项`);
+
+  notes.push(`已校验作业：${assignment.forms.length} 种形式、${assignment.categories.length} 类选题、${itemCount} 条灵感`);
+}
+
+function checkNoHardcodedFive() {
+  const files = walk(MP).filter((file) => file.endsWith('.js') || file.endsWith('.wxml'));
+  for (const file of files) {
+    const source = fs.readFileSync(file, 'utf8');
+    if (source.includes('五讲') || /slice\s*\(\s*0\s*,\s*5\s*\)/.test(source) || /length\s*===\s*5/.test(source)) {
+      fail(`页面逻辑疑似写死“五讲”：${path.relative(ROOT, file)}`);
     }
   }
 }
@@ -262,13 +446,21 @@ function checkPackageSizes(app) {
     notes.push(`${root}：${formatSize(size)} / 1.8 MB`);
     if (size > PACKAGE_LIMIT) fail(`${root} 超过 1.8MB：${formatSize(size)}`);
   }
+
+  const total = sizeOf(allFiles);
+  notes.push(`总包：${formatSize(total)} / 20 MB`);
+  if (total > 20 * 1024 * 1024) fail(`总包超过 20MB：${formatSize(total)}`);
 }
 
 function main() {
   const app = checkStaticFiles();
   checkJavaScript();
-  checkTrackedPdfs();
+  checkJsonAndComponents();
+  checkTrackedForbidden();
   checkLectureData(app);
+  checkTopics();
+  checkAssignment();
+  checkNoHardcodedFive();
   checkPackageSizes(app);
 
   for (const note of notes) console.log(`· ${note}`);
