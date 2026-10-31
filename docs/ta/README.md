@@ -12,6 +12,7 @@
 | `assignment-showcase.html` | 打印样式源文件；用于重新生成 PDF |
 | `ta-questions.md` | 助教确认问题清单；含优先级、完整清单和可直接发送的简短版本 |
 | `ta-questions.docx` | 问题清单的 Word 版本，便于勾选/修改 |
+| `public-access-options.md` | 多人体验/公开投票的四种方案对比与推荐组合 |
 
 ## 发送前
 
