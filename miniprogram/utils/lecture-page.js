@@ -83,11 +83,90 @@ function createLecturePage() {
 
     previewImage(event) {
       const index = Number(event.currentTarget.dataset.index);
-      const urls = this.data.imageUrls;
-      if (!urls.length) return;
-      wx.previewImage({
-        current: urls[index] || urls[0],
-        urls
+      const lecture = this.data.lecture;
+      const images = (lecture && lecture.images) || [];
+      if (!images.length) return;
+
+      const fallback = () => {
+        const urls = this.data.imageUrls;
+        if (!urls.length) return;
+        wx.previewImage({
+          current: urls[index] || urls[0],
+          urls
+        });
+      };
+
+      const fs = wx.getFileSystemManager && wx.getFileSystemManager();
+      const base = wx.env && wx.env.USER_DATA_PATH;
+      if (!fs || !base) {
+        fallback();
+        return;
+      }
+
+      if (!this._previewCache) this._previewCache = {};
+
+      const tasks = images.map((image) => {
+        return this.ensurePreviewFile(fs, base, lecture.id, image).catch(() => null);
+      });
+
+      Promise.all(tasks).then((paths) => {
+        const urls = paths.filter(Boolean);
+        if (!urls.length) {
+          wx.showToast({ title: '原页加载失败', icon: 'none' });
+          return;
+        }
+        wx.previewImage({
+          current: paths[index] || urls[0],
+          urls
+        });
+      }).catch(() => {
+        wx.showToast({ title: '原页加载失败', icon: 'none' });
+      });
+    },
+
+    ensurePreviewFile(fs, base, lectureId, image) {
+      const key = `${lectureId}-p${image.page}`;
+      if (this._previewCache[key]) {
+        return Promise.resolve(this._previewCache[key]);
+      }
+
+      const src = String(image.src || '').replace(/^\//, '');
+      const dest = `${base}/tianwen-${key}.jpg`;
+
+      return new Promise((resolve, reject) => {
+        const done = () => {
+          this._previewCache[key] = dest;
+          resolve(dest);
+        };
+
+        const copy = () => {
+          fs.copyFile({
+            srcPath: src,
+            destPath: dest,
+            success: done,
+            fail: (error) => {
+              if (typeof fs.access !== 'function') {
+                reject(error);
+                return;
+              }
+              fs.access({
+                path: dest,
+                success: done,
+                fail: () => reject(error)
+              });
+            }
+          });
+        };
+
+        if (typeof fs.access === 'function') {
+          fs.access({
+            path: dest,
+            success: done,
+            fail: copy
+          });
+        } else {
+          copy();
+        }
       });
     },
 

@@ -206,8 +206,11 @@ function checkLectureData(app) {
     ids.add(lecture.id);
 
     if (lecture.status === 'published') {
-      for (const field of ['title', 'date', 'pagePath', 'package', 'summary']) {
+      for (const field of ['title', 'date', 'pagePath', 'package', 'summary', 'sourcePdf']) {
         if (!lecture[field]) fail(`${label} 缺少字段 ${field}`);
+      }
+      if (lecture.sourcePdf && !lecture.sourcePdf.toLowerCase().endsWith('.pdf')) {
+        fail(`${label} 的 sourcePdf 不是 PDF 文件名：${lecture.sourcePdf}`);
       }
       for (const field of ['questions', 'concepts', 'people', 'quotes', 'images']) {
         if (!Array.isArray(lecture[field]) || lecture[field].length === 0) {
@@ -414,7 +417,10 @@ function checkAssignment() {
 }
 
 function checkNoHardcodedFive() {
-  const files = walk(MP).filter((file) => file.endsWith('.js') || file.endsWith('.wxml'));
+  const roots = ['pages', 'components', 'templates', 'utils'].map((dir) => path.join(MP, dir));
+  const files = roots
+    .flatMap((dir) => walk(dir))
+    .filter((file) => file.endsWith('.js') || file.endsWith('.wxml'));
   for (const file of files) {
     const source = fs.readFileSync(file, 'utf8');
     if (source.includes('五讲') || /slice\s*\(\s*0\s*,\s*5\s*\)/.test(source) || /length\s*===\s*5/.test(source)) {

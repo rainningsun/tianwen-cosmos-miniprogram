@@ -19,6 +19,7 @@
       <view wx:if="{{lecture.keywords.length}}" class="lecture__keywords">
         <text wx:for="{{lecture.keywords}}" wx:key="*this" class="lecture__keyword">{{item}}</text>
       </view>
+      <text wx:if="{{lecture.sourcePdf}}" class="lecture__source">课件 · {{lecture.sourcePdf}}</text>
     </view>
 
     <view class="lecture__section">

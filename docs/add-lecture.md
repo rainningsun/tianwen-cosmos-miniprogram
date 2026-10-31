@@ -80,6 +80,7 @@ packageLx/assets/thumbs/lN-pXX.jpg
   status: 'published',
   pagePath: '/packageL3/pages/lecture/lecture',
   package: 'packageL3',
+  sourcePdf: '第六讲：…….pdf',
   keywords: ['……'],
   cover: '/assets/covers/l6.jpg',
   summary: '150-250 字导读',
@@ -106,6 +107,7 @@ packageLx/assets/thumbs/lN-pXX.jpg
 - `quotes` 1-3 句；
 - `images` 6-10 张；
 - 每条概念、人物、金句、图片都写页码；
+- `sourcePdf` 写课程 PDF 的正式文件名；
 - 引文必须能在对应页面找到；导读与“编者拟题”要明确标识。
 
 ## 6. 处理分包体积
