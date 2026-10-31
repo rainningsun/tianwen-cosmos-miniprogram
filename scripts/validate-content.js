@@ -72,7 +72,7 @@ function checkStaticFiles() {
     fail('project.config.json 的 miniprogramRoot 应为 miniprogram/');
   }
   if (project && project.appid !== 'touristappid') {
-    warn(`当前 appid 为 ${project.appid}，确认没有提交上传私钥。`);
+    warn(`当前 appid 为 ${project.appid}（测试号或正式号），确认没有提交上传私钥。`);
   }
 
   if (!app) return null;

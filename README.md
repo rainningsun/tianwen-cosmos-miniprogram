@@ -16,8 +16,10 @@
 1. 打开微信开发者工具，选择“导入项目”。
 2. 项目目录选择本仓库根目录（`project.config.json` 所在目录）。
 3. `miniprogramRoot` 已配置为 `miniprogram/`，无需再选子目录。
-4. 没有 AppID 时选择“测试号”，或保持 `project.config.json` 中的 `touristappid`。
+4. 没有 AppID 时选择“测试号”，或保持 `project.config.json` 中的测试号 AppID。
 5. 导入后直接编译即可。
+
+> 当前 `project.config.json` 使用微信开发者工具生成的测试号 AppID `wxb8ac32e0ae7d0dff`，用于模拟器编译；它绑定当前测试号，不是正式 AppID。拿到课程正式 AppID 后，只替换这一字段，不要提交上传私钥。
 
 > 真机预览、上传体验版需要课程负责人提供正式 AppID；仓库中不保存任何上传私钥。
 

@@ -2,7 +2,7 @@
   "description": "天问：宇宙之美 课程小程序",
   "miniprogramRoot": "miniprogram/",
   "compileType": "miniprogram",
-  "appid": "touristappid",
+  "appid": "wxb8ac32e0ae7d0dff",
   "projectname": "tianwen-cosmos-miniprogram",
   "setting": {
     "es6": true,
