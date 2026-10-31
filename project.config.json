@@ -1,8 +1,8 @@
 {
-  "description": "天问：宇宙之美 课程小程序",
+  "description": "天问：宇宙之美 课程小程序（正式 AppID 配置）",
   "miniprogramRoot": "miniprogram/",
   "compileType": "miniprogram",
-  "appid": "wxb8ac32e0ae7d0dff",
+  "appid": "wx2e8e3cde13016238",
   "projectname": "tianwen-cosmos-miniprogram",
   "setting": {
     "es6": true,
