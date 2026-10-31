@@ -1,3 +1,1 @@
-.shell-head {
-  padding-top: 56rpx;
-}
+@import "../../../styles/lecture-detail.wxss";

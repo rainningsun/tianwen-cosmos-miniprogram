@@ -1,14 +1,5 @@
-<view class="page-shell">
-  <view class="shell-head">
-    <text class="eyebrow">LECTURE {{lecture.order}}</text>
-    <text class="shell-title">{{lecture.title}}</text>
-    <text class="shell-desc">详情页正在搭建。导读、概念、人物、金句与原页画廊将在下一步接入。</text>
-  </view>
-
-  <view wx:if="{{lecture}}" class="empty-panel">
-    <text class="empty-panel__title">{{lecture.date}} · {{lecture.titleNote}}</text>
-    <text class="empty-panel__note">{{lecture.summary}}</text>
-  </view>
-
-  <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>
-</view>
+<import src="../../../templates/lecture-detail.wxml" />
+<template
+  is="lecture-detail"
+  data="{{lecture: lecture, prevLecture: prevLecture, nextLecture: nextLecture, imageUrls: imageUrls, focusPages: focusPages, notFound: notFound}}"
+/>

@@ -6,12 +6,25 @@
   </view>
 
   <view wx:if="{{lectures.length}}" class="archive-list">
-    <view wx:for="{{lectures}}" wx:key="id" class="archive-row">
-      <view>
+    <view
+      wx:for="{{lectures}}"
+      wx:key="id"
+      class="archive-row"
+      data-id="{{item.id}}"
+      data-page-path="{{item.pagePath}}"
+      bindtap="openLecture"
+      hover-class="archive-row--pressed"
+      aria-role="button"
+      aria-label="查看第 {{item.order}} 讲课件原页"
+    >
+      <view class="archive-row__body">
         <text class="archive-row__title">第 {{item.order}} 讲 · {{item.title}}</text>
         <text class="archive-row__meta">{{item.date}} · 收录 {{item.count}} 页</text>
       </view>
-      <text class="archive-row__arrow">→</text>
+      <view class="archive-row__action">
+        <text class="archive-row__label">原页</text>
+        <text class="archive-row__arrow">→</text>
+      </view>
     </view>
   </view>
 

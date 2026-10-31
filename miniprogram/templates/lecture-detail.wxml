@@ -1,0 +1,151 @@
+<template name="lecture-detail">
+  <view wx:if="{{notFound}}" class="page-shell">
+    <view class="shell-head">
+      <text class="eyebrow">LECTURE</text>
+      <text class="shell-title">没有找到这一讲</text>
+      <text class="shell-desc">讲次可能尚未上线，或链接里的编号有误。</text>
+    </view>
+    <view class="empty-panel" bindtap="goHome" aria-role="button" aria-label="返回课程首页">
+      <text class="empty-panel__title">返回课程首页</text>
+      <text class="empty-panel__note">从课程星图重新选择一讲。</text>
+    </view>
+  </view>
+
+  <view wx:else class="page-shell lecture">
+    <view class="lecture__hero">
+      <text class="eyebrow">LECTURE {{lecture.order}} · {{lecture.date}}</text>
+      <view class="lecture__title">{{lecture.title}}</view>
+      <text wx:if="{{lecture.titleNote}}" class="lecture__title-note">{{lecture.titleNote}}</text>
+      <view wx:if="{{lecture.keywords.length}}" class="lecture__keywords">
+        <text wx:for="{{lecture.keywords}}" wx:key="*this" class="lecture__keyword">{{item}}</text>
+      </view>
+    </view>
+
+    <view class="lecture__section">
+      <view class="lecture__section-head">
+        <text class="lecture__kicker">导读</text>
+        <text class="lecture__section-title">本讲导读</text>
+      </view>
+      <text class="lecture__summary">{{lecture.summary}}</text>
+    </view>
+
+    <view class="lecture__section">
+      <view class="lecture__section-head">
+        <text class="lecture__kicker">QUESTIONS</text>
+        <text class="lecture__section-title">本讲试图回答的问题</text>
+      </view>
+      <view wx:for="{{lecture.questions}}" wx:key="*this" class="question">
+        <text class="question__index">0{{index + 1}}</text>
+        <text class="question__text">{{item}}</text>
+      </view>
+    </view>
+
+    <view class="lecture__section">
+      <view class="lecture__section-head">
+        <text class="lecture__kicker">CONCEPTS</text>
+        <text class="lecture__section-title">核心概念</text>
+      </view>
+      <view wx:for="{{lecture.concepts}}" wx:key="term" class="concept">
+        <view class="concept__top">
+          <text class="concept__term">{{item.term}}</text>
+          <text class="concept__page">p.{{item.page}}</text>
+        </view>
+        <text class="concept__desc">{{item.desc}}</text>
+      </view>
+    </view>
+
+    <view class="lecture__section">
+      <view class="lecture__section-head">
+        <text class="lecture__kicker">PEOPLE &amp; INSTRUMENTS</text>
+        <text class="lecture__section-title">关键人物 / 装置</text>
+      </view>
+      <view wx:for="{{lecture.people}}" wx:key="name" class="person">
+        <text class="person__mark">{{index + 1}}</text>
+        <view class="person__body">
+          <text class="person__name">{{item.name}}</text>
+          <text wx:if="{{item.en}}" class="person__en">{{item.en}}</text>
+          <text class="person__note">{{item.note}}</text>
+          <text class="person__page">第 {{lecture.order}} 讲 · p.{{item.page}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{lecture.quotes.length}}" class="lecture__section">
+      <view class="lecture__section-head">
+        <text class="lecture__kicker">QUOTES</text>
+        <text class="lecture__section-title">金句</text>
+      </view>
+      <view wx:for="{{lecture.quotes}}" wx:key="text" class="lecture-quote">
+        <text class="lecture-quote__text">“{{item.text}}”</text>
+        <text class="lecture-quote__source">— {{item.author}} · p.{{item.page}}</text>
+      </view>
+    </view>
+
+    <view id="pages" class="lecture__section lecture__section--pages">
+      <view class="lecture__section-head">
+        <text class="lecture__kicker">ARCHIVE</text>
+        <text class="lecture__section-title">课件原页</text>
+      </view>
+      <text class="lecture__section-note">仅收录关键页。点击图片可全屏查看，图注保留 PDF 页码。</text>
+
+      <view class="gallery">
+        <view
+          wx:for="{{lecture.images}}"
+          wx:key="src"
+          class="gallery__item"
+          data-index="{{index}}"
+          bindtap="previewImage"
+          aria-role="button"
+          aria-label="查看第 {{lecture.order}} 讲第 {{item.page}} 页原图"
+        >
+          <view class="gallery__frame">
+            <image class="gallery__thumb" src="{{item.thumb}}" mode="widthFix" lazy-load />
+          </view>
+          <text class="gallery__caption">{{item.caption}}</text>
+          <text class="gallery__page">第 {{lecture.order}} 讲 · p.{{item.page}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{lecture.nextHint}}" class="next-hint">
+      <text class="next-hint__kicker">通向下一讲</text>
+      <text class="next-hint__text">{{lecture.nextHint}}</text>
+    </view>
+
+    <view class="lecture-nav">
+      <view
+        wx:if="{{prevLecture}}"
+        class="lecture-nav__item"
+        data-id="{{prevLecture.id}}"
+        bindtap="goLecture"
+        aria-role="button"
+        aria-label="上一讲：{{prevLecture.title}}"
+      >
+        <text class="lecture-nav__dir">← 上一讲</text>
+        <text class="lecture-nav__title">{{prevLecture.title}}</text>
+      </view>
+      <view wx:else class="lecture-nav__item lecture-nav__item--disabled">
+        <text class="lecture-nav__dir">← 上一讲</text>
+        <text class="lecture-nav__title">已是第一讲</text>
+      </view>
+
+      <view
+        wx:if="{{nextLecture}}"
+        class="lecture-nav__item lecture-nav__item--next"
+        data-id="{{nextLecture.id}}"
+        bindtap="goLecture"
+        aria-role="button"
+        aria-label="下一讲：{{nextLecture.title}}"
+      >
+        <text class="lecture-nav__dir">下一讲 →</text>
+        <text class="lecture-nav__title">{{nextLecture.title}}</text>
+      </view>
+      <view wx:else class="lecture-nav__item lecture-nav__item--disabled lecture-nav__item--next">
+        <text class="lecture-nav__dir">下一讲 →</text>
+        <text class="lecture-nav__title">待更新</text>
+      </view>
+    </view>
+
+    <text class="copyright">课件图片版权归授课教师及原作者所有，仅用于课程学习与展示。</text>
+  </view>
+</template>

@@ -8,14 +8,23 @@
   align-items: center;
   justify-content: space-between;
   min-height: 112rpx;
-  padding: 20rpx 6rpx;
+  padding: 22rpx 6rpx;
   border-bottom: 1rpx solid var(--color-line-cool);
+}
+
+.archive-row--pressed {
+  opacity: 0.72;
+}
+
+.archive-row__body {
+  flex: 1;
 }
 
 .archive-row__title {
   display: block;
   font-family: var(--font-serif);
   font-size: 31rpx;
+  line-height: 1.5;
 }
 
 .archive-row__meta {
@@ -25,7 +34,20 @@
   font-size: 23rpx;
 }
 
+.archive-row__action {
+  display: flex;
+  align-items: center;
+  margin-left: 18rpx;
+}
+
+.archive-row__label {
+  color: var(--color-gold);
+  font-size: 22rpx;
+  letter-spacing: 2rpx;
+}
+
 .archive-row__arrow {
+  margin-left: 8rpx;
   color: var(--color-gold);
   font-size: 30rpx;
 }

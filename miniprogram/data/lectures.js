@@ -9,7 +9,7 @@ const lectures = [
     pagePath: '/packageL1/pages/lecture/lecture',
     package: 'packageL1',
     keywords: ['《天问》', '宇宙距离阶梯', '哈勃', '脉冲星', 'FAST'],
-    cover: '',
+    cover: '/assets/covers/l1.jpg',
     summary: '这一讲从《天问》的追问出发，把“我们如何知道宇宙有多大”拆成可检验的观测步骤：月食让地球的形状显露，埃拉托斯特尼与阿利斯塔克用几何丈量地月与日地距离，勒维特与哈勃把尺度推向星系。后半程转到 FAST：脉冲星、快速射电暴、仙女座星系中的超级气泡与湍流，说明射电观测如何把宇宙尺度与星际物理连在一起。',
     questions: [
       '古人如何从月食与日影判断地球是球体，并量出地月、日地距离？',
@@ -108,7 +108,68 @@ const lectures = [
         page: 39
       }
     ],
-    images: [],
+    images: [
+      {
+        src: '/packageL1/assets/pages/l1-p15.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p15.jpg',
+        caption: '《天问》开篇：“遂古之初，谁传道之？上下未形，何由考之？”',
+        page: 15
+      },
+      {
+        src: '/packageL1/assets/pages/l1-p16.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p16.jpg',
+        caption: '宇宙年代示意：从早期宇宙到“137 亿年”的今天，标出脉冲星、快速射电暴等射电观测目标。',
+        page: 16
+      },
+      {
+        src: '/packageL1/assets/pages/l1-p20.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p20.jpg',
+        caption: '月食时地球投在月面上的影子呈圆弧，课件以此说明地球是球体。',
+        page: 20
+      },
+      {
+        src: '/packageL1/assets/pages/l1-p24.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p24.jpg',
+        caption: '阿利斯塔克用月相几何估计日地距离：Ds = 1 AU ≈ 350 D_M ≈ 1.5×10^8 km。',
+        page: 24
+      },
+      {
+        src: '/packageL1/assets/pages/l1-p28.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p28.jpg',
+        caption: '距离与时间：光速、天文单位、秒差距，以及光度、红移等距离指示。',
+        page: 28
+      },
+      {
+        src: '/packageL1/assets/pages/l1-p32.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p32.jpg',
+        caption: '哈勃与仙女座星云观测；课件标注“宇宙在膨胀”。',
+        page: 32
+      },
+      {
+        src: '/packageL1/assets/pages/l1-p34.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p34.jpg',
+        caption: '仙女座星系 M31；课件标注 FAST 与 JVLA 的观测尺度（10,000 光年 / 3,000 pc）。',
+        page: 34
+      },
+      {
+        src: '/packageL1/assets/pages/l1-p39.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p39.jpg',
+        caption: '蟹状星云与脉冲星；课件引“我们都是星尘（We are all made of stardust）”。',
+        page: 39
+      },
+      {
+        src: '/packageL1/assets/pages/l1-p45.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p45.jpg',
+        caption: '仙女座星系中的 118 个超级气泡，对应过去约 4000 万年内的约 7000 次超新星爆炸。',
+        page: 45
+      },
+      {
+        src: '/packageL1/assets/pages/l1-p48.jpg',
+        thumb: '/packageL1/assets/thumbs/l1-p48.jpg',
+        caption: '宇宙认知三段论：宇宙有规律；规律是人类可以认知的；认知通过观测达成。',
+        page: 48
+      }
+    ],
     nextHint: '下一讲把这条认知线索拉长：从托勒密的本轮，到伽利略、开普勒、牛顿，再到爱因斯坦与量子论。'
   }
 ];

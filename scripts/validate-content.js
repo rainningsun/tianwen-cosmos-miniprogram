@@ -190,6 +190,14 @@ function checkLectureData(app) {
       if (!routes.has(lecture.pagePath)) {
         fail(`${label} 的 pagePath 不在 app.json 分包中：${lecture.pagePath}`);
       }
+      if (lecture.cover) {
+        const cover = resolveAsset(lecture.cover);
+        if (!cover || !fs.existsSync(cover)) {
+          fail(`${label} 缺少封面图：${lecture.cover}`);
+        } else if (fs.statSync(cover).size > COVER_LIMIT) {
+          fail(`${label} 封面图超过 30KB：${lecture.cover}`);
+        }
+      }
       if (lecture.summary && lecture.summary.length < 120) {
         warn(`${label} 导读偏短（${lecture.summary.length} 字）`);
       }
