@@ -13,7 +13,7 @@
 
   <view wx:elif="{{lecture}}" class="page-shell lecture">
     <view class="lecture__hero">
-      <text class="eyebrow">LECTURE {{lecture.order}} · {{lecture.date}}</text>
+      <text class="eyebrow">LECTURE {{lecture.order}}{{lecture.date ? ' · ' + lecture.date : ''}}</text>
       <view class="lecture__title">{{lecture.title}}</view>
       <text wx:if="{{lecture.titleNote}}" class="lecture__title-note">{{lecture.titleNote}}</text>
       <view wx:if="{{lecture.keywords.length}}" class="lecture__keywords">

@@ -18,7 +18,7 @@
       <text class="lecture-card__orbit">✦</text>
       <text class="lecture-card__ordinal">{{lecture.orderLabel}}</text>
     </view>
-    <view class="lecture-card__date">{{lecture.date}}</view>
+    <view wx:if="{{lecture.date}}" class="lecture-card__date">{{lecture.date}}</view>
   </view>
 
   <view class="lecture-card__body">

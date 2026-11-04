@@ -965,7 +965,7 @@ const lectures = [
   {
     id: 'lecture-6',
     order: 6,
-    date: '10/29',
+    date: '',
     title: '宇宙元素',
     titleNote: '',
     sourcePdf: '第六讲：宇宙元素.pdf',

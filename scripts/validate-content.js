@@ -206,7 +206,7 @@ function checkLectureData(app) {
     ids.add(lecture.id);
 
     if (lecture.status === 'published') {
-      for (const field of ['title', 'date', 'pagePath', 'package', 'summary', 'sourcePdf']) {
+      for (const field of ['title', 'pagePath', 'package', 'summary', 'sourcePdf']) {
         if (!lecture[field]) fail(`${label} 缺少字段 ${field}`);
       }
       if (lecture.sourcePdf && !lecture.sourcePdf.toLowerCase().endsWith('.pdf')) {
