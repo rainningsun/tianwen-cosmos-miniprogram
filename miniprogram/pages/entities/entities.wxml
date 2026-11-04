@@ -1,8 +1,8 @@
 <view class="page-shell">
   <view class="ref-hero">
-    <text class="eyebrow">ENTITIES</text>
-    <text class="shell-title">人物与装置</text>
-    <text class="shell-desc">按人物、装置与思想链整理；角色与规格来自课件，生平/背景为课外补充并单独标注。</text>
+    <text class="eyebrow">{{pageMeta.eyebrow}}</text>
+    <text class="shell-title">{{pageMeta.title}}</text>
+    <text class="shell-desc">{{pageMeta.desc}}</text>
 
     <view class="segmented">
       <view
@@ -78,6 +78,6 @@
       <text class="empty-panel__note">换一个分类，或回到全部。</text>
     </view>
 
-    <text class="copyright">人物与装置条目由编者据课件整理；页码为 PDF 阅读器页码。</text>
+    <text class="copyright">{{pageMeta.copyright}}</text>
   </view>
 </view>

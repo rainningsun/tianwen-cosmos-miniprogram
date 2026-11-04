@@ -120,10 +120,12 @@ function testEntities() {
   const list = instantiate(loadPage('miniprogram/pages/entities/entities.js'));
   list.onLoad({ mode: 'person' });
   assert.strictEqual(list.data.items.length, 34, '人物列表应有 34 位');
+  assert.strictEqual(list.data.pageMeta.title, '人物与装置', '人物页大标题错误');
   list.selectMode({ currentTarget: { dataset: { mode: 'device' } } });
   assert.strictEqual(list.data.items.length, 6, '装置列表应有 6 个');
   list.selectMode({ currentTarget: { dataset: { mode: 'chain' } } });
   assert.strictEqual(list.data.chains.length, 7, '思想链应有 7 条');
+  assert.strictEqual(list.data.pageMeta.title, '思想链', '思想链页大标题错误');
 
   const detail = instantiate(loadPage('miniprogram/pages/entity-detail/entity-detail.js'));
   detail.onLoad({ id: 'fast-device' });

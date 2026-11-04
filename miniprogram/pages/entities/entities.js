@@ -11,10 +11,32 @@ const MODES = [
 const PERSON_CATEGORIES = ['全部', '古代天文', '物理与相对论', '距离阶梯', '射电天文', 'SETI', '中国天眼', '智能与认知'];
 const DEVICE_CATEGORIES = ['全部', '光学', '射电', '空间'];
 
+const MODE_META = {
+  person: {
+    eyebrow: 'ENTITIES',
+    title: '人物与装置',
+    desc: '按人物、装置与思想链整理；角色与规格来自课件，生平/背景为课外补充并单独标注。',
+    copyright: '人物与装置条目由编者据课件整理；页码为 PDF 阅读器页码。'
+  },
+  device: {
+    eyebrow: 'ENTITIES',
+    title: '人物与装置',
+    desc: '按人物、装置与思想链整理；角色与规格来自课件，生平/背景为课外补充并单独标注。',
+    copyright: '人物与装置条目由编者据课件整理；页码为 PDF 阅读器页码。'
+  },
+  chain: {
+    eyebrow: 'THOUGHT CHAINS',
+    title: '思想链',
+    desc: '把人物与装置串成可阅读的线索；节点与讲次来自课件，点节点可回到对应条目。',
+    copyright: '思想链由编者据课件人物关系整理；节点可点回人物/装置条目。'
+  }
+};
+
 Page({
   data: {
     modes: MODES,
     mode: 'person',
+    pageMeta: MODE_META.person,
     categories: PERSON_CATEGORIES,
     activeCategory: '全部',
     items: [],
@@ -28,13 +50,17 @@ Page({
 
   onLoad(options) {
     const mode = options && ['person', 'device', 'chain'].includes(options.mode) ? options.mode : 'person';
-    this.setData({ mode, activeCategory: '全部' }, () => this.apply());
+    const pageMeta = MODE_META[mode];
+    this.setData({ mode, activeCategory: '全部', pageMeta }, () => this.apply());
+    wx.setNavigationBarTitle({ title: pageMeta.title });
   },
 
   selectMode(event) {
     const mode = event.currentTarget.dataset.mode;
     const categories = mode === 'device' ? DEVICE_CATEGORIES : PERSON_CATEGORIES;
-    this.setData({ mode, activeCategory: '全部', categories }, () => this.apply());
+    const pageMeta = MODE_META[mode] || MODE_META.person;
+    this.setData({ mode, activeCategory: '全部', categories, pageMeta }, () => this.apply());
+    wx.setNavigationBarTitle({ title: pageMeta.title });
   },
 
   selectCategory(event) {
