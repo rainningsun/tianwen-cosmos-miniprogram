@@ -4,7 +4,7 @@
 
 - 课程名：天问：宇宙之美
 - 主讲：李菂
-- 当前状态：v2.1.0；5 讲已上线；五个一级模块已完成；第六讲保留“待更新”占位
+- 当前状态：v2.2.0；6 讲已上线；五个一级模块已完成；第六讲《宇宙元素》已接入
 - 正式 AppID：`wx2e8e3cde13016238`
 - 仓库：`https://github.com/rainningsun/tianwen-cosmos-miniprogram`（private）
 
@@ -12,7 +12,7 @@
 
 | Tab | 页面 | 回答的问题 | 主要内容 |
 |---|---|---|---|
-| 课程 | `pages/index/index` | 这门课讲什么？从哪里开始？ | 课程星图、讲次叙事、第六讲占位、索引/探索入口 |
+| 课程 | `pages/index/index` | 这门课讲什么？从哪里开始？ | 课程星图、讲次叙事、六讲内容、索引/探索入口 |
 | 主线 | `pages/topic/topic` | 课程的核心观点是什么？ | 6 篇跨讲专题 + 相关索引/探索链接 |
 | 索引 | `pages/reference/reference` | 某个概念/人物/装置是什么？ | 概念词典、人物与装置、思想链 |
 | 探索 | `pages/explore/explore` | 尺度多大？时间多长？还有什么不知道？ | 宇宙尺度、双时间线、未解之谜 |
@@ -34,7 +34,7 @@
 |---|---|---|
 | ![课程首页](docs/screenshots/01-home.png) | ![索引](docs/screenshots/02b-reference-cards.png) | ![宇宙尺度](docs/screenshots/04-scale.png) |
 
-完整验收截图与结果见 [`docs/release-v2.1.0.md`](docs/release-v2.1.0.md)。
+v2.2.0 的接入结果与校验见 [`docs/release-v2.2.0.md`](docs/release-v2.2.0.md)；v2.1.0 的验收截图见 [`docs/release-v2.1.0.md`](docs/release-v2.1.0.md)。
 
 ## 内容归属
 
@@ -57,15 +57,15 @@
 project.config.json
 miniprogram/
   app.js / app.json / app.wxss / sitemap.json
-  assets/covers/          5 张讲次封面（主包）
+  assets/covers/          6 张讲次封面（主包）
   components/             lecture-card / section-head / quote-block
   data/
     lectures.js           唯一讲次内容源
     topics.js             6 个思想主线专题
-    glossary.js           39 个概念词条
-    entities.js           30 位人物、6 个装置、6 条思想链（含课外生平/背景）
+    glossary.js           45 个概念词条
+    entities.js           34 位人物、6 个装置、7 条思想链（含课外生平/背景）
     scale.js              8 个宇宙尺度层级
-    timeline.js           6 个宇宙节点 + 13 个观测史节点
+    timeline.js           6 个宇宙节点 + 16 个观测史节点
     questions.js          6 个未解之谜
   pages/                  五个 tab 与二级页面（全部主包）
   packageL1/              第 1-2 讲详情与原页
@@ -86,7 +86,8 @@ docs/
   removed-assignment.md        旧期末任务模块移除记录
   v2-data-notes.md             v2 补充数据与待确认项
   wechat-listing.md            名称、简介、服务类目与提审资料
-  lecture-6-integration.md     第六讲接入五个模块的清单
+  lecture-6-integration.md     第六讲接入五个模块的记录
+  release-v2.2.0.md            v2.2.0 第六讲接入与校验结果
   release-v2.1.0.md            v2.1.0 变更、截图与代码扫描结果
   add-lecture.md               新增讲次操作手册
   content-sources.md           内容来源、页码与待确认项
@@ -105,10 +106,10 @@ docs/
 
 > 仓库中不保存上传私钥。真机预览、上传体验版需要管理员在微信开发者工具中扫码授权。
 
-## 新增第 6 讲
+## 新增第 7 讲及后续讲次
 
-第 6 讲及后续讲次只改数据与资源，不改页面渲染逻辑。完整步骤见
-[`docs/add-lecture.md`](docs/add-lecture.md)；第六讲接入五个模块的清单见
+第 7 讲及后续讲次只改数据与资源，不改页面渲染逻辑。完整步骤见
+[`docs/add-lecture.md`](docs/add-lecture.md)；第六讲接入五个模块的记录见
 [`docs/lecture-6-integration.md`](docs/lecture-6-integration.md)。
 
 概要：
@@ -123,11 +124,11 @@ docs/
 8. 在微信开发者工具中检查首页、详情、原页、索引与探索；
 9. 提交 `content: add lecture 6` 并推送。
 
-第 6 讲未到位时，保持 `status: 'upcoming'`，不要填假内容。
+后续讲次未到位时，保持 `status: 'upcoming'`，不要填假内容。
 
 ## 内容来源
 
-所有课程观点、引文、人物、时间与数字均来自本地 5 份课程 PDF，页码对照与待确认项见
+所有课程观点、引文、人物、时间与数字均来自本地 6 份课程 PDF，页码对照与待确认项见
 [`docs/content-sources.md`](docs/content-sources.md)。
 
 v2 新增的尺度层级、时间线、未解之谜与索引条目来源，以及标注为“课外补充”的数字，见
@@ -139,20 +140,20 @@ v2 新增的尺度层级、时间线、未解之谜与索引条目来源，以�
 
 | 包 | 当前体积 | 上限 |
 |---|---:|---:|
-| 主包 | 407.2 KB | 1.5 MB（代码质量建议） |
+| 主包 | 455.3 KB | 1.5 MB（代码质量建议） |
 | `packageL1`（第 1-2 讲） | 1.28 MB | 1.5 MB（代码质量建议） |
 | `packageL2`（第 3-4 讲） | 1.46 MB | 1.5 MB（代码质量建议） |
-| `packageL3`（第 5-6 讲） | 712.9 KB | 1.5 MB（代码质量建议） |
-| 总包 | 约 3.83 MB | 20 MB |
+| `packageL3`（第 5-6 讲） | 1.47 MB | 1.5 MB（代码质量建议） |
+| 总包 | 约 4.66 MB | 20 MB |
 
-原页图单张 ≤120KB（实际 ≤107KB），缩略图 ≤20KB，封面 ≤30KB。
+原页图单张 ≤120KB（实际 ≤110KB），缩略图 ≤20KB，封面 ≤30KB。`packageL3` 因新增第六讲 10 张原页，已把 p.10、p.41 重新压缩到约 82KB，使分包保持在 1.5MB 以内。
 `packageL2` 的 4 张最大原页已压到 800px 宽，使分包低于开发者工具 1.5MB 建议线；完整预览仍从原页图读取。
 
 ## 代码质量扫描
 
 - 主包未使用 JS：已通过把讲次公共逻辑分别放入 `packageL1/utils`、`packageL2/utils`、`packageL3/utils` 解决。
 - 主包体积、主包未使用组件：通过。
-- 图片和音频资源：仍会提示总量超过 200KB。这是开发者工具对全部代码包图片总量的建议值；当前 50 张课件原页必须离线打包，压到 200KB 以下会严重损失可读性。若后续必须消掉该提示，需要把原页迁到云存储/CDN 并配置合法域名。
+- 图片和音频资源：仍会提示总量超过 200KB。这是开发者工具对全部代码包图片总量的建议值；当前 60 张课件原页必须离线打包，压到 200KB 以下会严重损失可读性。若后续必须消掉该提示，需要把原页迁到云存储/CDN 并配置合法域名。
 - 修改三个 `packageLx/utils/lecture-page.js` 时需同步，静态校验会检查三个讲次模板都传入 `exploreLinks`。
 
 ## 校验
@@ -170,7 +171,7 @@ node scripts/smoke-pages.js
 - 尺度滑杆切换与边界；
 - 双时间线两条轨道；
 - 未解之谜列表与详情；
-- 5 讲详情、上下讲导航与第六讲占位。
+- 6 讲详情与上下讲导航。
 
 它不替代微信开发者工具编译。
 
@@ -192,14 +193,14 @@ GitHub Actions 在 push / PR 时运行校验与页面逻辑冒烟测试，并再
 
 ## 验证状态与已知待确认项
 
-- 静态校验通过；包体预算通过；微信开发者工具编译通过。
-- 五个 tab 与五个新模块已在开发者工具中逐页打开验证。
+- 静态校验与冒烟测试通过；包体预算通过。第六讲新增页面与图片待微信开发者工具人工编译验收。
+- 五个 tab 与五个新模块已在 v2.1.0 的开发者工具中逐页打开验证。
 - 首页保留课程星图为主，新增索引/探索入口；索引页三张卡片并列：概念词典 / 人物与装置 / 思想链。
-- 30 位人物与 6 个装置补充了短生平/背景，统一标为“课外补充”；人物/装置图片接口已预留，等授权素材后再加。
+- 34 位人物与 6 个装置补充了短生平/背景，统一标为“课外补充”；人物/装置图片接口已预留，等授权素材后再加。
 - 第 3 讲 p.20 的“138 亿 / 137 亿年”和“83% + 23% + 4%”按原文保留。
 - 尺度滑杆中地月距离、太阳系边界、银河系直径、仙女座距离、宇宙学尺度标为“课外补充”，只作量级参考。
 - 第 5 讲 p.24 的行星数量为课件估算，保留“≥ / 约”措辞。
-- 第 6 讲尚未提供课件，只保留待更新占位；接入清单见 `docs/lecture-6-integration.md`。
+- 第 6 讲《宇宙元素》已接入 10 张原页、8 个概念、6 位人物/装置、2 条金句；接入记录见 `docs/lecture-6-integration.md`。
 
 ## 版权
 
