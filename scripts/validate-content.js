@@ -350,8 +350,8 @@ function checkGlossary() {
   }
 
   const glossary = Array.isArray(data.glossary) ? data.glossary : [];
-  if (glossary.length < 30 || glossary.length > 40) {
-    fail(`概念词典应为 30-40 条，当前 ${glossary.length} 条`);
+  if (glossary.length < 30 || glossary.length > 50) {
+    fail(`概念词典应为 30-50 条，当前 ${glossary.length} 条`);
   }
 
   const categories = ['观测与方法', '天体与现象', '物理概念', '装置与技术', '思想与人文'];

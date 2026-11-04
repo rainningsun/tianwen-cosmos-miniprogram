@@ -64,7 +64,7 @@ const topics = [
     layout: 'editorial',
     lede: '课件把济慈的诗句放在课程开篇与第 3 讲，用“美—知”提示科学中的审美判断：一个理论的美，常常与它能否被观测证实纠缠在一起。',
     thesis: 'Beauty is truth, truth beauty — that is all ye know on earth, and all ye need to know.',
-    source: '第 1 讲 · p.18；第 3 讲 · p.5',
+    source: '第 1 讲 · p.18；第 3 讲 · p.5；第 6 讲 · p.3、p.64-73',
     sections: [
       {
         title: '为什么把诗放进天文课',
@@ -80,6 +80,11 @@ const topics = [
         title: '一个课程内的例子',
         text: '麦克斯韦方程把电、磁与光统一，课件称其统一了“天堂的光和尘世的电”；这类统一感正是“美—知”的典型。',
         source: '第 2 讲 · p.29'
+      },
+      {
+        title: '一封陌生女人的来信',
+        text: '第 6 讲以李菂《一封陌生女人的来信：由金唱片到 SETI》开篇，把旅行者 2 号离开日球层写成“一根发丝”的尺度；课程末页收录学生以 FAST 为主题的书画、服装与 AI 歌曲。',
+        source: '第 6 讲 · p.3、p.64-73'
       }
     ],
     quote: {
@@ -87,9 +92,9 @@ const topics = [
       author: 'John Keats（济慈）',
       page: 18
     },
-    lectureIds: ['lecture-1', 'lecture-2', 'lecture-3'],
-    relatedGlossaryIds: ['maxwell-equations'],
-    relatedEntityIds: ['faraday-maxwell'],
+    lectureIds: ['lecture-1', 'lecture-2', 'lecture-3', 'lecture-6'],
+    relatedGlossaryIds: ['maxwell-equations', 'voyager-record'],
+    relatedEntityIds: ['faraday-maxwell', 'sagan'],
     relatedExplore: []
   },
   {
@@ -167,7 +172,7 @@ const topics = [
     layout: 'timeline',
     lede: '《天问》问天地未形如何考知；几千年后，射电望远镜把这个问题带到射电波段的观测窗口，最后落在贵州山洼里的 500 米口径。',
     thesis: '古人问天 → 射电窗口 → 阿雷西博 → 中国天眼 FAST。',
-    source: '第 1 讲 · p.15；第 4 讲 · p.10、p.20、p.50',
+    source: '第 1 讲 · p.15；第 4 讲 · p.10、p.20、p.50；第 6 讲 · p.41、p.46',
     steps: [
       {
         title: '古人问天',
@@ -188,6 +193,11 @@ const topics = [
         title: '中国天眼 FAST',
         text: '500 米口径；4500 个主动面单元、30 吨馈源舱；2016 年 9 月落成。',
         source: '第 4 讲 · p.50'
+      },
+      {
+        title: '宇宙元素与分子宇宙',
+        text: '第 6 讲把 FAST 的 HINSA 观测接到元素与星际化学：用冷中性氢测量暗云年龄，再结合费米伽马射线追踪低能宇宙线。',
+        source: '第 6 讲 · p.41、p.46'
       }
     ],
     sections: [
@@ -205,6 +215,11 @@ const topics = [
         title: '从建成到科学产出',
         text: 'FAST 首批成果确认 6 颗脉冲星；截至课件写作时已发现超过 1000 颗新脉冲星。',
         source: '第 4 讲 · p.54'
+      },
+      {
+        title: '元素、分子与 FAST',
+        text: '第 6 讲把元素合成、星际分子与 FAST 观测接在一起：HINSA 测量暗云年龄，FAST 与费米伽马射线测量低能宇宙线电离率；ALMA 与空间望远镜则追踪星际分子和河外分子氧气。',
+        source: '第 6 讲 · p.41、p.46、p.53、p.60'
       }
     ],
     quote: {
@@ -212,9 +227,9 @@ const topics = [
       author: '课件原文',
       page: 63
     },
-    lectureIds: ['lecture-1', 'lecture-4'],
-    relatedGlossaryIds: ['fast', 'arecibo', 'frb'],
-    relatedEntityIds: ['fast-device', 'arecibo-device', 'nan-rendong'],
+    lectureIds: ['lecture-1', 'lecture-4', 'lecture-6'],
+    relatedGlossaryIds: ['fast', 'arecibo', 'frb', 'hinsa', 'molecular-universe', 'stellar-nucleosynthesis'],
+    relatedEntityIds: ['fast-device', 'arecibo-device', 'nan-rendong', 'penzias-wilson'],
     relatedExplore: [
       { kind: 'timeline', mode: 'human', title: '观测历史', note: '从央斯基、阿雷西博到 FAST' },
       { kind: 'question', target: 'frb-origin', title: '快速射电暴从哪里来？', note: '未解之谜 · 高能现象' }

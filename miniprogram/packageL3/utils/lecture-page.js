@@ -24,6 +24,11 @@ const LECTURE_EXPLORE = {
     { kind: 'timeline', mode: 'human', title: '观测历史', note: '从日影到旅行者号与 FAST' },
     { kind: 'question', target: 'are-we-alone', title: '我们在宇宙中孤独吗？', note: '未解之谜 · 生命与文明' },
     { kind: 'question', target: 'interstellar-travel', title: '人类能走多远？', note: '未解之谜 · 生命与文明' }
+  ],
+  'lecture-6': [
+    { kind: 'timeline', mode: 'cosmic', title: '宇宙的 138 亿年', note: '从最初几分钟的轻元素到今天的分子宇宙' },
+    { kind: 'timeline', mode: 'human', title: '观测历史', note: '从微波背景、21 厘米线到 FAST' },
+    { kind: 'question', target: 'dark-sector', title: '暗物质和暗能量究竟是什么？', note: '未解之谜 · 宇宙构成' }
   ]
 };
 

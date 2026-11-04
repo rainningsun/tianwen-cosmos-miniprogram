@@ -960,26 +960,196 @@ const lectures = [
         page: 52
       }
     ],
-    nextHint: '课程在这里暂告一段落；后续讲次将按同一套数据与页面结构增量加入。'
+    nextHint: '下一讲回到“我们从哪里来”：从大爆炸的第一份元素配方，到恒星核合成、r 过程与 FAST 眼中的星际分子。'
   },
   {
     id: 'lecture-6',
     order: 6,
-    date: '待定',
-    title: '第六讲',
+    date: '10/29',
+    title: '宇宙元素',
     titleNote: '',
-    status: 'upcoming',
-    pagePath: '',
-    package: '',
-    keywords: [],
-    cover: '',
-    summary: '',
-    questions: [],
-    concepts: [],
-    people: [],
-    quotes: [],
-    images: [],
-    nextHint: ''
+    sourcePdf: '第六讲：宇宙元素.pdf',
+    status: 'published',
+    pagePath: '/packageL3/pages/lecture/lecture',
+    package: 'packageL3',
+    keywords: ['宇宙元素', '大爆炸核合成', '恒星核合成', 'r 过程', 'HINSA', '分子宇宙'],
+    cover: '/assets/covers/l6.jpg',
+    summary: '这一讲把“我们从哪里来”拆成一条元素制造链：大爆炸最初几分钟留下氢、氦和少量锂；恒星在主序、红巨星与渐近巨星支阶段以核聚变制造碳、氧、铁等元素，渐近巨星支的 s 过程慢慢添加中子；超新星把恒星分层抛入星际介质，中子星并合则通过 r 过程制造更重的核素。后半程从原子转向分子：HINSA 用中性氢窄线自吸收测量暗云年龄，FAST 结合费米伽马射线追踪低能宇宙线，ALMA 与空间望远镜则描绘星际分子与河外分子氧气。',
+    questions: [
+      '大爆炸最初几分钟留下了哪些元素，我们如何从宇宙微波背景读出这份“第一份配方”？',
+      '恒星在主序、红巨星与渐近巨星支阶段分别制造哪些元素，s 过程与 r 过程有什么区别？',
+      'HINSA 如何用中性氢窄线自吸收测量暗云的年龄？',
+      '从星际分子到河外分子氧气，射电与毫米波观测如何追踪宇宙中的元素与化学演化？'
+    ],
+    concepts: [
+      {
+        term: '宇宙构成',
+        termId: 'cosmic-composition',
+        desc: '课件以 ΛCDM 给出约 5% 普通物质、27% 暗物质、68% 暗能量；普通物质是恒星、气体与我们的来源。',
+        page: 8
+      },
+      {
+        term: '大爆炸核合成',
+        termId: 'big-bang-nucleosynthesis',
+        desc: '最初几分钟形成氢约 75%、氦约 25%，锂少于 0.00000005%；38 万年后的微波背景是这份“第一份配方”的余晖。',
+        page: 10
+      },
+      {
+        term: '恒星光谱型',
+        termId: 'spectroscopy',
+        desc: '按吸收线把恒星分为 OBAFGKM，从热蓝到冷红；光谱型是测量表面温度与理解恒星演化的入口。',
+        page: 21
+      },
+      {
+        term: '赫罗图',
+        termId: 'hr-diagram',
+        desc: '以光度与表面温度组织恒星；太阳从主序氢燃烧，经红巨星、核心氦燃烧与 AGB 壳层燃烧，最后暴露核心并冷却为白矮星。',
+        page: 25
+      },
+      {
+        term: '恒星核合成',
+        termId: 'stellar-nucleosynthesis',
+        desc: '太阳以 4p + 2e⁻ → ⁴He + 2νₑ 释放约 26.7 MeV；三重α过程与 CNO 循环继续制造碳、氧等，渐近巨星支的 s 过程缓慢添加中子。',
+        page: 26
+      },
+      {
+        term: 'r 过程',
+        termId: 'r-process',
+        desc: '快中子俘获；中子星并合 GW170817 的千新星与引力波、电磁对应体把重核素的来源放到同一现场。',
+        page: 29
+      },
+      {
+        term: '中性氢窄线自吸收',
+        termId: 'hinsa',
+        desc: 'HINSA 追踪被 H₂ 碰撞冷却的冷中性氢，是测量暗云年龄与星际磁场的探针。',
+        page: 41
+      },
+      {
+        term: '分子宇宙',
+        termId: 'molecular-universe',
+        desc: '从 CH、OH、H₂O、CO 到 O₂ 与 C₆₀，射电与毫米波把星际空间从“原子气体”扩展为分子与化学网络。',
+        page: 53
+      }
+    ],
+    people: [
+      {
+        name: '卡尔·萨根',
+        en: 'Carl Sagan',
+        entityId: 'sagan',
+        note: '与 Ann Druyan 出现在旅行者金唱片叙事中；课件以“一封陌生女人的来信”开篇。',
+        page: 3
+      },
+      {
+        name: '彭齐亚斯与威尔逊',
+        en: 'Arno Penzias / Robert Wilson',
+        entityId: 'penzias-wilson',
+        note: '发现宇宙微波背景辐射，1978 年诺贝尔物理学奖；课件在 p.10-11、p.52 引用。',
+        page: 10
+      },
+      {
+        name: '赫茨普龙与罗素',
+        en: 'Ejnar Hertzsprung / Henry Norris Russell',
+        entityId: 'hertzsprung-russell',
+        note: '分别提出恒星光度—温度图，后来成为赫罗图。',
+        page: 24
+      },
+      {
+        name: '汉斯·贝特',
+        en: 'Hans Bethe',
+        entityId: 'bethe',
+        note: '解释恒星如何通过核聚变发光，1967 年诺贝尔物理学奖。',
+        page: 26
+      },
+      {
+        name: '威廉·福勒',
+        en: 'W. A. Fowler',
+        entityId: 'fowler',
+        note: '研究恒星中的核合成与 s 过程，1983 年诺贝尔物理学奖。',
+        page: 27
+      },
+      {
+        name: '中国天眼 FAST',
+        en: 'Five-hundred-meter Aperture Spherical radio Telescope',
+        entityId: 'fast-device',
+        note: '以 HINSA 测量暗云年龄与星际磁场，并结合费米伽马射线追踪低能宇宙线。',
+        page: 41
+      }
+    ],
+    quotes: [
+      {
+        text: '太阳，这颗普通而忠厚的恒星，在她眼中，也就是放在伸出的掌心的一根发丝的宽度。',
+        author: '李菂《一封陌生女人的来信：由金唱片到SETI》',
+        page: 3
+      },
+      {
+        text: 'FAST的测量表明分子云已经克服了磁通量问题，处于超临界状态，挑战了经典模型',
+        author: 'Ching, Li* et al. 2022 Nature',
+        page: 17
+      }
+    ],
+    images: [
+      {
+        src: '/packageL3/assets/pages/l6-p02.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p02.jpg',
+        caption: '宇宙年代：从大爆炸、原子氢气、首批恒星与星系，到约 92 亿年太阳系形成与 137 亿年的今天；图中标出脉冲星、快速射电暴、黑洞与地外文明等射电目标。',
+        page: 2
+      },
+      {
+        src: '/packageL3/assets/pages/l6-p10.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p10.jpg',
+        caption: '“第一份配方”：氢约 75%、氦约 25%、锂少于 0.00000005%；右侧为 38 万年后的宇宙微波背景，彭齐亚斯与威尔逊获 1978 年诺贝尔物理学奖。',
+        page: 10
+      },
+      {
+        src: '/packageL3/assets/pages/l6-p25.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p25.jpg',
+        caption: '太阳在赫罗图上的演化路径：主序氢燃烧、红巨星、核心氦燃烧、AGB 壳层燃烧，最后暴露核心并冷却为白矮星；课件注明为示意图。',
+        page: 25
+      },
+      {
+        src: '/packageL3/assets/pages/l6-p26.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p26.jpg',
+        caption: '太阳如何发光：4p + 2e⁻ → ⁴He + 2νₑ，Q ≈ 26.7 MeV；三重α过程与 CNO 循环继续制造更重元素，贝特获 1967 年诺贝尔物理学奖。',
+        page: 26
+      },
+      {
+        src: '/packageL3/assets/pages/l6-p28.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p28.jpg',
+        caption: '爆炸制造并抛撒元素：核心坍缩把恒星分层抛入星际介质，Ia 型超新星制造大量铁与硅酸盐；图为仙后座 A 超新星遗迹。',
+        page: 28
+      },
+      {
+        src: '/packageL3/assets/pages/l6-p29.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p29.jpg',
+        caption: '中子星并合制造重核：快中子俘获的 r 过程；GW170817（2017）同时给出引力波与电磁对应体，图中标出千新星。',
+        page: 29
+      },
+      {
+        src: '/packageL3/assets/pages/l6-p31.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p31.jpg',
+        caption: '宇宙物质循环：原子 ↔ 分子 ↔ 恒星形成 ↔ 恒星核聚变 ↔ 死亡与反馈，把星际介质、恒星与元素合成串成闭环。',
+        page: 31
+      },
+      {
+        src: '/packageL3/assets/pages/l6-p41.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p41.jpg',
+        caption: '中性氢窄线自吸收（HINSA）：冷中性氢被 H₂ 碰撞冷却，形成可测量的吸收线；课件把它用于测量暗云年龄与星际磁场。',
+        page: 41
+      },
+      {
+        src: '/packageL3/assets/pages/l6-p53.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p53.jpg',
+        caption: '分子宇宙发现历程：从 1937 年的 CH、1963 年的 OH、1970 年的 CO，到 2002/2011 年的 O₂ 与 2004/2010 年的 C₆₀；金色一栏标出 Goldsmith & Li 的氧分子工作。',
+        page: 53
+      },
+      {
+        src: '/packageL3/assets/pages/l6-p60.jpg',
+        thumb: '/packageL3/assets/thumbs/l6-p60.jpg',
+        caption: '河外分子氧气：Mrk 231 的光谱与作者列表；论文标题为“Molecular Oxygen in the Nearest QSO Mrk 231”（ApJ 889:129, 2020）。',
+        page: 60
+      }
+    ],
+    nextHint: '课程在这里暂告一段落；后续讲次将按同一套数据与页面结构增量加入。'
   }
 ];
 
