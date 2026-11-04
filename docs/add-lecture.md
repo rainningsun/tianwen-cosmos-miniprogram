@@ -101,7 +101,7 @@ packageLx/assets/thumbs/lN-pXX.jpg
 
 要求：
 
-- `date` 可留空；留空时首页日期角标、详情页眉和原页索引会自动隐藏日期。
+- `date` 可留空；留空时首页日期角标与详情页眉会自动隐藏日期。“原页”索引对所有讲次统一不显示日期。
 - `summary` 150-250 字；
 - `questions` 2-4 个；
 - `concepts` 5-8 个；

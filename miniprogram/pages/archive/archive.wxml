@@ -20,7 +20,7 @@
     >
       <view class="archive-row__body">
         <text class="archive-row__title">{{item.orderLabel}} · {{item.status === 'upcoming' ? '待更新' : item.title}}</text>
-        <text wx:if="{{item.status === 'published'}}" class="archive-row__meta">{{item.date ? item.date + ' · ' : ''}}收录 {{item.count}} 页</text>
+        <text wx:if="{{item.status === 'published'}}" class="archive-row__meta">收录 {{item.count}} 页</text>
         <text wx:else class="archive-row__meta">课件尚未提供 · 暂未收录</text>
       </view>
       <view class="archive-row__action">
