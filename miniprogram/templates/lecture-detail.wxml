@@ -184,7 +184,7 @@
       </view>
       <view wx:else class="lecture-nav__item lecture-nav__item--disabled lecture-nav__item--next">
         <text class="lecture-nav__dir">下一讲 →</text>
-        <text class="lecture-nav__title">待更新</text>
+        <text class="lecture-nav__title">已是最后一讲</text>
       </view>
     </view>
 

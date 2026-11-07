@@ -8,7 +8,7 @@ Component({
 
   methods: {
     onTap() {
-      if (this.data.lecture.status !== 'published') return;
+      if (!this.data.lecture.id) return;
       this.triggerEvent('select', { id: this.data.lecture.id });
     }
   }

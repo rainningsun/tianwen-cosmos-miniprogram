@@ -39,7 +39,6 @@
     <view class="count-line">
       <text class="count-line__num">{{publishedCount}}</text>
       <text class="count-line__label">讲已上线</text>
-      <text wx:if="{{upcoming}}" class="count-line__next">下一讲 · 待更新</text>
     </view>
 
     <section-head
@@ -55,10 +54,6 @@
         <lecture-card lecture="{{item}}" bind:select="goLecture" />
       </view>
 
-      <view wx:if="{{upcoming}}" class="timeline__item timeline__item--upcoming">
-        <view class="timeline__node timeline__node--hollow" aria-hidden="true"></view>
-        <lecture-card lecture="{{upcoming}}" />
-      </view>
     </view>
 
     <view wx:else class="empty-panel">

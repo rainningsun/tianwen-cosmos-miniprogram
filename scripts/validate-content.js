@@ -283,16 +283,8 @@ function checkLectureData(app) {
           fail(`${label} 存在字段不全的金句：${quote.text || '(空)'}`);
         }
       }
-    } else if (lecture.status === 'upcoming') {
-      const contentFields = ['summary', 'questions', 'concepts', 'people', 'quotes', 'images'];
-      for (const field of contentFields) {
-        const value = lecture[field];
-        if (Array.isArray(value) ? value.length > 0 : Boolean(value)) {
-          fail(`${label} 是 upcoming，但填入了 ${field} 内容`);
-        }
-      }
     } else {
-      fail(`${label} 的 status 必须是 published 或 upcoming`);
+      fail(`${label} 的 status 必须是 published`);
     }
   }
 

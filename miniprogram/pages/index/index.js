@@ -1,4 +1,4 @@
-const { getPublishedLectures, getNextLecture, getLectureById } = require('../../data/lectures');
+const { getPublishedLectures, getLectureById } = require('../../data/lectures');
 const { lectureLabel } = require('../../utils/format');
 
 const TOPIC_ENTRIES = [
@@ -25,7 +25,6 @@ Page({
     lecturer: '李菂',
     publishedCount: 0,
     lectures: [],
-    upcoming: null,
     topicEntries: TOPIC_ENTRIES,
     starfieldEnabled: true
   },
@@ -41,23 +40,14 @@ Page({
   },
 
   refresh() {
-    const published = getPublishedLectures();
-    const upcoming = getNextLecture();
-    const lectures = published.map((lecture) => Object.assign({}, lecture, {
+    const lectures = getPublishedLectures().map((lecture) => Object.assign({}, lecture, {
       orderLabel: lectureLabel(lecture.order),
       keywords: lecture.keywords || []
     }));
-    const upcomingView = upcoming
-      ? Object.assign({}, upcoming, {
-        orderLabel: lectureLabel(upcoming.order),
-        keywords: []
-      })
-      : null;
 
     this.setData({
       publishedCount: lectures.length,
-      lectures,
-      upcoming: upcomingView
+      lectures
     });
   },
 

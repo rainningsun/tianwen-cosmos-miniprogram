@@ -246,6 +246,19 @@ const tracks = [
         sourceType: 'course'
       },
       {
+        id: 'pulsar-1967',
+        label: '1967',
+        timeLabel: '1967',
+        title: '休伊什与贝尔发现脉冲星',
+        description: '射电记录中出现周期性脉冲；脉冲星成为 20 世纪天文学四大发现之一。',
+        lectureIds: ['lecture-7'],
+        pages: [10],
+        relatedEntityIds: ['hewich-bell'],
+        relatedTermIds: ['pulsar-binary'],
+        relatedTopicIds: ['tianwen-fast'],
+        sourceType: 'course'
+      },
+      {
         id: 'voyager',
         label: '1970 年代',
         timeLabel: '1977',
@@ -256,6 +269,19 @@ const tracks = [
         relatedEntityIds: ['voyager-device', 'sagan'],
         relatedTermIds: ['voyager-record'],
         relatedTopicIds: ['are-we-alone'],
+        sourceType: 'course'
+      },
+      {
+        id: 'frb-2007',
+        label: '2007',
+        timeLabel: '2007',
+        title: '洛里默发现首个快速射电暴',
+        description: 'Parkes 档案数据中的毫秒射电暴，后来被称为“Lorimer burst”；论文估计类似事件每天可能有数百次。',
+        lectureIds: ['lecture-7'],
+        pages: [18],
+        relatedEntityIds: ['lorimer'],
+        relatedTermIds: ['frb'],
+        relatedTopicIds: ['tianwen-fast'],
         sourceType: 'course'
       },
       {
@@ -281,6 +307,19 @@ const tracks = [
         pages: [29],
         relatedEntityIds: [],
         relatedTermIds: ['r-process'],
+        relatedTopicIds: ['tianwen-fast'],
+        sourceType: 'course'
+      },
+      {
+        id: 'frb-190520',
+        label: '2022',
+        timeLabel: '2022',
+        title: 'FAST 发现 FRB 20190520B 并发表于 Nature',
+        description: 'CRAFTS 于 2019-05-20 扫描发现，2022 年发表；持续射电源与重复暴环境成为后续研究重点。',
+        lectureIds: ['lecture-7'],
+        pages: [35],
+        relatedEntityIds: ['fast-device'],
+        relatedTermIds: ['repeating-frb', 'fast-discoveries', 'crafts'],
         relatedTopicIds: ['tianwen-fast'],
         sourceType: 'course'
       },

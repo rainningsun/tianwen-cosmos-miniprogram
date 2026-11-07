@@ -1149,7 +1149,201 @@ const lectures = [
         page: 60
       }
     ],
-    nextHint: '课程在这里暂告一段落；后续讲次将按同一套数据与页面结构增量加入。'
+    nextHint: '最后一讲把镜头转向动态宇宙：从中子星与脉冲星，到快速射电暴与 FAST 的 CRAFTS 巡天。'
+  },
+  {
+    id: 'lecture-7',
+    order: 7,
+    date: '',
+    title: '快速射电暴与动态宇宙',
+    titleNote: '',
+    sourcePdf: '第七讲：快速射电暴与动态宇宙.pdf',
+    status: 'published',
+    pagePath: '/packageL4/pages/lecture/lecture',
+    package: 'packageL4',
+    keywords: ['中子星', '脉冲星', '快速射电暴', 'FRB 121102', 'CRAFTS', 'FAST'],
+    cover: '/assets/covers/l7.jpg',
+    summary: '这一讲把“动态宇宙”拆成两条线：前半程从中子星的理论前史讲起——白矮星与钱德拉塞卡极限、朗道与查德威克的中子星概念、巴德与兹威基把超新星与中子星放进同一因果链，再到 1967 年休伊什与贝尔发现脉冲星。后半程进入快速射电暴：洛里默 2007 年的毫秒暴、FRB 121102 的重复爆发、FAST 的 CRAFTS 巡天、FRB 20190520B 与持续射电源，以及用偏振演化统一重复暴的尝试。课件以宇宙认知三段论收束全课程。',
+    questions: [
+      '中子星概念如何从白矮星、超新星与中子的发现中逐步形成？',
+      '快速射电暴为什么难观测，洛里默暴与 FRB 121102 分别改变了什么？',
+      'FAST 的 CRAFTS 巡天如何提高 FRB 发现率，FRB 20190520B 与持续射电源说明了什么？',
+      '“动态宇宙”与宇宙认知三段论如何为整门课收束？'
+    ],
+    concepts: [
+      {
+        term: '致密星与钱德拉塞卡极限',
+        termId: 'chandrasekhar-limit',
+        desc: '白矮星靠电子简并压支撑；钱德拉塞卡给出约 1.44 M☉ 的相对论质量上限，超过上限后的终态指向中子星与黑洞。',
+        page: 6
+      },
+      {
+        term: '中子星',
+        termId: 'neutron-star',
+        desc: '朗道 1932 年设想恒星中心进入“巨型原子核”状态，查德威克同年发现中子；中子星从类比变成可计算的核物理对象。',
+        page: 7
+      },
+      {
+        term: '脉冲星',
+        termId: 'pulsar-binary',
+        desc: '1967 年休伊什与贝尔等在射电记录中发现周期性脉冲；脉冲星成为 20 世纪天文学四大发现之一。',
+        page: 10
+      },
+      {
+        term: '快速射电暴',
+        termId: 'frb',
+        desc: '2007 年洛里默等在 Parkes 档案数据中发现毫秒级射电暴；类似事件每天可能数百次，成为宇宙学探针。',
+        page: 18
+      },
+      {
+        term: '重复快速射电暴',
+        termId: 'repeating-frb',
+        desc: 'FRB 121102 是首个重复快速射电暴，由阿雷西博发现并定位到宿主星系；重复暴让偏振与环境研究成为可能。',
+        page: 23
+      },
+      {
+        term: 'CRAFTS 巡天',
+        termId: 'crafts',
+        desc: 'FAST 多科学目标同时巡天，世界首创脉冲星、中性氢、星系与快速射电暴同时巡天；课件称其倍增 FAST 巡天效率。',
+        page: 34
+      },
+      {
+        term: 'FRB 20190520B 与持续射电源',
+        termId: 'fast-discoveries',
+        desc: 'CRAFTS 于 2019-05-20 发现，2022 年发表于 Nature；持续射电源与重复暴环境把 FRB 与致密天体、超新星遗迹联系起来。',
+        page: 35
+      },
+      {
+        term: '动态宇宙',
+        termId: 'dynamic-universe',
+        desc: 'Dyson 语：宇宙是“被剧烈事件打断的湍流宇宙”；FRB 全天爆发率 >12 万次/天，把时域观测推到毫秒尺度。',
+        page: 34
+      }
+    ],
+    people: [
+      {
+        name: '钱德拉塞卡',
+        en: 'Subrahmanyan Chandrasekhar',
+        entityId: 'chandrasekhar',
+        note: '给出白矮星的相对论质量上限，课件把“超过上限后的终态”引向中子星。',
+        page: 6
+      },
+      {
+        name: '朗道与查德威克',
+        en: 'Lev Landau / James Chadwick',
+        entityId: 'landau-chadwick',
+        note: '朗道提出高密度星核设想，查德威克发现中子；课件注明朗道不是现代中子星模型，而是概念前身。',
+        page: 7
+      },
+      {
+        name: '巴德与兹威基',
+        en: 'Walter Baade / Fritz Zwicky',
+        entityId: 'baade-zwicky',
+        note: '把普通恒星、超新星爆发与中子星残骸放进同一因果链。',
+        page: 8
+      },
+      {
+        name: '休伊什与贝尔',
+        en: 'Antony Hewish / Jocelyn Bell',
+        entityId: 'hewich-bell',
+        note: '1967 年在射电记录中发现脉冲星；课件把它列为 20 世纪天文学四大发现之一。',
+        page: 10
+      },
+      {
+        name: '洛里默',
+        en: 'Duncan Lorimer',
+        entityId: 'lorimer',
+        note: '2007 年在 Parkes 档案数据中发现首个快速射电暴，后来被称为“Lorimer burst”。',
+        page: 18
+      },
+      {
+        name: '中国天眼 FAST',
+        en: 'Five-hundred-meter Aperture Spherical radio Telescope',
+        entityId: 'fast-device',
+        note: '以 CRAFTS 巡天推进 FRB 研究，发现 FRB 20190520B 并参与偏振演化统一机制。',
+        page: 31
+      }
+    ],
+    quotes: [
+      {
+        text: '自LIGO引力波测量之后天文学最重大的发现',
+        author: 'AAS Press · 2017',
+        page: 23
+      },
+      {
+        text: 'a turbulent Universe that is punctuated by violent events.',
+        author: 'Freeman Dyson',
+        page: 34
+      },
+      {
+        text: '宇宙是有“规律”的；规律是“人类”可以认知的；认知是通过“有意识观测”达成的。',
+        author: '李菂 · 宇宙认知三段论',
+        page: 53
+      }
+    ],
+    images: [
+      {
+        src: '/packageL4/assets/pages/l7-p07.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p07.jpg',
+        caption: '“巨型原子核”与中子星：朗道 1932 年提出高密度星核设想，查德威克同年发现中子；课件注明朗道不是现代中子星模型，而是概念前身。',
+        page: 7
+      },
+      {
+        src: '/packageL4/assets/pages/l7-p08.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p08.jpg',
+        caption: '超新星通向中子星：巴德与兹威基把普通恒星、超新星爆发与高密度残骸放进同一因果链；论文原页圈出“a neutron star”。',
+        page: 8
+      },
+      {
+        src: '/packageL4/assets/pages/l7-p10.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p10.jpg',
+        caption: '1967 年脉冲星发现：休伊什、贝尔等的射电记录与蟹状星云脉冲星；课件把它列为 20 世纪天文学四大发现之一。',
+        page: 10
+      },
+      {
+        src: '/packageL4/assets/pages/l7-p18.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p18.jpg',
+        caption: '2007 年洛里默毫秒射电暴：Parkes 档案数据中的“Lorimer burst”，论文称类似事件每天可能有数百次。',
+        page: 18
+      },
+      {
+        src: '/packageL4/assets/pages/l7-p23.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p23.jpg',
+        caption: 'FRB 121102：阿雷西博发现的第一个重复快速射电暴，并定位到宿主星系；课件引 AAS Press 2017 称其为“自 LIGO 引力波测量之后天文学最重大的发现”。',
+        page: 23
+      },
+      {
+        src: '/packageL4/assets/pages/l7-p31.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p31.jpg',
+        caption: '快速射电暴时间线：2007 年发现、2017 年首例精确定位、2020 年 FAST 正式运行、2021 年完整能谱、2022 年偏振演化统一机制、2023 年邵逸夫天文学奖。',
+        page: 31
+      },
+      {
+        src: '/packageL4/assets/pages/l7-p34.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p34.jpg',
+        caption: 'CRAFTS 与动态宇宙：FAST 多科学目标同时巡天；FRB 全天爆发率 >12 万次/天，横轴从“幼儿”到“中年”对应宇宙年龄。',
+        page: 34
+      },
+      {
+        src: '/packageL4/assets/pages/l7-p35.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p35.jpg',
+        caption: 'FRB 20190520B：2019-05-20 CRAFTS 扫描发现，2022 年发表于 Nature；入选中国科学十大进展等，后续观测包括持续射电源研究。',
+        page: 35
+      },
+      {
+        src: '/packageL4/assets/pages/l7-p43.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p43.jpg',
+        caption: '统一重复快速射电暴：FAST+GBT 的偏振—频率演化，121102 与 190520 的持续射电源（PRS）被放进同一框架；Science 特邀评述称其提供探测 FRB 复杂环境的独特方法。',
+        page: 43
+      },
+      {
+        src: '/packageL4/assets/pages/l7-p53.jpg',
+        thumb: '/packageL4/assets/thumbs/l7-p53.jpg',
+        caption: '宇宙认知三段论：宇宙有规律、规律是人类可以认知的、认知通过有意识观测达成；课件以“美《—》知”收束全课程。',
+        page: 53
+      }
+    ],
+    nextHint: ''
   }
 ];
 
@@ -1159,12 +1353,6 @@ function getPublishedLectures() {
     .sort((a, b) => a.order - b.order);
 }
 
-function getNextLecture() {
-  return lectures
-    .filter((lecture) => lecture.status === 'upcoming')
-    .sort((a, b) => a.order - b.order)[0] || null;
-}
-
 function getLectureById(id) {
   return lectures.find((lecture) => lecture.id === id) || null;
 }
@@ -1172,6 +1360,5 @@ function getLectureById(id) {
 module.exports = {
   lectures,
   getPublishedLectures,
-  getNextLecture,
   getLectureById
 };

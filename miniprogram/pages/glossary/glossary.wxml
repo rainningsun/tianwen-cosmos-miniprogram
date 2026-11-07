@@ -2,7 +2,7 @@
   <view class="ref-hero">
     <text class="eyebrow">GLOSSARY</text>
     <text class="shell-title">概念词典</text>
-    <text class="shell-desc">从 6 讲的核心概念出发，按术语、别名、分类或讲次查找。</text>
+    <text class="shell-desc">从 7 讲的核心概念出发，按术语、别名、分类或讲次查找。</text>
 
     <view class="ref-search">
       <text class="ref-search__icon">⌕</text>

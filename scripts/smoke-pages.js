@@ -56,9 +56,9 @@ function testIndex() {
   const page = instantiate(loadPage('miniprogram/pages/index/index.js'));
   page.onLoad();
   page.onShow();
-  assert.strictEqual(page.data.publishedCount, 6, '已上线讲次应为 6');
-  assert.strictEqual(page.data.lectures.length, 6, '首页时间轴应有 6 讲');
-  assert.strictEqual(page.data.upcoming, null, '六讲已上线，不应再有占位');
+  assert.strictEqual(page.data.publishedCount, 7, '已上线讲次应为 7');
+  assert.strictEqual(page.data.lectures.length, 7, '首页时间轴应有 7 讲');
+  assert.strictEqual(page.data.upcoming, undefined, '课程已完结，不应再有待更新占位');
   assert.strictEqual(typeof page.openReference, 'function', '首页应有索引入口');
   assert.strictEqual(typeof page.openExplore, 'function', '首页应有探索入口');
 }
@@ -79,17 +79,17 @@ function testTopic() {
 function testArchive() {
   const page = instantiate(loadPage('miniprogram/pages/archive/archive.js'));
   page.onShow();
-  assert.strictEqual(page.data.lectures.length, 6, '原页索引应包含 6 讲');
-  assert.strictEqual(page.data.lectures[5].status, 'published', '第六讲应已上线');
-  assert.strictEqual(page.data.lectures[5].count, 10, '第六讲应有 10 张原页');
+  assert.strictEqual(page.data.lectures.length, 7, '原页索引应包含 7 讲');
+  assert.strictEqual(page.data.lectures[6].title, '快速射电暴与动态宇宙', '第七讲应已上线');
+  assert.strictEqual(page.data.lectures[6].count, 10, '第七讲应有 10 张原页');
 }
 
 function testReferenceAndGlossary() {
   const reference = instantiate(loadPage('miniprogram/pages/reference/reference.js'));
-  assert.strictEqual(reference.data.glossaryCount, 45, '概念词典应有 45 条');
-  assert.strictEqual(reference.data.peopleCount, 34, '人物索引应有 34 位');
+  assert.strictEqual(reference.data.glossaryCount, 50, '概念词典应有 50 条');
+  assert.strictEqual(reference.data.peopleCount, 39, '人物索引应有 39 位');
   assert.strictEqual(reference.data.deviceCount, 6, '装置索引应有 6 个');
-  assert.strictEqual(reference.data.chainCount, 7, '思想链应有 7 条');
+  assert.strictEqual(reference.data.chainCount, 8, '思想链应有 8 条');
   reference.onSearch({ detail: { value: '秒差距' } });
   assert.strictEqual(reference.data.results.length, 1, '索引搜索“秒差距”应返回 1 条');
   reference.onSearch({ detail: { value: '萨根' } });
@@ -97,7 +97,7 @@ function testReferenceAndGlossary() {
 
   const glossary = instantiate(loadPage('miniprogram/pages/glossary/glossary.js'));
   glossary.onLoad();
-  assert.strictEqual(glossary.data.resultCount, 45, '词典列表应显示 45 条');
+  assert.strictEqual(glossary.data.resultCount, 50, '词典列表应显示 50 条');
   assert.strictEqual(glossary.data.groups.length, 5, '词典应按 5 个分类分组');
   glossary.onSearch({ detail: { value: '秒差距' } });
   assert.strictEqual(glossary.data.resultCount, 1, '词典搜索“秒差距”应返回 1 条');
@@ -119,12 +119,12 @@ function testReferenceAndGlossary() {
 function testEntities() {
   const list = instantiate(loadPage('miniprogram/pages/entities/entities.js'));
   list.onLoad({ mode: 'person' });
-  assert.strictEqual(list.data.items.length, 34, '人物列表应有 34 位');
+  assert.strictEqual(list.data.items.length, 39, '人物列表应有 39 位');
   assert.strictEqual(list.data.pageMeta.title, '人物与装置', '人物页大标题错误');
   list.selectMode({ currentTarget: { dataset: { mode: 'device' } } });
   assert.strictEqual(list.data.items.length, 6, '装置列表应有 6 个');
   list.selectMode({ currentTarget: { dataset: { mode: 'chain' } } });
-  assert.strictEqual(list.data.chains.length, 7, '思想链应有 7 条');
+  assert.strictEqual(list.data.chains.length, 8, '思想链应有 8 条');
   assert.strictEqual(list.data.pageMeta.title, '思想链', '思想链页大标题错误');
 
   const detail = instantiate(loadPage('miniprogram/pages/entity-detail/entity-detail.js'));
@@ -164,7 +164,7 @@ function testTimeline() {
   assert.strictEqual(page.data.mode, 'cosmic', '时间线默认宇宙时间');
   assert.strictEqual(page.data.currentTrack.events.length, 6, '宇宙时间线应有 6 个节点');
   page.selectMode({ currentTarget: { dataset: { mode: 'human' } } });
-  assert.strictEqual(page.data.currentTrack.events.length, 16, '观测史应有 16 个节点');
+  assert.strictEqual(page.data.currentTrack.events.length, 19, '观测史应有 19 个节点');
   page.selectMode({ currentTarget: { dataset: { mode: 'compare' } } });
   assert.strictEqual(page.data.compare, true, '应显示对照说明');
 }
@@ -192,7 +192,8 @@ function testDetails() {
     ['miniprogram/packageL2/pages/lecture/lecture.js', 'lecture-3', 'lecture-2', 'lecture-4'],
     ['miniprogram/packageL2/pages/lecture/lecture.js', 'lecture-4', 'lecture-3', 'lecture-5'],
     ['miniprogram/packageL3/pages/lecture/lecture.js', 'lecture-5', 'lecture-4', 'lecture-6'],
-    ['miniprogram/packageL3/pages/lecture/lecture.js', 'lecture-6', 'lecture-5', null]
+    ['miniprogram/packageL3/pages/lecture/lecture.js', 'lecture-6', 'lecture-5', 'lecture-7'],
+    ['miniprogram/packageL4/pages/lecture/lecture.js', 'lecture-7', 'lecture-6', null]
   ];
 
   for (const [file, id, prevId, nextId] of cases) {
@@ -206,9 +207,9 @@ function testDetails() {
     assert.ok(page.data.exploreLinks.length >= 1 && page.data.exploreLinks.length <= 3, `${id} 应有 1-3 个继续探索链接`);
   }
 
-  const upcoming = instantiate(loadPage('miniprogram/packageL3/pages/lecture/lecture.js'));
-  upcoming.onLoad({ id: 'lecture-7' });
-  assert.strictEqual(upcoming.data.notFound, true, '未上线的后续讲次不应生成详情页');
+  const missing = instantiate(loadPage('miniprogram/packageL4/pages/lecture/lecture.js'));
+  missing.onLoad({ id: 'lecture-99' });
+  assert.strictEqual(missing.data.notFound, true, '不存在的讲次不应生成详情页');
 }
 
 testIndex();
@@ -221,4 +222,4 @@ testTimeline();
 testQuestions();
 testDetails();
 
-console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念 / 人物装置 / 探索 / 尺度 / 时间线 / 未解之谜 / 6 讲详情');
+console.log('页面逻辑冒烟测试通过：首页 / 主线 / 原页 / 索引 / 概念 / 人物装置 / 探索 / 尺度 / 时间线 / 未解之谜 / 7 讲详情');

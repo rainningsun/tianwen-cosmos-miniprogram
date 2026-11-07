@@ -52,7 +52,7 @@
             <text class="ref-card__title">概念词典</text>
             <text class="ref-card__count">{{glossaryCount}} 条</text>
           </view>
-          <text class="ref-card__desc">从 6 讲的核心概念出发，按分类、讲次和别名检索。</text>
+          <text class="ref-card__desc">从 7 讲的核心概念出发，按分类、讲次和别名检索。</text>
           <view class="ref-card__examples">
             <text wx:for="{{examples}}" wx:key="id" class="ref-card__example">{{item.term}}</text>
           </view>
