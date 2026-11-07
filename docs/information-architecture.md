@@ -3,13 +3,13 @@
 > 本文件定义 v2 改版的模块归属、页面清单、数据归属与迁移顺序。
 > 原则：**不重写讲次内容，只重构信息架构；一份内容只在一个地方定义。**
 >
-> 状态：v2.1.0 已完成五个一级模块、交叉链接、生平补充与验收文档；历史移除记录见 `docs/removed-assignment.md`。
+> 状态：v2.3.0 已完成七讲内容、五个一级模块、交叉链接、生平补充与验收文档；课程已完结，不再保留后续讲次占位。历史移除记录见 `docs/removed-assignment.md`。
 
 ## 1. 五个一级模块
 
 | 顺序 | Tab | 页面 | 回答的问题 | 内容归属 |
 |---|---|---|---|---|
-| 1 | 课程 | `pages/index/index` | 这门课讲什么？从哪里开始？ | 课程地图、讲次叙事、六讲内容 |
+| 1 | 课程 | `pages/index/index` | 这门课讲什么？从哪里开始？ | 课程地图、讲次叙事、七讲内容 |
 | 2 | 主线 | `pages/topic/topic` | 课程的核心观点是什么？ | 6 篇跨讲专题 |
 | 3 | 索引 | `pages/reference/reference` | 某个概念/人物/装置是什么？ | 概念词典、人物与装置、思想链（三张并列卡片） |
 | 4 | 探索 | `pages/explore/explore` | 尺度多大？时间多长？还有什么不知道？ | 宇宙尺度、双时间线、未解之谜 |
@@ -37,7 +37,7 @@ pages/
   question-detail/       未解之谜详情
 ```
 
-讲次详情仍在 `packageL1/`、`packageL2/`、`packageL3/`，不改分包结构。
+讲次详情分布在 `packageL1/`、`packageL2/`、`packageL3/`、`packageL4/`。
 
 ## 3. 内容归属
 
@@ -58,7 +58,7 @@ pages/
 - 讲次 `concepts[].termId` 指向 `glossary`；`people[].entityId` 指向 `entities`。
 - 每个新条目必须有 `lectureIds`、`pages`、`sourceType`（`course` / `supplement`）。
 - 没有课件出处的数字或结论，标为“课外补充”或直接不写。
-- 第六讲保持 `upcoming`，不编造主题、日期与内容。
+- 七讲已全部上线，不再保留 `upcoming` 占位或后续讲次入口。
 
 ## 4. 迁移状态
 
