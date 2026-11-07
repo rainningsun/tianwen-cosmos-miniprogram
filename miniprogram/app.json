@@ -70,6 +70,13 @@
       "pages": [
         "pages/lecture/lecture"
       ]
+    },
+    {
+      "root": "packageL4",
+      "name": "packageL4",
+      "pages": [
+        "pages/lecture/lecture"
+      ]
     }
   ],
   "style": "v2",
