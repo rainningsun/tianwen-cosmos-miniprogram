@@ -200,12 +200,6 @@
   font-size: 26rpx;
 }
 
-.count-line__next {
-  margin-left: auto;
-  color: var(--color-muted);
-  font-size: 22rpx;
-}
-
 .timeline {
   position: relative;
   padding-left: 34rpx;
@@ -234,12 +228,6 @@
   border-radius: 50%;
   background: var(--color-gold);
   box-shadow: 0 0 14rpx rgba(216, 168, 78, 0.55);
-}
-
-.timeline__node--hollow {
-  background: var(--color-bg);
-  border: 1rpx solid var(--color-muted);
-  box-shadow: none;
 }
 
 .thread-list {
