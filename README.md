@@ -94,7 +94,7 @@ docs/
   release-v2.1.0.md            v2.1.0 变更、截图与代码扫描结果
   add-lecture.md               新增讲次操作手册
   content-sources.md           内容来源、页码与待确认项
-  ta/                          作业展示 PDF/DOCX 与助教确认问题清单
+  showcase/                    课程小程序展示 PDF、HTML 与截图
 .github/workflows/
   validate.yml            CI：静态校验 + 冒烟测试 + 拒绝追踪 PDF
 ```

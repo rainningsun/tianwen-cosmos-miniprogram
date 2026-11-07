@@ -1,0 +1,255 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>天问：宇宙之美 · 课程小程序展示</title>
+<style>
+  @page { size: A4; margin: 13mm 13mm 14mm; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #20242c; background: #fff; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 10.5pt; line-height: 1.75; }
+  .page { page-break-after: always; min-height: 268mm; position: relative; }
+  .page:last-child { page-break-after: auto; }
+  h1, h2, h3, .serif { font-family: "Songti SC", "Noto Serif SC", SimSun, serif; font-weight: 400; }
+  .cover { background: #070b14; color: #efe9d9; margin: -13mm; padding: 24mm 22mm; height: 297mm; position: relative; overflow: hidden; }
+  .cover:before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 78% 18%, rgba(216,168,78,.22), transparent 34%), radial-gradient(circle at 18% 76%, rgba(86,145,190,.18), transparent 38%), linear-gradient(160deg, #0c1424, #05070d 62%); }
+  .cover > * { position: relative; }
+  .cover .eyebrow { color: #d8a84e; letter-spacing: .22em; font-size: 9pt; }
+  .cover h1 { font-size: 39pt; line-height: 1.2; margin: 18mm 0 4mm; letter-spacing: .04em; }
+  .cover .sub { color: #c7c1b2; font-size: 12.5pt; letter-spacing: .12em; }
+  .cover .line { width: 38mm; height: 2px; background: #d8a84e; margin: 12mm 0; }
+  .cover .desc { width: 118mm; color: #d5d0c3; font-size: 10.5pt; line-height: 2; }
+  .cover .stats { display: flex; gap: 10mm; margin-top: 18mm; }
+  .cover .stat b { display: block; color: #d8a84e; font-size: 25pt; font-family: "Songti SC", SimSun, serif; font-weight: 400; }
+  .cover .stat span { color: #9ea5b4; font-size: 8.5pt; letter-spacing: .08em; }
+  .cover .meta { position: absolute; left: 22mm; bottom: 18mm; color: #8e96a8; font-size: 8.5pt; line-height: 1.9; }
+  .kicker { color: #b07b22; letter-spacing: .18em; font-size: 8.5pt; margin-bottom: 2mm; }
+  h2 { font-size: 22pt; margin: 0 0 4mm; color: #171a20; }
+  h3 { font-size: 13pt; margin: 6mm 0 2mm; color: #2b3039; }
+  p { margin: 0 0 3mm; color: #3f4550; }
+  .lead { font-size: 11.5pt; color: #2f3540; line-height: 1.9; }
+  .muted { color: #7a8292; font-size: 9pt; }
+  .rule { height: 1px; background: #e3e1db; margin: 5mm 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .card { border: 1px solid #e4e2dc; border-radius: 3mm; padding: 5mm; background: #fbfaf7; }
+  .card h3 { margin-top: 0; }
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 7mm 0; }
+  .stat-row .cell { border-top: 2px solid #d8a84e; padding-top: 2.5mm; }
+  .stat-row b { display: block; font-family: "Songti SC", SimSun, serif; font-size: 19pt; font-weight: 400; color: #20242c; }
+  .stat-row span { color: #727b8c; font-size: 8.5pt; }
+  .shot { margin: 0; }
+  .shot img { display: block; border: 1px solid #dcdad4; border-radius: 2.5mm; background: #05070d; }
+  .shot figcaption { color: #6f7786; font-size: 8pt; line-height: 1.55; margin-top: 1.6mm; }
+  .phone { width: 72mm; height: auto; margin: 0 auto; }
+  .phone-wide { width: 92mm; height: auto; margin: 0 auto; }
+  .banner { width: 100%; height: auto; }
+  .tag { display: inline-block; border: 1px solid #d9c9a7; color: #8a6420; border-radius: 99px; padding: 1px 2.6mm; font-size: 8pt; margin: 0 1.5mm 1.5mm 0; }
+  ul { margin: 2mm 0 3mm 5mm; padding: 0; }
+  li { margin-bottom: 1.6mm; color: #3f4550; }
+  .steps { counter-reset: step; }
+  .steps .step { display: flex; gap: 4mm; margin-bottom: 4mm; }
+  .steps .step:before { counter-increment: step; content: counter(step); flex: 0 0 8mm; height: 8mm; border-radius: 50%; background: #d8a84e; color: #111; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+  .steps .step b { display: block; color: #20242c; margin-bottom: 1mm; }
+  .code { background: #f3f1eb; border-left: 3px solid #d8a84e; padding: 3mm 4mm; font-family: Consolas, monospace; font-size: 8.5pt; line-height: 1.7; color: #444; white-space: pre-wrap; }
+  .footer { position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid #e3e1db; padding-top: 2.5mm; color: #8c93a0; font-size: 8pt; display: flex; justify-content: space-between; }
+  .quote { font-family: "Songti SC", SimSun, serif; font-size: 13pt; color: #4a412e; border-left: 2px solid #d8a84e; padding-left: 5mm; line-height: 1.8; margin: 5mm 0; }
+  .small { font-size: 9pt; color: #6f7786; }
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div class="eyebrow">TSINGHUA ASTRONOMY · COURSE MINI PROGRAM</div>
+  <h1>天问：宇宙之美<br>课程小程序展示</h1>
+  <div class="sub">从《天问》到 FAST，从宇宙元素到快速射电暴</div>
+  <div class="line"></div>
+  <div class="desc">七讲课程导读、70 张课件原页，以及概念词典、人物与装置、思想链、宇宙尺度、双时间线与未解之谜。原生微信小程序，不使用 web-view 套壳，不引入 npm 依赖。</div>
+  <div class="stats">
+    <div class="stat"><b>7</b><span>讲全部上线</span></div>
+    <div class="stat"><b>50</b><span>概念词条</span></div>
+    <div class="stat"><b>39</b><span>人物 · 6 装置</span></div>
+    <div class="stat"><b>8</b><span>条思想链</span></div>
+  </div>
+  <div class="meta">版本 v2.3.0 · 2026-11-07<br>主讲：李菂 · 清华大学天文系<br>仓库：github.com/rainningsun/tianwen-cosmos-miniprogram</div>
+</section>
+
+<section class="page">
+  <div class="kicker">PROJECT OVERVIEW</div>
+  <h2>项目概览</h2>
+  <p class="lead">这不是把课件塞进网页，而是把七讲内容重新组织成一条“可读、可查、可探索”的阅读路径：先按课程星图读导读与关键原页，再沿思想主线回看跨讲观点，最后用索引、尺度和时间线把概念放到一张地图上。</p>
+  <div class="stat-row">
+    <div class="cell"><b>7</b><span>讲课程内容</span></div>
+    <div class="cell"><b>70</b><span>张关键原页</span></div>
+    <div class="cell"><b>6</b><span>篇跨讲专题</span></div>
+    <div class="cell"><b>6</b><span>个未解之谜</span></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>五个一级模块</h3><p>课程 / 主线 / 索引 / 探索 / 原页五个 tab，分别回答“从哪里开始”“核心观点是什么”“某个词是什么”“尺度多大、还有什么不知道”“原始课件在哪里”。</p></div>
+    <div class="card"><h3>数据与内容分离</h3><p>讲次、概念、人物、专题、时间线、问题分别存放在 <span class="small">data/</span> 下；页面只负责取数与渲染，不做内容复制。</p></div>
+    <div class="card"><h3>七讲完结</h3><p>课程已完结，不再保留“待更新”占位或后续讲次接口；最后一讲导航显示“已是最后一讲”。</p></div>
+    <div class="card"><h3>离线可用</h3><p>课件原页、封面、缩略图全部打包在小程序内；无外链、无 CDN 依赖，弱网也可阅读。</p></div>
+  </div>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">HOW TO OPEN</div>
+  <h2>打开方式</h2>
+  <div class="steps">
+    <div class="step"><div><b>安装微信开发者工具</b><p>使用稳定版微信开发者工具，登录有该小程序权限的微信账号。</p></div></div>
+    <div class="step"><div><b>导入项目</b><p>选择“导入项目”，项目目录选择压缩包解压后的根目录（即 <span class="small">project.config.json</span> 所在目录），不要选 <span class="small">miniprogram/</span> 子目录。</p></div></div>
+    <div class="step"><div><b>确认 AppID 与目录</b><p><span class="small">miniprogramRoot</span> 已配置为 <span class="small">miniprogram/</span>，AppID 为 <span class="small">wx2e8e3cde13016238</span>。没有权限时请管理员添加开发者。</p></div></div>
+    <div class="step"><div><b>编译运行</b><p>导入后点击“编译”（Ctrl+R）即可在模拟器中打开首页；首页即课程星图，点击任意讲次进入详情。</p></div></div>
+    <div class="step"><div><b>只看文档</b><p>如果暂时没有开发者工具权限，可直接阅读本 PDF；文档内含各模块截图、功能说明与验收结果。</p></div></div>
+  </div>
+  <div class="code">压缩包根目录/
+├─ project.config.json      ← 导入时选择这一层
+├─ miniprogram/             ← 小程序源码与资源
+├─ scripts/                 ← 内容校验与冒烟测试
+├─ docs/showcase/           ← 本展示文件与截图
+└─ README.md                ← 项目说明</div>
+  <p class="muted">说明：仓库为 private，未上传体验版；真机预览需要管理员在开发者工具中扫码授权。本展示文件与截图仅用于课程作业提交。</p>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">MODULE 01 · COURSE</div>
+  <h2>课程：从星图进入七讲</h2>
+  <p>首页保留课程星图为主视觉：标题、主讲、课程使命与《天问》引文之后，按时间顺序排列七讲卡片。每张卡片显示讲次、标题、关键词与封面；点击进入讲次详情。</p>
+  <div class="grid2">
+    <figure class="shot"><img class="phone" src="assets/home.png" alt="课程首页"><figcaption>课程首页：课程星图、七讲入口与“7 讲已上线”。</figcaption></figure>
+    <figure class="shot"><img class="phone" src="assets/lecture7.png" alt="第七讲详情"><figcaption>第七讲详情：导读、问题、概念与原页入口。</figcaption></figure>
+  </div>
+  <p class="small">讲次详情还包含人物/装置、金句、10 张关键原页画廊、上一讲/下一讲与“继续探索”。第七讲为最后一讲，下一讲位置显示“已是最后一讲”。</p>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">MODULE 02 · THREADS</div>
+  <h2>主线：六条跨讲线索</h2>
+  <p>“主线”把散落在各讲中的问题串起来，不重复讲次全文。六个专题分别是：宇宙认知三段论、美《—》知、宇宙距离阶梯、从《天问》到 FAST、智能、直觉与“物理智觉”、Are we alone?。</p>
+  <div class="grid2">
+    <figure class="shot"><img class="phone" src="assets/topic.png" alt="主线专题"><figcaption>主线专题：从《天问》到 FAST，把古人问天、射电窗口、阿雷西博与 FAST 串成一条线。</figcaption></figure>
+    <figure class="shot"><img class="phone" src="assets/topic-links.png" alt="专题关联"><figcaption>专题页自动列出相关讲次、相关概念、人物/装置与探索入口；条目只放链接，不复制全文。</figcaption></figure>
+  </div>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">MODULE 03 · INDEX</div>
+  <h2>索引：概念、人物与思想链</h2>
+  <p>索引入口页用三张并列卡片进入概念词典、人物与装置、思想链；三处都支持搜索、分类/讲次筛选和详情页交叉链接。</p>
+  <figure class="shot"><img class="phone-wide" src="assets/reference.png" alt="索引三卡"><figcaption>索引三卡：50 条概念、39 位人物 + 6 个装置、8 条思想链。</figcaption></figure>
+  <div class="grid2" style="margin-top:5mm">
+    <figure class="shot"><img class="phone" src="assets/glossary.png" alt="概念词典"><figcaption>概念词典：按分类、讲次与别名检索；每条含定义、本讲语境与相关链接。</figcaption></figure>
+    <figure class="shot"><img class="phone" src="assets/entities.png" alt="人物与装置"><figcaption>人物与装置：人物 / 装置 / 思想链三种模式；人物卡可进入生平与相关概念。</figcaption></figure>
+  </div>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">MODULE 03 · DETAIL</div>
+  <h2>索引详情与思想链</h2>
+  <p>人物/装置详情把“课程中的角色”“贡献”“规格”与“课外补充的生平/背景”分开标注；思想链则把人物与装置串成可阅读的路径，点击节点可回到对应条目。</p>
+  <div class="grid2">
+    <figure class="shot"><img class="phone" src="assets/entity-bio.png" alt="人物生平"><figcaption>人物详情：课程角色与课外生平分开标注，避免把补充资料混入课件原文。</figcaption></figure>
+    <figure class="shot"><img class="phone" src="assets/lecture-detail.png" alt="讲次详情"><figcaption>讲次详情：导读、问题、概念、人物、金句与原页画廊；每张图注保留 PDF 页码。</figcaption></figure>
+  </div>
+  <div class="quote">“思想链”页面的大标题为“思想链”，不再沿用“人物与装置”。从索引卡片进入时会自动切换标题、说明与导航栏文字。</div>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">MODULE 04 · EXPLORE</div>
+  <h2>探索：尺度、时间与未知</h2>
+  <p>“探索”把课程里的数量级与开放问题做成可操作的视图：宇宙尺度滑杆、双时间线、未解之谜列表与详情。</p>
+  <div class="grid2">
+    <figure class="shot"><img class="phone" src="assets/scale.png" alt="宇宙尺度"><figcaption>宇宙尺度：8 个层级，对数映射；课件依据与“课外补充”分开标注。</figcaption></figure>
+    <figure class="shot"><img class="phone" src="assets/timeline.png" alt="双时间线"><figcaption>双时间线：宇宙的 6 个节点与人类观测史的 19 个节点，两条轨道不按比例。</figcaption></figure>
+  </div>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">MODULE 04 · QUESTIONS</div>
+  <h2>未解之谜：已知、未知与为什么重要</h2>
+  <p>每个问题都拆成“课件已知 / 仍未知 / 为什么重要”三段，不把科普答案伪装成课件结论。第七讲把“快速射电暴从哪里来”补入 FRB 121102、CRAFTS 与持续射电源。</p>
+  <div class="grid2">
+    <figure class="shot"><img class="phone" src="assets/questions.png" alt="未解之谜"><figcaption>未解之谜：6 个开放问题，按主题筛选。</figcaption></figure>
+    <figure class="shot"><img class="phone" src="assets/question-detail.png" alt="问题详情"><figcaption>问题详情：课件已知、仍未知、为什么重要，以及相关讲次与概念。</figcaption></figure>
+  </div>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">MODULE 05 · ARCHIVE</div>
+  <h2>原页：七讲 × 10 张关键页</h2>
+  <p>原页索引按讲次列出 70 张关键页，只显示“收录 10 页”，不显示授课日期；点击进入讲次详情后可直接定位到原页画廊。所有图片均从本地课件 PDF 渲染，不使用外链。</p>
+  <figure class="shot"><img class="phone-wide" src="assets/archive.png" alt="原页索引"><figcaption>原页索引：七讲各 10 张关键页，统一不显示日期。</figcaption></figure>
+  <p class="small">第六讲封面使用 p.28“爆炸制造并抛撒元素”，第七讲封面使用 p.23“FRB 121102”；封面只用于课程卡片，不替代原页画廊。</p>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">LECTURE 07 · FINALE</div>
+  <h2>第七讲：快速射电暴与动态宇宙</h2>
+  <p>第七讲是课程最后一讲，把“动态宇宙”拆成两条线：前半程从中子星、脉冲星讲到超新星与致密残骸；后半程进入快速射电暴，落到洛里默暴、FRB 121102、CRAFTS 巡天、FRB 20190520B 与偏振演化统一机制。</p>
+  <div class="grid2">
+    <figure class="shot"><img class="banner" src="assets/l7-p31.jpg" alt="FRB 时间线"><figcaption>p.31：快速射电暴时间线与 FAST 的关键节点。</figcaption></figure>
+    <figure class="shot"><img class="banner" src="assets/l7-p35.jpg" alt="FRB 20190520B"><figcaption>p.35：FRB 20190520B，2019-05-20 CRAFTS 扫描、2022 年发表于 Nature。</figcaption></figure>
+    <figure class="shot"><img class="banner" src="assets/l7-p43.jpg" alt="统一重复快速射电暴"><figcaption>p.43：FAST+GBT 的偏振—频率演化，121102 与 190520 的持续射电源被放进同一框架。</figcaption></figure>
+    <figure class="shot"><img class="banner" src="assets/l7-p53.jpg" alt="宇宙认知三段论"><figcaption>p.53：宇宙认知三段论，以“美《—》知”收束全课程。</figcaption></figure>
+  </div>
+  <div class="quote">宇宙是有“规律”的；规律是“人类”可以认知的；认知是通过“有意识观测”达成的。</div>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+<section class="page">
+  <div class="kicker">IMPLEMENTATION &amp; ACCEPTANCE</div>
+  <h2>技术实现与验收</h2>
+  <div class="grid2">
+    <div>
+      <h3>技术栈</h3>
+      <ul>
+        <li>原生 WXML / WXSS / JavaScript，不使用 <span class="small">web-view</span> 套壳。</li>
+        <li>无 npm 运行时依赖；数据与页面分离，内容集中在 <span class="small">data/</span>。</li>
+        <li>主包 + <span class="small">packageL1</span>–<span class="small">packageL4</span> 四个分包；第七讲独立放入 <span class="small">packageL4</span>。</li>
+        <li>离线打包课件原页、缩略图与封面；图片版权归授课教师及原作者所有。</li>
+      </ul>
+      <h3>数据规模</h3>
+      <ul>
+        <li>7 讲、70 张关键原页、50 个概念词条。</li>
+        <li>39 位人物、6 个装置、8 条思想链。</li>
+        <li>6 个宇宙节点 + 19 个观测史节点。</li>
+        <li>8 个宇宙尺度层级、6 个未解之谜。</li>
+      </ul>
+    </div>
+    <div>
+      <h3>验收结果</h3>
+      <ul>
+        <li>静态校验：讲次/概念/人物/专题/时间线/问题关联 ID 全部可解析。</li>
+        <li>冒烟测试：首页 7 讲、原页 7 讲、第七讲详情与上下讲导航。</li>
+        <li>微信开发者工具编译通过，模拟器正常创建页面。</li>
+        <li>GitHub Actions 最新运行 success。</li>
+      </ul>
+      <h3>包体</h3>
+      <ul>
+        <li>主包约 503 KB；L1 1.28 MB；L2 1.46 MB；L3 1.47 MB；L4 1.15 MB。</li>
+        <li>总包约 5.85 MB，低于 20 MB 上限。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <h3>提交文件</h3>
+  <table style="width:100%;border-collapse:collapse;font-size:9pt">
+    <tr style="background:#f3f1eb"><td style="padding:2mm;border:1px solid #e2dfd8">文件</td><td style="padding:2mm;border:1px solid #e2dfd8">用途</td></tr>
+    <tr><td style="padding:2mm;border:1px solid #e2dfd8">天问宇宙之美-课程小程序-展示.pdf</td><td style="padding:2mm;border:1px solid #e2dfd8">本文件；包含模块说明与页面截图</td></tr>
+    <tr><td style="padding:2mm;border:1px solid #e2dfd8">miniprogram/ + project.config.json</td><td style="padding:2mm;border:1px solid #e2dfd8">可直接导入微信开发者工具的源码</td></tr>
+    <tr><td style="padding:2mm;border:1px solid #e2dfd8">docs/showcase/</td><td style="padding:2mm;border:1px solid #e2dfd8">展示文件、HTML 源文件与截图</td></tr>
+    <tr><td style="padding:2mm;border:1px solid #e2dfd8">README.md / scripts/</td><td style="padding:2mm;border:1px solid #e2dfd8">项目说明与内容/页面校验脚本</td></tr>
+  </table>
+  <p class="muted" style="margin-top:4mm">截图说明：首页、索引、原页、概念词典、人物与装置、第七讲详情为按当前数据与小程序样式生成的界面截图；尺度、时间线、未解之谜、专题、人物生平与讲次详情取自微信开发者工具 v2.1.0 验收运行，界面结构未变，数据已更新至 v2.3.0。</p>
+  <div class="footer"><span>天问：宇宙之美 · 课程小程序展示</span><span>v2.3.0</span></div>
+</section>
+
+</body>
+</html>
